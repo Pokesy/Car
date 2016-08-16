@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <android.support.v4.view.ViewPager
+      android:id="@+id/lead_pager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      />
+
+  <me.relex.circleindicator.CircleIndicator
+      android:id="@+id/indicator"
+      android:layout_width="match_parent"
+      android:layout_height="48dp"
+      android:layout_alignParentBottom="true"
+      android:visibility="gone"
+      app:ci_animator="@animator/indicator_animator"
+      app:ci_animator_reverse="@animator/indicator_animator_reverse"
+      app:ci_drawable="@drawable/black_radius_square"
+      />
+
+  <github.chenupt.springindicator.SpringIndicator
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/spring_indicator"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:layout_alignParentBottom="true"
+      android:layout_marginLeft="80dp"
+      android:layout_marginRight="80dp"
+      app:siIndicatorColor="@color/colorPrimary"
+      app:siIndicatorColors="@array/indicator_colors"
+      app:siRadiusMax="6dp"
+      app:siRadiusMin="3dp"
+      app:siSelectedTextColor="@android:color/white"
+      app:siTextColor="@color/colorPrimaryDark"
+      />
+
+</RelativeLayout>

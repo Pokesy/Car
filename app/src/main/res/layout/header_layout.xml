@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ListView的头部 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/head_rootLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+  <!-- 内容 -->
+
+  <RelativeLayout
+      android:id="@+id/head_contentLayout"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:paddingLeft="30dp" >
+
+    <!--&lt;!&ndash; 箭头图像、进度条 &ndash;&gt;-->
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_centerVertical="true" >-->
+
+      <!--&lt;!&ndash; 箭头 &ndash;&gt;-->
+
+      <!--<ImageView-->
+          <!--android:id="@+id/head_arrowImageView"-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:layout_gravity="center"-->
+          <!--android:contentDescription="@string/app_name"-->
+          <!--android:src="@drawable/head_arrow" />-->
+      <!--&lt;!&ndash; 进度条 &ndash;&gt;-->
+
+      <!--<ProgressBar-->
+          <!--android:id="@+id/head_progressBar"-->
+          <!--style="?android:attr/progressBarStyleSmall"-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:layout_gravity="center"-->
+          <!--android:visibility="gone" />-->
+    <!--</FrameLayout>-->
+    <!--&lt;!&ndash; 提示、最近更新 &ndash;&gt;-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:orientation="vertical" >-->
+
+      <!--&lt;!&ndash; 提示 &ndash;&gt;-->
+
+      <!--<TextView-->
+          <!--android:id="@+id/head_tipsTextView"-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:text="@string/pulltorefresh"-->
+          <!--android:textSize="20sp" />-->
+      <!--&lt;!&ndash; 最近更新 &ndash;&gt;-->
+
+      <!--<TextView-->
+          <!--android:id="@+id/head_lastUpdatedTextView"-->
+          <!--android:layout_width="wrap_content"-->
+          <!--android:layout_height="wrap_content"-->
+          <!--android:text="@string/lastupdate"-->
+          <!--android:textColor="#cc6600"-->
+          <!--android:textSize="12sp" />-->
+    <!--</LinearLayout>-->
+  </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_tag"
+    android:layout_marginRight="@dimen/margin_tag"
+    android:background="@drawable/bg_activity_tag"
+    android:gravity="center"
+    android:paddingBottom="4dp"
+    android:paddingLeft="@dimen/margin_medium"
+    android:paddingRight="@dimen/margin_medium"
+    android:paddingTop="4dp"
+    tools:text="好吃"
+    style="@style/Widget.App.TextView.Medium.Secondary"
+    >
+
+</TextView>

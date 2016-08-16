@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="SegmentControl">
+    <attr format="dimension|reference" name="cornerRadius"/>
+    <attr format="color|reference" name="colors"/>
+    <attr format="string|reference" name="texts"/>
+    <attr name="android:textSize"/>
+    <attr format="enum" name="direction">
+      <enum name="horizon" value="0"/>
+      <enum name="vertical" value="1"/>
+    </attr>
+    <attr format="dimension|reference" name="gaps"/>
+    <attr format="dimension|reference" name="horizonGap"/>
+    <attr format="dimension|reference" name="verticalGap"/>
+  </declare-styleable>
+</resources>

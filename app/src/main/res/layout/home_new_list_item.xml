@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/list_item"
+    >
+
+  <LinearLayout
+      android:id="@+id/ll_zx"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@android:color/white"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:padding="5dp"
+      >
+
+
+    <!-- 文字信息区域-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="22dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+
+
+      <TextView
+          android:id="@+id/news_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:ellipsize="end"
+          android:lineSpacingMultiplier="1.5"
+          android:maxLines="2"
+
+          tools:text="春花秋月何时了，往事知多少，小楼昨夜又东风，故国不堪回首月明中，雕栏玉砌应犹在"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:orientation="horizontal"
+          android:paddingRight="10dp"
+          >
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:textColor="@color/tab_layout_color"
+            android:textSize="@dimen/font_size_small"
+            tools:text="10"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_from"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:textColor="@color/tab_layout_color"
+            android:textSize="@dimen/font_size_small"
+            tools:text="100"
+            />
+
+
+      </LinearLayout>
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          >
+
+        <TextView
+            android:id="@+id/comment_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@mipmap/shouye_pinglun"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:textColor="@color/tab_layout_color"
+            android:textSize="@dimen/font_size_small"
+            tools:text="10"
+            />
+
+
+        <TextView
+            android:id="@+id/view_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/comment_count"
+            android:drawableLeft="@mipmap/shouye_liulan"
+            android:drawablePadding="3dp"
+            android:gravity="center"
+            android:textColor="@color/tab_layout_color"
+            android:textSize="@dimen/font_size_small"
+            tools:text="100"
+            />
+
+
+      </RelativeLayout>
+    </LinearLayout>
+
+
+    <!-- 图片logo区域-->
+    <LinearLayout
+        android:layout_width="114dp"
+        android:layout_height="85dp"
+        android:id="@+id/images"
+        >
+      <ImageView
+          android:id="@+id/iv_1"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scaleType="centerCrop"
+          tools:src="@mipmap/ic_launcher"
+          />
+    </LinearLayout>
+  </LinearLayout>
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:layout_alignParentBottom="true"
+      android:layout_marginTop="5dp"
+      android:background="#E3E3E3"
+      />
+</RelativeLayout>

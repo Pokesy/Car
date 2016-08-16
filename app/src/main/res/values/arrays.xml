@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="home_tab_title">
+    <item>资讯</item>
+    <item>口碑</item>
+    <item>作业</item>
+    <item>自媒体</item>
+  </string-array>
+  <array name="avatar_choose_item">
+    <item>拍照</item>
+    <item>从手机相册选择</item>
+  </array>
+  <array name="indicator_colors">
+    <item>@color/font_color_yellow</item>
+    <item>@color/font_color_yellow</item>
+    <item>@color/font_color_yellow</item>
+    <item>@color/font_color_yellow</item>
+  </array>
+  <array name="gender_items">
+    <item>男</item>
+    <item>女</item>
+  </array>
+</resources>
