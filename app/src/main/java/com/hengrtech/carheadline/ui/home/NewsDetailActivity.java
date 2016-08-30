@@ -150,7 +150,7 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
       @Override protected void onSuccess(NewsDetailModel infoModels) {
         supportCount.setText(infoModels.getCommentsCount());
         replyCount.setText(infoModels.getPraiseCount());
-        content.setText(infoModels.getContent());
+        content.setText("<p>"+infoModels.getContent().replace("\n","</P><p>")+"</p>");
         initcomment();
       }
 
