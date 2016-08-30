@@ -111,7 +111,7 @@ public class TodayActivity extends BasicTitleBarActivity implements OnItemClickL
   }
 
   @Override public boolean initializeTitleBar() {
-    setLeftTitleButton(R.mipmap.ic_launcher, new View.OnClickListener() {
+    setLeftTitleButton(R.mipmap.back, new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         finish();

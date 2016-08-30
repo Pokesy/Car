@@ -28,11 +28,13 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+  useLibrary 'org.apache.http.legacy'
 }
 
 repositories {
   mavenCentral()
   jcenter()
+
 }
 
 apply plugin: 'com.neenbedankt.android-apt'
@@ -71,4 +73,6 @@ dependencies {
   compile 'com.github.chenupt.android:springindicator:1.0.2@aar'
   compile 'com.github.iwgang:countdownview:1.2'
   compile 'com.klinkerapps:link_builder:1.3.2'
+  compile 'com.github.chrisbanes:PhotoView:1.3.0'
+  compile 'io.github.angebagui.mediumtextview:mediumtextview:1.0.1'
 }

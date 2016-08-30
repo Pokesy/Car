@@ -13,4 +13,9 @@
     <attr format="dimension|reference" name="horizonGap"/>
     <attr format="dimension|reference" name="verticalGap"/>
   </declare-styleable>
+  <declare-styleable name="CircleImageView">
+    <attr name="border_width" format="dimension" />
+    <attr name="border_color" format="color" />
+    <attr name="name" format="string" />
+  </declare-styleable>
 </resources>

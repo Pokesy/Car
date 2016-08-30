@@ -62,6 +62,7 @@ public class ProfileFragment extends BasicTitleBarFragment {
       case R.id.invite:
         break;
       case R.id.setting:
+        startActivity(new Intent(getActivity(), SettingActivity.class));
         break;
     }
   }

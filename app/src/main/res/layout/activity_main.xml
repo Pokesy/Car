@@ -24,9 +24,10 @@
         android:paddingTop="8dp"
         >
       <ImageView
+          android:id="@+id/lunbo"
           android:layout_width="match_parent"
           android:layout_height="150dp"
-          android:src="@mipmap/ic_launcher"
+          android:src="@mipmap/bg"
           />
       <LinearLayout
           android:layout_width="match_parent"

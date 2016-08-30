@@ -42,17 +42,18 @@ public class LoginActivity extends BasicTitleBarActivity {
     FragmentManager manager = getSupportFragmentManager();
     FragmentTransaction transaction = manager.beginTransaction();
     Fragment fragment;
-    switch (loginType) {
-      case LOGIN_WAY_PASSWORD:
-        fragment = new LoginWithPasswordFragment();
-        break;
-      case LOGIN_WAY_VERIFY_CODE:
-        fragment = new LoginWithVerifyCodeFragment();
-        break;
-      default:
-        fragment = new LoginWithPasswordFragment();
-        break;
-    }
+    //switch (loginType) {
+    //  case LOGIN_WAY_PASSWORD:
+    //    fragment = new LoginWithPasswordFragment();
+    //    break;
+    //  case LOGIN_WAY_VERIFY_CODE:
+    //    fragment = new LoginWithVerifyCodeFragment();
+    //    break;
+    //  default:
+    //    fragment = new LoginWithPasswordFragment();
+    //    break;
+    //}
+    fragment = new LoginWithPasswordFragment();
     transaction.add(R.id.fragment_container, fragment, FRAGMENT_TAG + loginType);
     transaction.commitAllowingStateLoss();
   }

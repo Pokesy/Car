@@ -20,9 +20,11 @@ import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
+import com.hengrtech.carheadline.utils.ImagePagerActivity;
 import com.hengrtech.carheadline.utils.RBaseAdapter;
 import com.hengrtech.carheadline.utils.RViewHolder;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -35,38 +37,44 @@ public class InformationFragment extends BasicTitleBarFragment {
   @Bind(R.id.profit) TextView profit;
   @Bind(R.id.btn_red_bag) LinearLayout btnRedBag;
   @Bind(R.id.zx_listView) RGridView zxListView;
+  @Bind(R.id.lunbo) ImageView lunbo;
+  @Bind(R.id.pull_refresh_scrollview) MyScrollView pullRefreshScrollview;
+
   @Override protected void onCreateViewCompleted(View view) {
     ButterKnife.bind(this, view);
     inject();
     initview();
     initdata();
-
   }
 
   private void initview() {
     btnRedBag.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        startActivity(new Intent(getActivity(),TodayActivity.class));
+        startActivity(new Intent(getActivity(), TodayActivity.class));
       }
     });
   }
 
-  public void initdata(){
-    manageRpcCall(mInfo.getInfoList("1","1", "100"),
+  public void initdata() {
+    manageRpcCall(mInfo.getInfoList("1", "1", "100"),
         new UiRpcSubscriber<List<InfoModel>>(getActivity()) {
           @Override protected void onSuccess(List<InfoModel> infoModels) {
             zxListView.setAdapter(new ZixunAdapter(getActivity(), infoModels));
           }
+
           @Override protected void onEnd() {
           }
+
           @Override public void onApiError(RpcApiError apiError) {
             super.onApiError(apiError);
           }
         });
   }
+
   @Override public int getLayoutId() {
     return R.layout.activity_main;
   }
+
   private void inject() {
     DaggerServiceComponent.builder()
         .globalModule(new GlobalModule((CustomApp) getActivity().getApplication()))
@@ -74,6 +82,7 @@ public class InformationFragment extends BasicTitleBarFragment {
         .build()
         .inject(this);
   }
+
   public static InformationFragment newInstance(String param1) {
     InformationFragment fragment = new InformationFragment();
     Bundle args = new Bundle();
@@ -81,11 +90,11 @@ public class InformationFragment extends BasicTitleBarFragment {
     fragment.setArguments(args);
     return fragment;
   }
+
   @Override public void onDestroyView() {
     super.onDestroyView();
     ButterKnife.unbind(this);
   }
-
 
   public class ZixunAdapter extends RBaseAdapter<InfoModel> {
     Context context;
@@ -118,19 +127,38 @@ public class InformationFragment extends BasicTitleBarFragment {
     }
 
     @Override protected void onBindView(RViewHolder holder, int position, final InfoModel bean) {
-
-
+      holder.v(R.id.ll_zx).setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+          Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+          Bundle bundle = new Bundle();
+          bundle.putInt("newId", bean.getNewsId());
+          intent.putExtras(bundle);
+          startActivity(intent);
+        }
+      });
       holder.tV(R.id.news_title).setText(bean.getTitle());
-       holder.tV(R.id.time).setText(bean.getCreateTime());
+      holder.tV(R.id.time).setText(bean.getCreateTime());
       holder.tV(R.id.tv_from).setText("来源：" + bean.getSource());
       holder.tV(R.id.view_count).setText(String.valueOf(bean.getPraiseCount()));
       holder.tV(R.id.comment_count).setText(String.valueOf(bean.getCommentsCount()));
-      if (bean.getCoverArr()!= null) {
+      if (bean.getCoverArr() != null) {
         int imagesize = bean.getCoverArr().size();
         if (imagesize == 1) {
-          ImageLoader.loadOptimizedHttpImage(getActivity(), bean.getCoverArr().get(0)).into(holder.imgV(R.id.iv_1));
+          ImageLoader.loadOptimizedHttpImage(getActivity(), bean.getCoverArr().get(0))
+              .into(holder.imgV(R.id.iv_1));
+          holder.imgV(R.id.iv_1).setOnClickListener(new View.OnClickListener() {
+
+            @Override public void onClick(View v) {
+              Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
+              Bundle bundle = new Bundle();
+              bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.getCoverArr());
+              bundle.putInt("image_index", 1);
+              intent.putExtras(bundle);
+              startActivity(intent);
+            }
+          });
         } else {
-          if (imagesize==3) {
+          if (imagesize == 3) {
             holder.v(R.id.images).setVisibility(View.VISIBLE);
             holder.v(R.id.iv_1).setVisibility(imagesize > 0 ? View.VISIBLE : View.GONE);
             holder.v(R.id.iv_2).setVisibility(imagesize > 1 ? View.VISIBLE : View.GONE);
@@ -160,25 +188,25 @@ public class InformationFragment extends BasicTitleBarFragment {
                 } catch (Exception e) {
                   e.printStackTrace();
                 }
-                //final int in = i;
-                //imageView.setOnClickListener(new View.OnClickListener() {
-                //
-                //  @Override public void onClick(View v) {
-                //    Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
-                //    Bundle bundle = new Bundle();
-                //    bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.imgList);
-                //    bundle.putInt("image_index", in);
-                //    intent.putExtras(bundle);
-                //    startActivity(intent);
-                //  }
-                //});
+                final int in = i;
+                imageView.setOnClickListener(new View.OnClickListener() {
+
+                  @Override public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.getCoverArr());
+                    bundle.putInt("image_index", in);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                  }
+                });
               }
             }
           } else {
             holder.v(R.id.images).setVisibility(View.GONE);
           }
         }
-      }else {
+      } else {
         holder.v(R.id.images).setVisibility(View.GONE);
       }
     }

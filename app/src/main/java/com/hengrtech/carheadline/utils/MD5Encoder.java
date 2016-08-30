@@ -26,7 +26,7 @@ import java.security.NoSuchAlgorithmException;
 public class MD5Encoder {
   private static final String TAG = "MD5Encoder";
   private static String key = "qHsGce9IMTx305jygNotQ6mzWdn8C1pfibYVUk27";
-  public static String encode(@NonNull String text) {
+  public static String encode1(@NonNull String text) {
     try {
 
       MessageDigest md5 = MessageDigest.getInstance("MD5");
@@ -52,7 +52,32 @@ public class MD5Encoder {
       return "";
     }
   }
+  public static String encode(@NonNull String text) {
+    try {
 
+      MessageDigest md5 = MessageDigest.getInstance("MD5");
+      md5.update(text.getBytes("UTF-8"));
+      byte[] encryption = md5.digest();
+
+      StringBuffer strBuf = new StringBuffer();
+      for (int i = 0; i < encryption.length; i++) {
+        if (Integer.toHexString(0xff & encryption[i]).length() == 1) {
+          strBuf.append("0").append(Integer.toHexString(0xff & encryption[i]));
+        } else {
+          strBuf.append(Integer.toHexString(0xff & encryption[i]));
+        }
+      }
+      Logger.d(TAG, "password ===> " + strBuf.toString());
+
+      return strBuf.toString();
+    } catch (NoSuchAlgorithmException e) {
+      Logger.d(TAG, "", e);
+      return "";
+    } catch (UnsupportedEncodingException e) {
+      Logger.d(TAG, "", e);
+      return "";
+    }
+  }
   public static String byte2hex(byte[] b) {
     String hs = "";
     String stmp = "";

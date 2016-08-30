@@ -113,8 +113,33 @@ public class LoginWithPasswordFragment extends BasicTitleBarFragment {
         performLogin();
         break;
       case R.id.btn_login_with_verify_code:
-        startActivity(LoginActivity.makeIntent(getActivity(), LoginActivity.LOGIN_WAY_VERIFY_CODE));
-        getActivity().finish();
+        //startActivity(LoginActivity.makeIntent(getActivity(), LoginActivity.LOGIN_WAY_VERIFY_CODE));
+        //getActivity().finish();
+        showProgressDialog("", false);
+        manageRpcCall(mAuthService.loginvictor(), new UiRpcSubscriber<UserInfo>(getActivity()) {
+
+
+          @Override
+          protected void onSuccess(UserInfo info) {
+            getComponent().loginSession().login(info);
+            startActivity(new Intent(getActivity(), MainTabActivity.class));
+          }
+
+          @Override
+          protected void onEnd() {
+            closeProgressDialog();
+          }
+
+          @Override
+          public void onApiError(RpcApiError apiError) {
+            super.onApiError(apiError);
+            if (!TextUtils.isEmpty(apiError.getMessage())) {
+              showShortToast(apiError.getMessage());
+            } else {
+              showShortToast(R.string.login_error);
+            }
+          }
+        });
         break;
       case R.id.btn_register:
         // 跳转到注册界面

@@ -17,6 +17,7 @@ import com.hengrtech.carheadline.net.RpcCallManager;
 import com.hengrtech.carheadline.net.UserService;
 import com.hengrtech.carheadline.ui.home.InformationFragment;
 import com.hengrtech.carheadline.ui.home.MediaFragment;
+import com.hengrtech.carheadline.ui.home.NewsDetailActivity;
 import com.hengrtech.carheadline.ui.home.PraiseFragment;
 import com.hengrtech.carheadline.ui.home.TodayActivity;
 import com.hengrtech.carheadline.ui.home.WorkFragment;
@@ -51,4 +52,5 @@ import javax.inject.Singleton;
   void inject(LoginSession loginSession);
   void inject(LoginWithVerifyCodeFragment fragment);
   void inject(LoginWithPasswordFragment fragment);
+  void inject(NewsDetailActivity activity);
 }

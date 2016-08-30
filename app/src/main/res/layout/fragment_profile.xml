@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="176.5dp"
-        android:background="@mipmap/ic_launcher"
+        android:background="@mipmap/bg"
         >
       <LinearLayout
           android:id="@+id/un_login_container"
@@ -28,7 +28,7 @@
             android:layout_width="103dp"
             android:layout_height="103dp"
             android:layout_gravity="bottom|center_horizontal"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/photo_no"
             />
 
       </LinearLayout>
@@ -56,7 +56,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/jinfen"
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/xiaoxi"
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/qiandao"
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -180,7 +180,7 @@
         >
       <TextView
 
-          android:drawableLeft="@mipmap/ic_launcher"
+          android:drawableLeft="@mipmap/shoucang_jia"
           android:text="@string/fragment_profile_collect"
           style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
           />
@@ -189,7 +189,7 @@
           android:layout_height="wrap_content"
           android:layout_alignParentRight="true"
           android:layout_centerVertical="true"
-          android:src="@mipmap/ic_launcher"
+          android:src="@mipmap/tiaozhuan"
           />
     </RelativeLayout>
     <RelativeLayout
@@ -198,7 +198,7 @@
         >
       <TextView
 
-          android:drawableLeft="@mipmap/ic_launcher"
+          android:drawableLeft="@mipmap/yaoqing"
           android:text="@string/fragment_profile_invite"
           style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
           />
@@ -207,7 +207,7 @@
           android:layout_height="wrap_content"
           android:layout_alignParentRight="true"
           android:layout_centerVertical="true"
-          android:src="@mipmap/ic_launcher"
+          android:src="@mipmap/tiaozhuan"
           />
     </RelativeLayout>
     <RelativeLayout
@@ -216,7 +216,7 @@
         >
       <TextView
 
-          android:drawableLeft="@mipmap/ic_launcher"
+          android:drawableLeft="@mipmap/shezhi"
           android:text="@string/fragment_profile_setting"
           style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
           />
@@ -225,7 +225,7 @@
           android:layout_height="wrap_content"
           android:layout_alignParentRight="true"
           android:layout_centerVertical="true"
-          android:src="@mipmap/ic_launcher"
+          android:src="@mipmap/tiaozhuan"
           />
     </RelativeLayout>
   </LinearLayout>

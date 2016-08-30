@@ -18,7 +18,6 @@ import com.hengrtech.carheadline.net.AuthService;
 import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
 import com.hengrtech.carheadline.net.params.CheckVerifyCodeParams;
-import com.hengrtech.carheadline.net.params.GetVerifyCodeParams;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
@@ -88,7 +87,7 @@ public class ResetPhoneActivity extends BasicTitleBarActivity {
         }
         // TODO 调用获取验证码接口
         manageRpcCall(
-            mAuthService.getVerifyCode(new GetVerifyCodeParams(phoneInput.getText().toString())),
+            mAuthService.getVerifyCode(phoneInput.getText().toString()),
             new UiRpcSubscriber<String>(this) {
 
               @Override protected void onSuccess(String s) {

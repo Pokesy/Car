@@ -29,7 +29,6 @@ import com.hengrtech.carheadline.net.AuthService;
 import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
 import com.hengrtech.carheadline.net.model.UserInfo;
-import com.hengrtech.carheadline.net.params.GetVerifyCodeParams;
 import com.hengrtech.carheadline.net.params.LoginWithVerifyCodeParams;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
@@ -141,8 +140,8 @@ public class LoginWithVerifyCodeFragment extends BasicTitleBarFragment {
           return;
         }
         // TODO 调用获取验证码接口
-        manageRpcCall(mAuthService.getVerifyCode(new GetVerifyCodeParams(mPhoneInput.getText()
-            .toString())), new UiRpcSubscriber<String>(getActivity()) {
+        manageRpcCall(mAuthService.getVerifyCode(mPhoneInput.getText()
+            .toString()), new UiRpcSubscriber<String>(getActivity()) {
 
 
           @Override

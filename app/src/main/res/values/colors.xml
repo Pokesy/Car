@@ -26,6 +26,8 @@
   <color name="font_color_hint">#c0c0c0</color>
   <!-- 白色 -->
   <color name="font_color_white">#ffffff</color>
+  <!-- 黑色 -->
+  <color name="font_color_black">#000000</color>
   <!-- 蓝文本色 -->
   <color name="font_color_blue">#25add4</color>
   <!-- 紫色文本 -->
@@ -40,5 +42,5 @@
   <color name="tab_layout_indicator_color">#202d59</color>
   <!-- TabIndicator -->
   <color name="tab_layout_color">#96a0aa</color>
-
+  <color name="bg_color">#EDEDED</color>
 </resources>

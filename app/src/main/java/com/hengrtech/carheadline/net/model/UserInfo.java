@@ -92,6 +92,108 @@ public class UserInfo {
   private String userLabel;
   private String userName;
   private int virtualMoney;
+  /**
+   * memberId : 1
+   * realName : 张笑
+   * password : e10adc3949ba59abbe56e057f20f883e
+   * portrait :
+   * nickName : Rock-2015
+   * gender : 1
+   * mobileNo : 18266455521
+   * myCar : 奇瑞E3
+   * careCarType : SUV,东风日产
+   * signature : 得票得票
+   * registerTime : 2016-07-19 09:10:43
+   * token : aced34e3492a492597dad022960363d4
+   * type : 0
+   */
+
+  private int memberId;
+  private String realName;
+  private String portrait;
+  private String nickName;
+  private String myCar;
+  private String careCarType;
+  private String signature;
+  private String registerTime;
+  private String token;
+
+  public int getMemberId() {
+    return memberId;
+  }
+
+  public void setMemberId(int memberId) {
+    this.memberId = memberId;
+  }
+
+  public String getRealName() {
+    return realName;
+  }
+
+  public void setRealName(String realName) {
+    this.realName = realName;
+  }
+
+
+  public String getPortrait() {
+    return portrait;
+  }
+
+  public void setPortrait(String portrait) {
+    this.portrait = portrait;
+  }
+
+  public String getNickName() {
+    return nickName;
+  }
+
+  public void setNickName(String nickName) {
+    this.nickName = nickName;
+  }
+
+
+
+  public String getMyCar() {
+    return myCar;
+  }
+
+  public void setMyCar(String myCar) {
+    this.myCar = myCar;
+  }
+
+  public String getCareCarType() {
+    return careCarType;
+  }
+
+  public void setCareCarType(String careCarType) {
+    this.careCarType = careCarType;
+  }
+
+  public String getSignature() {
+    return signature;
+  }
+
+  public void setSignature(String signature) {
+    this.signature = signature;
+  }
+
+  public String getRegisterTime() {
+    return registerTime;
+  }
+
+  public void setRegisterTime(String registerTime) {
+    this.registerTime = registerTime;
+  }
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
+
 
   public String getAvart() {
     if (TextUtils.isEmpty(avart) || avart.startsWith("http://")) {

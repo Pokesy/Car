@@ -28,6 +28,7 @@ import butterknife.OnClick;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.manager.UserInfoChangedEvent;
+import com.hengrtech.carheadline.net.constant.NetConstant;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.squareup.otto.Subscribe;
@@ -46,20 +47,14 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
   private static final int REQUEST_CODE_NICK_NAME = 3;
   private static final int REQUEST_CODE_NICK_INTRODUCTION = 4;
 
-  @Bind(R.id.user_avatar_display) SimpleDraweeView mUserAvatarView;
   @Bind(R.id.tags_container) FlowLayout tagsContainer;
 
-  @Bind(R.id.phone_value)
-  TextView mPhoneValueView;
-  @Bind(R.id.nick_name_value)
-  TextView mNickNameValueView;
-  @Bind(R.id.introduction_value)
-  TextView mIntroductionValueView;
-  @Bind(R.id.gender_value)
-  TextView mGenderValueView;
-  @Bind(R.id.age_value)
-  TextView mAgeValueView;
-
+  @Bind(R.id.phone_value) TextView mPhoneValueView;
+  @Bind(R.id.nick_name_value) TextView mNickNameValueView;
+  @Bind(R.id.introduction_value) TextView mIntroductionValueView;
+  @Bind(R.id.gender_value) TextView mGenderValueView;
+  @Bind(R.id.age_value) TextView mAgeValueView;
+  @Bind(R.id.user_avatar_display) SimpleDraweeView userAvatarDisplay;
 
   private AvatarChoosePresenter mAvatarChoosePresenter;
 
@@ -85,19 +80,19 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     return getComponent().loginSession().getUserInfo();
   }
 
-  @Override
-  public int getLayoutId() {
+  @Override public int getLayoutId() {
     return R.layout.activity_profile_detail;
   }
 
-  @OnClick({R.id.avatar_setting, R.id.phone_setting, R.id
-      .nick_name_setting, R.id.introduction_setting, R.id.gender_setting, R.id.age_setting})
-  public void onClick(View view) {
+  @OnClick({
+      R.id.avatar_setting, R.id.phone_setting, R.id.nick_name_setting, R.id.introduction_setting,
+      R.id.gender_setting, R.id.age_setting
+  }) public void onClick(View view) {
     switch (view.getId()) {
       case R.id.avatar_setting:
         mAvatarChoosePresenter.showChooseAvatarDialog();
         break;
-         case R.id.phone_setting:
+      case R.id.phone_setting:
         startActivity(new Intent(this, ResetPhoneActivity.class));
         break;
       case R.id.nick_name_setting:
@@ -113,19 +108,19 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
       case R.id.age_setting:
         showBirthChooseDialog();
         break;
-
     }
   }
 
   private void showGenderChooseDialog() {
     if (null == mGenderChooseDialog) {
       final String[] genderItems = getResources().getStringArray(R.array.gender_items);
-      mGenderChooseDialog = new AlertDialog.Builder(this).setItems(genderItems, new
-          DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-              mSubscriptions.add(getComponent().loginSession().userInfoChangeBuilder().setGender
-                  (genderItems[which]).update());
+      mGenderChooseDialog = new AlertDialog.Builder(this).setItems(genderItems,
+          new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+              mSubscriptions.add(getComponent().loginSession()
+                  .userInfoChangeBuilder()
+                  .setGender(genderItems[which])
+                  .update());
             }
           }).create();
     }
@@ -135,30 +130,28 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     mGenderChooseDialog.show();
   }
 
-
-
-  @Override
-  public boolean initializeTitleBar() {
+  @Override public boolean initializeTitleBar() {
     setMiddleTitle(R.string.activity_profile_detail_title);
     setLeftTitleButton(R.mipmap.icon_title_bar_back, new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
+      @Override public void onClick(View v) {
         finish();
       }
     });
     return true;
   }
 
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     switch (requestCode) {
       case REQUEST_CODE_NICK_NAME:
-        mSubscriptions.add(getComponent().loginSession().userInfoChangeBuilder()
-            .setUserName(data.getStringExtra(NickNameActivity.RESULT_KEY_NICK_NAME)).update());
+        mSubscriptions.add(getComponent().loginSession()
+            .userInfoChangeBuilder()
+            .setUserName(data.getStringExtra(NickNameActivity.RESULT_KEY_NICK_NAME))
+            .update());
         return;
       case REQUEST_CODE_NICK_INTRODUCTION:
-        mSubscriptions.add(getComponent().loginSession().userInfoChangeBuilder()
+        mSubscriptions.add(getComponent().loginSession()
+            .userInfoChangeBuilder()
             .setIntroduce(data.getStringExtra(IntroductionActivity.RESULT_KEY_INTRODUCTION))
             .update());
         return;
@@ -166,22 +159,22 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     mAvatarChoosePresenter.onActivityResult(requestCode, resultCode, data);
   }
 
-  @Subscribe
-  public void onUserInfoChangedEvent(UserInfoChangedEvent event) {
+  @Subscribe public void onUserInfoChangedEvent(UserInfoChangedEvent event) {
     bindData();
   }
 
   private void bindData() {
     //ImageLoader.loadOptimizedHttpImage(this, mUserInfo.getAvart()).placeholder(R.mipmap
-    //    .src_avatar_default_drawer).into(mUserAvatarView);
-    mUserAvatarView.setImageURI(Uri.parse(getUserInfo().getAvart()));
+    //    .src_avatar_default_drawer).into(userAvatarDisplay);
+    userAvatarDisplay.setImageURI(Uri.parse(NetConstant.BASE_URL_LOCATION+getUserInfo().getPortrait()));
     mPhoneValueView.setText(getUserInfo().getMobileNo());
-    mNickNameValueView.setText(TextUtils.isEmpty(getUserInfo().getUserName()) ? getUserInfo()
-        .getMobileNo() : getUserInfo().getUserName());
-    mIntroductionValueView.setText(TextUtils.isEmpty(getUserInfo().getIntroduce()) ? getString(R
-        .string.activity_introduction_hint) : getUserInfo().getIntroduce());
+    mNickNameValueView.setText(
+        TextUtils.isEmpty(getUserInfo().getRealName()) ? getUserInfo().getMobileNo()
+            : getUserInfo().getRealName());
+    mIntroductionValueView.setText(TextUtils.isEmpty(getUserInfo().getSignature()) ? getString(
+        R.string.activity_introduction_hint) : getUserInfo().getSignature());
     mGenderValueView.setText(getUserInfo().getGender());
-    mAgeValueView.setText(computeAge(getUserInfo().getBirthday()));
+    mAgeValueView.setText(computeAge(getUserInfo().getCareCarType()));
 
     showUserLabel();
   }
@@ -209,30 +202,30 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
       int month = today.get(Calendar.MONTH);
       int day = today.get(Calendar.DAY_OF_MONTH);
       if (null != birthDate) {
-        year = birthDate.length > 0 && !TextUtils.isEmpty(birthDate[0]) ? Integer.parseInt
-            (birthDate[0]) : year;
-        month = birthDate.length > 1 && !TextUtils.isEmpty(birthDate[1]) ? Integer.parseInt
-            (birthDate[1]) : month;
-        day = birthDate.length > 2 && !TextUtils.isEmpty(birthDate[2]) ? Integer.parseInt
-            (birthDate[2]) : day;
+        year = birthDate.length > 0 && !TextUtils.isEmpty(birthDate[0]) ? Integer.parseInt(
+            birthDate[0]) : year;
+        month = birthDate.length > 1 && !TextUtils.isEmpty(birthDate[1]) ? Integer.parseInt(
+            birthDate[1]) : month;
+        day = birthDate.length > 2 && !TextUtils.isEmpty(birthDate[2]) ? Integer.parseInt(
+            birthDate[2]) : day;
       }
 
       mBirthdayChooseDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-          mSubscriptions.add(getComponent().loginSession().userInfoChangeBuilder().setBirthday
-              (year + "-" + monthOfYear + "-" + dayOfMonth).update());
+          mSubscriptions.add(getComponent().loginSession()
+              .userInfoChangeBuilder()
+              .setBirthday(year + "-" + monthOfYear + "-" + dayOfMonth)
+              .update());
         }
       }, year, month, day);
       mBirthdayChooseDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-        @Override
-        public void onCancel(DialogInterface dialog) {
+        @Override public void onCancel(DialogInterface dialog) {
           mBirthdayChooseDialog = null;
         }
       });
       mBirthdayChooseDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-        @Override
-        public void onDismiss(DialogInterface dialog) {
+        @Override public void onDismiss(DialogInterface dialog) {
           mBirthdayChooseDialog = null;
         }
       });
@@ -249,16 +242,12 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     mBirthdayChooseDialog.show();
   }
 
-
-
-
   private void showUserLabel() {
     tagsContainer.removeAllViews();
-    addTag(getString(R.string.activity_profile_detail_add_tag), R.drawable
-        .bg_btn_gray_round_corner);
+    addTag(getString(R.string.activity_profile_detail_add_tag),
+        R.drawable.bg_btn_gray_round_corner);
     tagsContainer.getChildAt(0).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
+      @Override public void onClick(View v) {
         startActivity(new Intent(ProfileDetailActivity.this, AddTagsActivity.class));
       }
     });
@@ -273,16 +262,16 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
   }
 
   private void addTag(String label, int backGroundResource) {
-    TextView labelView = (TextView) LayoutInflater.from(this).inflate(R.layout.tag_item_big,
-        tagsContainer, false);
+    TextView labelView =
+        (TextView) LayoutInflater.from(this).inflate(R.layout.tag_item_big, tagsContainer, false);
     labelView.setBackgroundResource(backGroundResource);
     labelView.setText(label);
     labelView.setTextColor(getResources().getColor(R.color.font_color_primary));
     tagsContainer.addView(labelView);
   }
 
-  @Override
-  protected void onDestroy() {
+
+  @Override protected void onDestroy() {
     super.onDestroy();
     mAvatarChoosePresenter.onDestroy();
     mSubscriptions.unsubscribe();

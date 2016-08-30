@@ -15,7 +15,6 @@ import com.hengrtech.carheadline.net.model.ResponseModel;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.net.params.CheckVerifyCodeParams;
 import com.hengrtech.carheadline.net.params.GetUserInfoParams;
-import com.hengrtech.carheadline.net.params.GetVerifyCodeParams;
 import com.hengrtech.carheadline.net.params.LoginParams;
 import com.hengrtech.carheadline.net.params.LoginWithVerifyCodeParams;
 import com.hengrtech.carheadline.net.params.PayPswParams;
@@ -25,7 +24,10 @@ import com.hengrtech.carheadline.net.params.ThirdLoginParams;
 import com.hengrtech.carheadline.net.params.VisitorLoginParams;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -36,36 +38,36 @@ import rx.Observable;
  * @version [Taobei Client V20160411, 16/4/29]
  */
 public interface AuthService {
-  @POST("smsSend.do")
-  Observable<Response<ResponseModel<String>>> getVerifyCode(@Body GetVerifyCodeParams params);
+  //@GET("sms/send") Observable<Response<ResponseModel<String>>> getVerifyCode(
+  //    @Body GetVerifyCodeParams params);
 
-  @POST("smsVerify.do")
-  Observable<Response<ResponseModel<Void>>> checkVerifyCode(@Body CheckVerifyCodeParams params);
+  @GET("sms/send/{mobileNo}") Observable<Response<ResponseModel<String>>> getVerifyCode(
+      @Path("mobileNo") String mobileNo);
+  @GET("member/visitor") Observable<Response<ResponseModel<UserInfo>>> loginvictor();
+  @PUT("sms/verify") Observable<Response<ResponseModel<Void>>> checkVerifyCode(
+      @Body CheckVerifyCodeParams params);
 
-  @POST("reg.do")
-  Observable<Response<ResponseModel<UserInfo>>> register(@Body RegisterParams params);
+  @POST("reg.do") Observable<Response<ResponseModel<UserInfo>>> register(
+      @Body RegisterParams params);
 
-  @POST("updatepaypwd.do")
-  Observable<Response<ResponseModel<UserInfo>>> payResetPsw(@Body PayRetPswParams params);
+  @POST("updatepaypwd.do") Observable<Response<ResponseModel<UserInfo>>> payResetPsw(
+      @Body PayRetPswParams params);
 
-  @POST("setnewpaypwd.do")
-  Observable<Response<ResponseModel<UserInfo>>> payPsw(@Body PayPswParams params);
+  @POST("setnewpaypwd.do") Observable<Response<ResponseModel<UserInfo>>> payPsw(
+      @Body PayPswParams params);
 
-  @POST("applogin.do")
-  Observable<Response<ResponseModel<UserInfo>>> loginWithPassword(@Body LoginParams params);
+  @PUT("member/login") Observable<Response<ResponseModel<UserInfo>>> loginWithPassword(
+      @Body LoginParams params);
 
-  @POST("smslogin.do")
-  Observable<Response<ResponseModel<UserInfo>>> loginWithVerifyCode(@Body
-                                                                    LoginWithVerifyCodeParams
-                                                                        params);
+  @POST("smslogin.do") Observable<Response<ResponseModel<UserInfo>>> loginWithVerifyCode(
+      @Body LoginWithVerifyCodeParams params);
 
-  @POST("getUserInfoById.do")
-  Observable<Response<ResponseModel<UserInfo>>> getUserInfo(@Body GetUserInfoParams params);
+  @POST("getUserInfoById.do") Observable<Response<ResponseModel<UserInfo>>> getUserInfo(
+      @Body GetUserInfoParams params);
 
-  @POST("thirdlogin.do")
-  Observable<Response<ResponseModel<UserInfo>>> thirdLogin(@Body
-                                                           ThirdLoginParams params);
+  @POST("thirdlogin.do") Observable<Response<ResponseModel<UserInfo>>> thirdLogin(
+      @Body ThirdLoginParams params);
 
-  @POST("visitorlogin.do")
-  Observable<Response<ResponseModel<UserInfo>>> visitorLogin(@Body VisitorLoginParams params);
+  @POST("visitorlogin.do") Observable<Response<ResponseModel<UserInfo>>> visitorLogin(
+      @Body VisitorLoginParams params);
 }

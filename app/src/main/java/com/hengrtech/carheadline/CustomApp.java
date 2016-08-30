@@ -1,6 +1,7 @@
 package com.hengrtech.carheadline;
 
 import android.app.Application;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hengrtech.carheadline.injection.DaggerGlobalComponent;
 import com.hengrtech.carheadline.injection.GlobalComponent;
 import com.hengrtech.carheadline.injection.GlobalModule;
@@ -17,6 +18,7 @@ public class CustomApp extends Application {
   public void onCreate() {
     super.onCreate();
     Logger.init();
+    Fresco.initialize(this);
     mGlobalComponent = DaggerGlobalComponent.builder().globalModule(new GlobalModule(this)).build();
   }
 

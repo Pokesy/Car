@@ -37,14 +37,17 @@ public class MainTabActivity extends BaseTabActivity {
     };
   }
 
+  @Override protected int getTabIconDirection() {
+    return super.getTabIconDirection();
+  }
+
   @Override protected String[] getTabTitles() {
     return new String[] { "头条", "发现", "社区", "我的" };
   }
 
-  @Override protected int[] getTabIcons() {
+    @Override protected int[] getTabIcons() {
     return new int[] {
-        R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher
-    };
+        R.drawable.icon_tab_toutiao,  R.drawable.icon_tab_find, R.drawable.icon_tab_shequ, R.drawable.icon_tab_my };
   }
 
 }
