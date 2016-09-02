@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="270dp"
-            app:statusBarScrim="@color/bg_color"
-            app:expandedTitleMarginEnd="48dp"
-            app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:collapsedTitleGravity="center_horizontal"
+            app:collapsedTitleTextAppearance="@style/ToolBarTitleText"
+            app:contentScrim="@color/font_color_white"
+            app:expandedTitleGravity="center_horizontal"
+            app:expandedTitleTextAppearance="@style/transparentText"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="">
 
 
             <LinearLayout
@@ -30,165 +30,86 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_collapseMode="pin"
-                app:layout_collapseParallaxMultiplier="0.7">
+                app:layout_collapseParallaxMultiplier="0.9">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:padding="20dp">
+                    android:layout_width="wrap_content"
+                    android:layout_height="180dp"
+                    android:orientation="vertical">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:background="@mipmap/bg" />
 
                     <LinearLayout
+                        android:id="@+id/dot_container"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="涩郎"
-                            android:textColor="#ffffff"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Android开发工程师 @ 非著名程序员"
-                            android:textColor="#ffffff"
-                            android:textSize="13sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/head_iv"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:scaleType="centerCrop"/>
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal" />
                 </RelativeLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="40dp"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="关注我（微博@涩郎，微信公众号：非著名程序员），我与你闲扯技术大话，笑谈科技人生。以幽默诙谐的态度，面对乏味无聊的技术，用扯淡的方式，分享技术的内涵。谈的是技术，更是我们的人生。"
-                    android:textColor="#ffffff"
-                    android:textSize="12sp"/>
-
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:padding="20dp">
-
-                    <LinearLayout
-                        android:id="@+id/one"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="分享"
-                            android:textColor="#ffffff"
-                            android:textSize="12sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="50篇"
-                            android:textColor="#ffffff"
-                            android:textSize="12sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/two"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/one"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="获得收藏"
-                            android:textColor="#ffffff"
-                            android:textSize="12sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="3000次"
-                            android:textColor="#ffffff"
-                            android:textSize="12sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/two"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="被阅读"
-                            android:textColor="#ffffff"
-                            android:textSize="12sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="60000次"
-                            android:textColor="#ffffff"
-                            android:textSize="12sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/intelligent_hardware"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:paddingBottom="3dp"
-                        android:paddingLeft="6dp"
-                        android:paddingRight="6dp"
-                        android:paddingTop="3dp"
-                        android:text="设置"
-                        android:textColor="#ffffff"
-                        android:textSize="12sp"/>
-                </RelativeLayout>
+                        android:layout_weight="1"
+                        android:drawablePadding="6dp"
+                        android:drawableTop="@mipmap/fujin"
+                        android:gravity="center_horizontal"
+                        android:text="附近资讯"
+                        android:textColor="@color/font_color_dark_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/drugs"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="6dp"
+                        android:drawableTop="@mipmap/xinche"
+                        android:gravity="center_horizontal"
+                        android:text="新车上市"
+                        android:textColor="@color/font_color_dark_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/car_model_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="6dp"
+                        android:drawableTop="@mipmap/chexingku"
+                        android:gravity="center_horizontal"
+                        android:text="车型库"
+                        android:textColor="@color/font_color_dark_gray"
+                        android:textSize="14sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="40dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:titleTextColor="@color/font_color_black" />
         </android.support.design.widget.CollapsingToolbarLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.0dp"
+            android:background="@color/bg_color_divider" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/toolbar_tab"
@@ -198,35 +119,20 @@
             android:background="#ffffff"
             android:fillViewport="false"
             app:layout_scrollFlags="scroll"
-            app:tabIndicatorColor="#0835f8"
+            app:tabIndicatorColor="@color/tab_layout_indicator_color"
             app:tabIndicatorHeight="2.0dp"
-            app:tabSelectedTextColor="#0835f8"
-            app:tabTextColor="#ced0d3">
+            app:tabSelectedTextColor="@color/tab_layout_indicator_color"
+            app:tabTextColor="@color/tab_layout_color">
 
             <android.support.design.widget.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="分享"/>
+                android:text="活动" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="分享"/>
-
-            <android.support.design.widget.TabItem
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="收藏"/>
-
-            <android.support.design.widget.TabItem
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="关注"/>
-
-            <android.support.design.widget.TabItem
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="关注者"/>
+                android:text="降价" />
 
 
         </android.support.design.widget.TabLayout>
@@ -245,7 +151,7 @@
             android:id="@+id/main_vp_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
