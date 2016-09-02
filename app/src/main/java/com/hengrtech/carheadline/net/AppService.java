@@ -11,6 +11,7 @@
  */
 package com.hengrtech.carheadline.net;
 
+import com.hengrtech.carheadline.net.model.CarModel;
 import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
 import com.hengrtech.carheadline.net.model.NewsDetailModel;
@@ -48,4 +49,6 @@ public interface AppService {
   Observable<Response<ResponseModel<List<NewsDetailCommentsModel>>>> getNewDetailComments(@Path("commentsId") int newsId);
   @DELETE("news/comments/{commentsId}/{userId}/{token}")
   Observable<Response<ResponseModel<NewsDetailModel>>> getDelcomment(@Path("commentsId") int commentsId,@Path("userId") int userId,@Path("token") int token);
+  @GET("car/masterlist")
+  Observable<Response<ResponseModel<CarModel>>> getCarMasterList();
 }
