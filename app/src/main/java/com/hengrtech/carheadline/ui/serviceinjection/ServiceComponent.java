@@ -15,6 +15,7 @@ import com.hengrtech.carheadline.manager.LoginSession;
 import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.RpcCallManager;
 import com.hengrtech.carheadline.net.UserService;
+import com.hengrtech.carheadline.ui.discover.CarModelLibActivity;
 import com.hengrtech.carheadline.ui.home.InformationFragment;
 import com.hengrtech.carheadline.ui.home.MediaFragment;
 import com.hengrtech.carheadline.ui.home.NewsDetailActivity;
@@ -26,8 +27,10 @@ import com.hengrtech.carheadline.ui.login.LoginWithVerifyCodeFragment;
 import com.hengrtech.carheadline.ui.profile.AddTagsActivity;
 import com.hengrtech.carheadline.ui.profile.AvatarChoosePresenter;
 import com.hengrtech.carheadline.ui.profile.ResetPhoneActivity;
-import dagger.Component;
+
 import javax.inject.Singleton;
+
+import dagger.Component;
 
 /**
  * 服务器接口 Component<BR>
@@ -53,4 +56,5 @@ import javax.inject.Singleton;
   void inject(LoginWithVerifyCodeFragment fragment);
   void inject(LoginWithPasswordFragment fragment);
   void inject(NewsDetailActivity activity);
+  void inject(CarModelLibActivity activity);
 }
