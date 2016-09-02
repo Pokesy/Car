@@ -39,6 +39,9 @@
     <!--红色文本-->
     <color name="font_color_red">#f42525</color>
     <color name="font_color_red_tab_bar">#eb4f38</color>
+    <color name="font_color_7d">#7d7d7d</color>
+    <color name="bg_color_f8">#f8f8f8</color>
+    <color name="bg_color_e4">#e4e4e4</color>
     <!--分隔-->
     <color name="bg_color_divider">#c8c8c8</color>
     <!-- title -->

@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <declare-styleable name="SegmentControl">
-    <attr format="dimension|reference" name="cornerRadius"/>
-    <attr format="color|reference" name="colors"/>
-    <attr format="string|reference" name="texts"/>
-    <attr name="android:textSize"/>
-    <attr format="enum" name="direction">
-      <enum name="horizon" value="0"/>
-      <enum name="vertical" value="1"/>
-    </attr>
-    <attr format="dimension|reference" name="gaps"/>
-    <attr format="dimension|reference" name="horizonGap"/>
-    <attr format="dimension|reference" name="verticalGap"/>
-  </declare-styleable>
-  <declare-styleable name="CircleImageView">
-    <attr name="border_width" format="dimension" />
-    <attr name="border_color" format="color" />
-    <attr name="name" format="string" />
-  </declare-styleable>
+    <declare-styleable name="SegmentControl">
+        <attr name="cornerRadius" format="dimension|reference" />
+        <attr name="colors" format="color|reference" />
+        <attr name="texts" format="string|reference" />
+        <attr name="android:textSize" />
+        <attr name="direction" format="enum">
+            <enum name="horizon" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="gaps" format="dimension|reference" />
+        <attr name="horizonGap" format="dimension|reference" />
+        <attr name="verticalGap" format="dimension|reference" />
+    </declare-styleable>
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="name" format="string" />
+    </declare-styleable>
+    <declare-styleable name="WaveSideBarView">
+        <attr name="sidebarTextColor" format="color|reference" />
+        <attr name="sidebarBackgroundColor" format="color|reference" />
+        <attr name="sidebarChooseTextColor" format="color|reference" />
+        <attr name="sidebarTextSize" format="dimension" />
+        <attr name="sidebarLargeTextSize" format="dimension" />
+        <attr name="sidebarRadius" format="dimension" />
+        <attr name="sidebarBallRadius" format="dimension" />
+    </declare-styleable>
 </resources>
