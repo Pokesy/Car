@@ -66,8 +66,15 @@
         <activity
             android:name=".ui.discover.CarModelLibActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.discover.CarDetailsActivity" />
-        <activity android:name=".ui.discover.ActivityDetailsActivity"></activity>
+        <activity
+            android:name=".ui.discover.CarDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.discover.ActivityDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.discover.AskFloorPriceActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
