@@ -29,7 +29,7 @@
         <activity
             android:name=".ui.tab.MainTabActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait"
@@ -65,7 +65,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.discover.CarModelLibActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.discover.CarDetailsActivity" />
+        <activity android:name=".ui.discover.ActivityDetailsActivity"></activity>
     </application>
 
 </manifest>
