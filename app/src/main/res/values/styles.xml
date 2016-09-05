@@ -437,4 +437,34 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="FullScreenDialog" parent="android:Theme.Dialog">
+
+        <!-- 窗口设为无标题 -->
+        <item name="android:windowNoTitle">true</item>
+
+        <!-- 窗口浮现在activity之上 -->
+        <item name="android:windowIsFloating">false</item>
+
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <!-- 背景模糊 -->
+        <item name="android:backgroundDimEnabled">false</item>
+
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+
+        <!-- 全屏 -->
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <style name="AnimationDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@animator/push_right_in</item>
+        <item name="@android:windowExitAnimation">@animator/push_right_out</item>
+    </style>
+
 </resources>
