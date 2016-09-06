@@ -2,92 +2,102 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="8dp">
-
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:background="@mipmap/bg" />
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:orientation="vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
 
-        <TextView
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:background="@mipmap/bg" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="马自达6阿特兹 1.6L手动舒适"
-            android:textColor="@color/font_color_light_black"
-            android:textSize="14sp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/discover_price_rv_item_now_price"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="6.28万"
-                android:textColor="@color/font_color_red"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="马自达6阿特兹 1.6L手动舒适"
+                android:textColor="@color/font_color_light_black"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/discover_price_rv_item_source_price"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_toRightOf="@id/discover_price_rv_item_now_price"
-                android:text="9.28万"
-                android:textColor="@color/font_color_dark_gray"
-                android:textSize="14sp" />
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/discover_price_rv_item_now_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6.28万"
+                    android:textColor="@color/font_color_red"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/discover_price_rv_item_source_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/discover_price_rv_item_now_price"
+                    android:text="9.28万"
+                    android:textColor="@color/font_color_dark_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawableLeft="@mipmap/down"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="3万"
+                    android:textColor="@color/font_color_light_black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:drawableLeft="@mipmap/down"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="3万"
-                android:textColor="@color/font_color_light_black" />
-        </RelativeLayout>
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/discover_price_rv_item_floor_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@mipmap/xundijia"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="询底价"
-                android:textColor="@color/tab_layout_indicator_color"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/discover_price_rv_item_floor_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/xundijia"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="询底价"
+                    android:textColor="@color/tab_layout_indicator_color"
+                    android:textSize="14sp" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:drawableLeft="@mipmap/boda"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="立即拨打"
-                android:textColor="@color/tab_layout_indicator_color" />
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/boda"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="立即拨打"
+                    android:textColor="@color/tab_layout_indicator_color" />
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

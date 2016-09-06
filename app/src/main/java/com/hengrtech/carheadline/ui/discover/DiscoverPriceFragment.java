@@ -1,17 +1,18 @@
 package com.hengrtech.carheadline.ui.discover;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.utils.RBaseAdapter;
 import com.hengrtech.carheadline.utils.RViewHolder;
-import com.jtech.listener.OnItemClickListener;
 import com.jtech.listener.OnItemLongClickListener;
 import com.jtech.listener.OnItemViewMoveListener;
 import com.jtech.listener.OnItemViewSwipeListener;
@@ -26,7 +27,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class DiscoverPriceFragment extends BasicTitleBarFragment implements OnItemClickListener, OnItemLongClickListener, RefreshLayout.OnRefreshListener, OnLoadListener, OnItemViewSwipeListener, OnItemViewMoveListener {
+public class DiscoverPriceFragment extends BasicTitleBarFragment implements OnItemLongClickListener, RefreshLayout.OnRefreshListener, OnLoadListener, OnItemViewSwipeListener, OnItemViewMoveListener {
     private Context mContext;
     private DiscoverPriceRvAdapter adapter;
     @Bind(R.id.price_discover_rv)
@@ -35,10 +36,6 @@ public class DiscoverPriceFragment extends BasicTitleBarFragment implements OnIt
     RefreshLayout refreshlayout;
     List<String> datas = new ArrayList<>();
 
-    @Override
-    public void onItemClick(RecyclerHolder holder, View view, int position) {
-
-    }
 
     @Override
     public boolean onItemLongClick(RecyclerHolder holder, View view, int position) {
@@ -67,7 +64,6 @@ public class DiscoverPriceFragment extends BasicTitleBarFragment implements OnIt
         ButterKnife.bind(this, view);
         priceDiscoverRv.setLayoutManager(new LinearLayoutManager(mContext));
         priceDiscoverRv.setOnLoadListener(this);
-//        priceDiscoverRv.setOnItemClickListener(this);
         priceDiscoverRv.setLoadMore(true);
         refreshlayout.setOnRefreshListener(this);
         loadData();
@@ -99,9 +95,17 @@ public class DiscoverPriceFragment extends BasicTitleBarFragment implements OnIt
 
         @Override
         protected void onBindView(RViewHolder holder, int position, String string) {
+            LinearLayout view = (LinearLayout) holder.v(R.id.layout);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(mContext, CarDetailsActivity.class));
+                }
+            });
             holder.textView(R.id.discover_price_rv_item_source_price).setText(string);
             holder.textView(R.id.discover_price_rv_item_source_price).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         }
+
     }
 
     @Override
@@ -143,4 +147,5 @@ public class DiscoverPriceFragment extends BasicTitleBarFragment implements OnIt
             }
         }.execute();
     }
+
 }

@@ -42,6 +42,9 @@
     <color name="font_color_7d">#7d7d7d</color>
     <color name="bg_color_f8">#f8f8f8</color>
     <color name="bg_color_e4">#e4e4e4</color>
+    <color name="font_color_bd">#bdbdbd</color>
+    <color name="font_color_5f">#5f5f5f</color>
+    <color name="btn_bg_color">#37465d</color>
     <!--分隔-->
     <color name="bg_color_divider">#c8c8c8</color>
     <!-- title -->

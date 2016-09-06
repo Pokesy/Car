@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_activity_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/font_color_white"
+    android:orientation="vertical"
+    tools:context="com.hengrtech.carheadline.ui.discover.ActivityDetailsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@mipmap/back"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title=" "
+        app:titleTextColor="@color/font_color_black">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="活动详情"
+            android:textColor="@color/tab_layout_indicator_color"
+            android:textSize="16sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.hengrtech.carheadline.ui.home.MyScrollView
+        android:id="@+id/nsv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:orientation="vertical">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@mipmap/bg" />
+
+                <LinearLayout
+                    android:id="@+id/dot_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="预定MX6 赢新西兰敢闯之旅 预售价18万起"
+                    android:textColor="@color/font_color_light_black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="2016年5月 上市"
+                    android:textColor="@color/font_color_secondary"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#eeeeee" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="30dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="6dp"
+                            android:drawableTop="@mipmap/apply_name_icon"
+                            android:text="已报名"
+                            android:textColor="@color/font_color_5f"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/apply_person_count_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="285人"
+                            android:textColor="@color/font_color_red"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="6dp"
+                            android:drawableTop="@mipmap/application_time_icon"
+                            android:text="距报名结束"
+                            android:textColor="@color/font_color_5f"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/apply_time_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="5天"
+                            android:textColor="@color/font_color_red"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="30dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="6dp"
+                            android:drawableTop="@mipmap/car_brand_icon"
+                            android:text="品牌"
+                            android:textColor="@color/font_color_5f"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/brand_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="东风风度"
+                            android:textColor="@color/font_color_red"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/center_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="我要报名"
+                    android:textColor="@color/font_color_5f"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/center_tv"
+                    android:background="#eeeeee" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/center_tv"
+                    android:background="#eeeeee" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_input_edittext_bg"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@null"
+                    android:drawableLeft="@mipmap/user_name_icon"
+                    android:hint="您的姓名"
+                    android:padding="6dp"
+                    android:textColorHint="@color/font_color_bd" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:background="#eeeeee" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@null"
+                    android:drawableLeft="@mipmap/phone_icon"
+                    android:hint="您的电话"
+                    android:padding="6dp"
+                    android:textColorHint="@color/font_color_bd" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_input_edittext_bg"
+                android:drawableRight="@mipmap/down_arrow"
+                android:hint="购车时间"
+                android:padding="8dp"
+                android:textColorHint="@color/font_color_bd" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/font_color_red_tab_bar"
+                android:text="我要报名"
+                android:textColor="@color/font_color_white"
+                android:textSize="14sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/two_center_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="活动详情"
+                    android:textColor="@color/font_color_5f"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/two_center_tv"
+                    android:background="#eeeeee" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/two_center_tv"
+                    android:background="#eeeeee" />
+
+            </RelativeLayout>
+
+            <com.jtech.view.JRecyclerView
+                android:id="@+id/car_news_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/three_center_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="猜你喜欢"
+                    android:textColor="@color/font_color_5f"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/three_center_tv"
+                    android:background="#eeeeee" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.0dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/three_center_tv"
+                    android:background="#eeeeee" />
+
+            </RelativeLayout>
+
+            <com.hengrtech.carheadline.ui.discover.view.ScrollGridView
+                android:id="@+id/like_gv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:horizontalSpacing="6dp"
+                android:numColumns="2"
+                android:verticalSpacing="10dp" />
+        </LinearLayout>
+
+
+    </com.hengrtech.carheadline.ui.home.MyScrollView>
+</LinearLayout>

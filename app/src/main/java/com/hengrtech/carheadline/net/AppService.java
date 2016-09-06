@@ -12,6 +12,7 @@
 package com.hengrtech.carheadline.net;
 
 import com.hengrtech.carheadline.net.model.CarModel;
+import com.hengrtech.carheadline.net.model.CarSerialModel;
 import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
 import com.hengrtech.carheadline.net.model.NewsDetailModel;
@@ -51,4 +52,6 @@ public interface AppService {
   Observable<Response<ResponseModel<NewsDetailModel>>> getDelcomment(@Path("commentsId") int commentsId,@Path("userId") int userId,@Path("token") int token);
   @GET("car/masterlist")
   Observable<Response<ResponseModel<CarModel>>> getCarMasterList();
+  @GET("car/seriallist/{masterId}")
+  Observable<Response<ResponseModel<List<CarSerialModel>>>> getCarSerialList(@Path("masterId") int masterId);
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rectangle_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_like_iv"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@mipmap/bg" />
+
+        <TextView
+            android:id="@+id/item_like_tag_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/biaoqian_bg"
+            android:gravity="center"
+            android:text="奥迪"
+            android:textColor="@color/font_color_white" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_like_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="奥迪品鉴二手车首付费用50%+2年零利润+1年"
+        android:textColor="@color/font_color_5f"
+        android:textSize="14sp" />
+</LinearLayout>

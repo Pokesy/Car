@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.hengrtech.carheadline.CustomApp;
@@ -16,6 +17,7 @@ import com.hengrtech.carheadline.net.model.CarModel;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.discover.adapter.CarModelsAdapter;
 import com.hengrtech.carheadline.ui.discover.adapter.PinnedHeaderDecoration;
+import com.hengrtech.carheadline.ui.discover.view.DetailParamLocationDialog;
 import com.hengrtech.carheadline.ui.discover.view.WaveSideBarView;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
@@ -63,6 +65,12 @@ public class CarModelLibActivity extends BasicTitleBarActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         recyclerView.setLayoutManager(new LinearLayoutManager(CarModelLibActivity.this));
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         final PinnedHeaderDecoration decoration = new PinnedHeaderDecoration();
         decoration.registerTypePinnedHeader(1, new PinnedHeaderDecoration.PinnedHeaderCreator() {
             @Override
@@ -109,6 +117,7 @@ public class CarModelLibActivity extends BasicTitleBarActivity {
                 }
             }
         });
+
     }
 
     private void inject() {
@@ -126,8 +135,15 @@ public class CarModelLibActivity extends BasicTitleBarActivity {
                     protected void onSuccess(CarModel infoModels) {
 
                         sortCarModelsData(infoModels.getMasterlist());
-                        adapter = new CarModelsAdapter(CarModelLibActivity.this, masters, infoModels.getHotlist());
+                        adapter = new CarModelsAdapter(CarModelLibActivity.this, masters, infoModels.getHotlist(), mInfo);
                         recyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new CarModelsAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                DetailParamLocationDialog dialog = new DetailParamLocationDialog(CarModelLibActivity.this, masters.get(position).getMasterId(), mInfo);
+                                dialog.show();
+                            }
+                        });
                     }
 
                     @Override

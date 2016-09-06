@@ -38,6 +38,7 @@ public class RViewHolder extends RecyclerView.ViewHolder {
     public TextView textView(@IdRes int resId) {
         return tV(resId);
     }
+
     /**
      * 返回 EditText
      */

@@ -1,6 +1,7 @@
 package com.hengrtech.carheadline.ui.discover;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -99,6 +100,12 @@ public class DiscoverActivityFragment extends BasicTitleBarFragment implements O
         @Override
         protected void onBindView(RViewHolder holder, int position, String string) {
             holder.textView(R.id.discover_rv_item_title).setText(string);
+            holder.imageView(R.id.discover_rv_item_iv).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(mContext,ActivityDetailsActivity.class));
+                }
+            });
         }
     }
 
