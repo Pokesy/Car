@@ -55,6 +55,8 @@ public class DiscoverFragment extends BasicTitleBarFragment implements View.OnCl
     LinearLayout headLayout;
     @Bind(R.id.car_model_btn)
     TextView carModelBtn;
+    @Bind(R.id.new_car_online_tv)
+    TextView newCarOnlineTv;
 
     @Override
     protected void onCreateViewCompleted(View view) {
@@ -90,6 +92,7 @@ public class DiscoverFragment extends BasicTitleBarFragment implements View.OnCl
         toolbarTab.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener
                 (mainVpContainer));
         carModelBtn.setOnClickListener(this);
+        newCarOnlineTv.setOnClickListener(this);
     }
 
     @Override
@@ -120,6 +123,10 @@ public class DiscoverFragment extends BasicTitleBarFragment implements View.OnCl
         switch (view.getId()) {
             case R.id.car_model_btn:
                 intent.setClass(mContext, CarModelLibActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.new_car_online_tv:
+                intent.setClass(mContext, NewCarOnlineActivity.class);
                 startActivity(intent);
                 break;
         }

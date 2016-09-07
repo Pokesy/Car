@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -19,8 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
@@ -39,9 +37,14 @@ import com.hengrtech.carheadline.utils.RBaseAdapter;
 import com.hengrtech.carheadline.utils.RViewHolder;
 import com.hengrtech.carheadline.utils.ToastHelper;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
-import io.github.angebagui.mediumtextview.MediumTextView;
+import com.loonggg.textwrapviewlib.view.TextWrapView;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * 资讯详情页面
@@ -65,7 +68,7 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
   @Bind(R.id.reply_editText) EditText replyEditText;
   @Bind(R.id.sendButn) TextView sendButn;
   @Bind(R.id.reply_box) LinearLayout replyBox;
-  @Bind(R.id.content) MediumTextView content;
+  @Bind(R.id.content) TextWrapView content;
   @Bind(R.id.jrecyclerview) RGridView mRecyclerView;
   private int newsId;
   private Context mContext;
@@ -146,11 +149,12 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
   }
 
   public void initdata() {
-    manageRpcCall(mInfo.getNewDetail(newsId), new UiRpcSubscriber<NewsDetailModel>(this) {
+    manageRpcCall(mInfo.getNewDetail(newsId,"26"), new UiRpcSubscriber<NewsDetailModel>(this) {
       @Override protected void onSuccess(NewsDetailModel infoModels) {
         supportCount.setText(infoModels.getCommentsCount());
+        String str = infoModels.getContent();
         replyCount.setText(infoModels.getPraiseCount());
-        content.setText("<p>"+infoModels.getContent().replace("\n","</P><p>")+"</p>");
+        content.setText("<p>"+infoModels.getContent().replace("\n","</P><p>")+"</p>",getResources().getColor(R.color.font_color_black),14);
         initcomment();
       }
 

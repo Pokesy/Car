@@ -22,7 +22,7 @@
         android:padding="5dp"
         >
 
-      <io.github.angebagui.mediumtextview.MediumTextView
+      <com.loonggg.textwrapviewlib.view.TextWrapView
           android:id="@+id/content"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"

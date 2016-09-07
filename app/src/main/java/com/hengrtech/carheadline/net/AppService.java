@@ -17,7 +17,9 @@ import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
 import com.hengrtech.carheadline.net.model.NewsDetailModel;
 import com.hengrtech.carheadline.net.model.ResponseModel;
+
 import java.util.List;
+
 import okhttp3.MultipartBody;
 import retrofit2.Response;
 import retrofit2.http.DELETE;
@@ -42,8 +44,8 @@ public interface AppService {
   Observable<Response<ResponseModel<String>>> upload(@Part MultipartBody.Part file);
   @GET("newslist/{newslist}/{pageNum}/{pageSize}")
   Observable<Response<ResponseModel<List<InfoModel>>>> getInfoList(@Path("newslist") String newslist,@Path("pageNum") String pageNum,@Path("pageSize") String pageSize);
-  @GET("news/{newsId}")
-  Observable<Response<ResponseModel<NewsDetailModel>>> getNewDetail(@Path("newsId") int newsId);
+  @GET("news/{newsId}/{userId}")
+  Observable<Response<ResponseModel<NewsDetailModel>>> getNewDetail(@Path("newsId") int newsId ,@Path("userId") String userId);
   @GET("news/comments/{newsId}/{pageNum}/{pageSize}")
   Observable<Response<ResponseModel<List<NewsDetailCommentsModel>>>> getNewComments(@Path("newsId") int newsId,@Path("pageNum") String pageNum,@Path("pageSize") String pageSize);
   @GET("news/comments/{commentsId}")

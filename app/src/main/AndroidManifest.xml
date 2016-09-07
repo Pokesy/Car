@@ -74,7 +74,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.discover.AskFloorPriceActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.discover.NewCarOnlineActivity"></activity>
     </application>
 
 </manifest>
