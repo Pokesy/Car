@@ -75,7 +75,9 @@
         <activity
             android:name=".ui.discover.AskFloorPriceActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.discover.NewCarOnlineActivity"></activity>
+        <activity android:name=".ui.discover.NewCarOnlineActivity" />
+        <activity android:name=".ui.login.RegisterActivity" />
+        <activity android:name=".ui.login.SetPasswordActivity"></activity>
     </application>
 
 </manifest>

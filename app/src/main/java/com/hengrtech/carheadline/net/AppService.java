@@ -11,6 +11,7 @@
  */
 package com.hengrtech.carheadline.net;
 
+import com.hengrtech.carheadline.net.model.BaseModel;
 import com.hengrtech.carheadline.net.model.CarModel;
 import com.hengrtech.carheadline.net.model.CarSerialModel;
 import com.hengrtech.carheadline.net.model.InfoModel;
@@ -56,4 +57,6 @@ public interface AppService {
   Observable<Response<ResponseModel<CarModel>>> getCarMasterList();
   @GET("car/seriallist/{masterId}")
   Observable<Response<ResponseModel<List<CarSerialModel>>>> getCarSerialList(@Path("masterId") int masterId);
+  @GET("sms/send/{mobileNo}")
+  Observable<Response<BaseModel>> getRegisterVerifyCode(@Path("mobileNo") String mobileNo);
 }

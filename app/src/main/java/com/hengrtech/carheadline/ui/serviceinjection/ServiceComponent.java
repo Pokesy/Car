@@ -24,6 +24,7 @@ import com.hengrtech.carheadline.ui.home.TodayActivity;
 import com.hengrtech.carheadline.ui.home.WorkFragment;
 import com.hengrtech.carheadline.ui.login.LoginWithPasswordFragment;
 import com.hengrtech.carheadline.ui.login.LoginWithVerifyCodeFragment;
+import com.hengrtech.carheadline.ui.login.RegisterActivity;
 import com.hengrtech.carheadline.ui.profile.AddTagsActivity;
 import com.hengrtech.carheadline.ui.profile.AvatarChoosePresenter;
 import com.hengrtech.carheadline.ui.profile.ResetPhoneActivity;
@@ -57,4 +58,5 @@ import dagger.Component;
   void inject(LoginWithPasswordFragment fragment);
   void inject(NewsDetailActivity activity);
   void inject(CarModelLibActivity activity);
+  void inject(RegisterActivity activity);
 }
