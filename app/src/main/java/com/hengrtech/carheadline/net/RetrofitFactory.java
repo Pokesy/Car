@@ -11,11 +11,21 @@
  */
 package com.hengrtech.carheadline.net;
 
+import android.text.TextUtils;
+
 import com.hengrtech.carheadline.log.Logger;
 import com.hengrtech.carheadline.net.constant.NetConstant;
 import com.hengrtech.carheadline.utils.preference.CustomAppPreferences;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -45,9 +55,9 @@ public class RetrofitFactory {
     return retrofit.create(AppService.class);
   }
 
-  public static UserService createUserService() {
+  public static UserService createUserService(CustomAppPreferences appPreferences) {
     Retrofit retrofit = new Retrofit.Builder().baseUrl(NetConstant.BASE_URL)
-        .client(createNormalClient()).addConverterFactory(GsonConverterFactory.create()).
+        .client(createClient(appPreferences)).addConverterFactory(GsonConverterFactory.create()).
             addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers
                 .newThread())).
             build();
@@ -56,7 +66,7 @@ public class RetrofitFactory {
 
   public static AuthService createAuthService(CustomAppPreferences appPreferences) {
     Retrofit retrofit = new Retrofit.Builder().baseUrl(NetConstant.BASE_URL)
-        .client(createNormalClient()).addConverterFactory(GsonConverterFactory.create()).
+        .client(createClient(appPreferences)).addConverterFactory(GsonConverterFactory.create()).
             addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers
                 .newThread())).
             build();
@@ -108,6 +118,50 @@ public class RetrofitFactory {
     OkHttpClient client = new OkHttpClient.Builder()
         .addInterceptor(interceptor).build();
     return client;
+  }
+
+  private static OkHttpClient createClient(final CustomAppPreferences preferences) {
+
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor
+            .Logger() {
+
+      @Override
+      public void log(String message) {
+        Logger.i(TAG, message);
+      }
+    });
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    OkHttpClient httpClient = new okhttp3.OkHttpClient.Builder()
+            .cookieJar(new CookieJar() {
+              final HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>();
+
+              @Override
+              public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+                cookieStore.put(url, cookies);
+              }
+
+              @Override
+              public List<Cookie> loadForRequest(HttpUrl url) {
+                List<Cookie> cookies = cookieStore.get(url);
+                return cookies != null ? cookies : new ArrayList<Cookie>();
+              }
+            })
+            .addInterceptor(new Interceptor() {
+              @Override
+              public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                String sessionId = preferences.getString(CustomAppPreferences.KEY_COOKIE_SESSION_ID,
+                        "");
+                Request newRequest = request;
+                if (!TextUtils.isEmpty(sessionId)) {
+                  newRequest = request.newBuilder().addHeader("Cookie", "JSESSIONID=" +
+                          sessionId).build();
+                }
+                return chain.proceed(newRequest);
+              }
+            })
+            .addInterceptor(interceptor).build();
+    return httpClient;
   }
 
 }

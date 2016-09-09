@@ -13,6 +13,7 @@ package com.hengrtech.carheadline.ui.serviceinjection;
 
 import com.hengrtech.carheadline.manager.LoginSession;
 import com.hengrtech.carheadline.net.AppService;
+import com.hengrtech.carheadline.net.AuthService;
 import com.hengrtech.carheadline.net.RpcCallManager;
 import com.hengrtech.carheadline.net.UserService;
 import com.hengrtech.carheadline.ui.discover.CarModelLibActivity;
@@ -44,6 +45,7 @@ import dagger.Component;
 
   AppService appService();
   UserService userService();
+  AuthService authService();
 
   void inject(InformationFragment fragment);
   void inject(PraiseFragment fragment);

@@ -21,11 +21,11 @@ public class ResponseModel<T> extends BaseModel {
 
   private T result;
 
-  public T getData() {
+  public T getResult() {
     return result;
   }
 
-  public void setData(T data) {
+  public void setResult(T data) {
     this.result = data;
   }
 

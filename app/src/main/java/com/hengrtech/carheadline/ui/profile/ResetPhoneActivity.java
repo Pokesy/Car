@@ -8,20 +8,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.net.AuthService;
-import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
-import com.hengrtech.carheadline.net.params.CheckVerifyCodeParams;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
+
 import javax.inject.Inject;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.Subscription;
 
 /**
@@ -99,23 +100,23 @@ public class ResetPhoneActivity extends BasicTitleBarActivity {
             });
         break;
       case R.id.tv_activation:
-        // TODO 调用校验验证码接口，这个按钮是否应该叫下一步？？？？！！
-        manageRpcCall(mAuthService.checkVerifyCode(
-            new CheckVerifyCodeParams(phoneInput.getText().toString(),
-                etNumInput.getText().toString())), new UiRpcSubscriber<Void>(this) {
-          @Override protected void onSuccess(Void s) {
-            mSubscription = getComponent().loginSession().userInfoChangeBuilder().setMobileNo(phoneInput.getText().toString()).update();
-            finish();
-          }
-
-          @Override protected void onEnd() {
-
-          }
-
-          @Override public void onApiError(RpcApiError apiError) {
-            super.onApiError(apiError);
-          }
-        });
+//        // TODO 调用校验验证码接口，这个按钮是否应该叫下一步？？？？！！
+//        manageRpcCall(mAuthService.checkVerifyCode(
+//            new CheckVerifyCodeParams(phoneInput.getText().toString(),
+//                etNumInput.getText().toString())), new UiRpcSubscriber<Void>(this) {
+//          @Override protected void onSuccess(Void s) {
+//            mSubscription = getComponent().loginSession().userInfoChangeBuilder().setMobileNo(phoneInput.getText().toString()).update();
+//            finish();
+//          }
+//
+//          @Override protected void onEnd() {
+//
+//          }
+//
+//          @Override public void onApiError(RpcApiError apiError) {
+//            super.onApiError(apiError);
+//          }
+//        });
         break;
     }
   }
