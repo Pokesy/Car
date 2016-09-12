@@ -2,6 +2,7 @@ package com.hengrtech.carheadline.ui.home;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +25,7 @@ import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.home.adapter.SimpleLoadFooterAdapter;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
+import com.hengrtech.carheadline.utils.ImagePagerActivity;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
 import com.jtech.adapter.RecyclerAdapter;
 import com.jtech.listener.OnItemClickListener;
@@ -251,18 +253,18 @@ public class PraiseFragment extends BasicTitleBarFragment
                 } catch (Exception e) {
                   e.printStackTrace();
                 }
-                //final int in = i;
-                //imageView.setOnClickListener(new View.OnClickListener() {
-                //
-                //  @Override public void onClick(View v) {
-                //    Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
-                //    Bundle bundle = new Bundle();
-                //    bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.imgList);
-                //    bundle.putInt("image_index", in);
-                //    intent.putExtras(bundle);
-                //    startActivity(intent);
-                //  }
-                //});
+                final int in = i;
+                imageView.setOnClickListener(new View.OnClickListener() {
+
+                  @Override public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
+                    Bundle bundle = new Bundle();
+                    //bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.imgList);
+                    bundle.putInt("image_index", in);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                  }
+                });
               }
             }
           } else {

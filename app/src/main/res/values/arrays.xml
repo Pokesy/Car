@@ -20,6 +20,15 @@
         <item>男</item>
         <item>女</item>
     </array>
+  <string-array name="community_tab_title">
+    <item>问答</item>
+    <item>吐槽</item>
+  </string-array>
+    <string-array name="question_tab_title">
+        <item>全部</item>
+        <item>未解答</item>
+        <item>我的</item>
+    </string-array>
     <array name="waveSideBarLetters">
         <item>\u0023</item>
         <item>\u2606</item>

@@ -20,6 +20,7 @@ import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
+import com.hengrtech.carheadline.utils.DateHelper;
 import com.hengrtech.carheadline.utils.ImagePagerActivity;
 import com.hengrtech.carheadline.utils.RBaseAdapter;
 import com.hengrtech.carheadline.utils.RViewHolder;
@@ -56,7 +57,7 @@ public class InformationFragment extends BasicTitleBarFragment {
   }
 
   public void initdata() {
-    manageRpcCall(mInfo.getInfoList("1", "1", "100"),
+    manageRpcCall(mInfo.getInfoList("1", "1", "10"),
         new UiRpcSubscriber<List<InfoModel>>(getActivity()) {
           @Override protected void onSuccess(List<InfoModel> infoModels) {
             zxListView.setAdapter(new ZixunAdapter(getActivity(), infoModels));
@@ -137,8 +138,8 @@ public class InformationFragment extends BasicTitleBarFragment {
         }
       });
       holder.tV(R.id.news_title).setText(bean.getTitle());
-      holder.tV(R.id.time).setText(bean.getCreateTime());
-      holder.tV(R.id.tv_from).setText("来源：" + bean.getSource());
+      holder.tV(R.id.time).setText(DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
+      holder.tV(R.id.tv_from).setText(bean.getSource());
       holder.tV(R.id.view_count).setText(String.valueOf(bean.getPraiseCount()));
       holder.tV(R.id.comment_count).setText(String.valueOf(bean.getCommentsCount()));
       if (bean.getCoverArr() != null) {

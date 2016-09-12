@@ -174,7 +174,7 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     mIntroductionValueView.setText(TextUtils.isEmpty(getUserInfo().getSignature()) ? getString(
         R.string.activity_introduction_hint) : getUserInfo().getSignature());
     mGenderValueView.setText(getUserInfo().getGender());
-    mAgeValueView.setText(computeAge(getUserInfo().getCareCarType()));
+    //mAgeValueView.setText(computeAge(getUserInfo().getCareCarType()));
 
     showUserLabel();
   }

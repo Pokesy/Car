@@ -11,15 +11,15 @@
  */
 package com.hengrtech.carheadline.net;
 
+import com.hengrtech.carheadline.net.model.BaseModel;
 import com.hengrtech.carheadline.net.model.CarModel;
 import com.hengrtech.carheadline.net.model.CarSerialModel;
 import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
 import com.hengrtech.carheadline.net.model.NewsDetailModel;
+import com.hengrtech.carheadline.net.model.QuestionModel;
 import com.hengrtech.carheadline.net.model.ResponseModel;
-
 import java.util.List;
-
 import okhttp3.MultipartBody;
 import retrofit2.Response;
 import retrofit2.http.DELETE;
@@ -57,7 +57,13 @@ public interface AppService {
   @GET("car/seriallist/{masterId}")
   Observable<Response<ResponseModel<List<CarSerialModel>>>> getCarSerialList(@Path("masterId") int masterId);
   @GET("sms/send/{mobileNo}")
-  Observable<Response<ResponseModel<String>>> getRegisterVerifyCode(@Path("mobileNo") String mobileNo);
+  Observable<Response<BaseModel>> getRegisterVerifyCode(@Path("mobileNo") String mobileNo);
+  @GET("question/page/{page}")
+  Observable<Response<ResponseModel<List<QuestionModel>>>> getAllQuestion(@Path("page") String page);
+  @GET("question/unsolved/page/{page}")
+  Observable<Response<ResponseModel<List<QuestionModel>>>> getUnQuestionList(@Path("page") String page);
+  @GET("question/page/{page}/{token}")
+  Observable<Response<ResponseModel<List<QuestionModel>>>>getMyQuestionfoList(@Path("page") String page,@Path("token") String token);
   @GET("sms/verify/{mobileNo}/{code}")
   Observable<Response<ResponseModel<String>>> verifyCode(@Path("mobileNo") String mobileNo,@Path("code") String code);
 }

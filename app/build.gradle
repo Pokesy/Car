@@ -77,4 +77,5 @@ dependencies {
     apt 'com.google.dagger:dagger-compiler:2.0.1'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
 }

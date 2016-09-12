@@ -28,8 +28,6 @@ import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.net.AuthService;
 import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
-import com.hengrtech.carheadline.net.model.UserInfo;
-import com.hengrtech.carheadline.net.params.LoginWithVerifyCodeParams;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
@@ -185,25 +183,22 @@ public class LoginWithVerifyCodeFragment extends BasicTitleBarFragment {
     }
     showProgressDialog("");
     // TODO 调用接口
-    manageRpcCall(mAuthService.loginWithVerifyCode(new LoginWithVerifyCodeParams(mPhoneInput
-        .getText().toString(), mVerifyCodeInput.getText().toString())), new
-        UiRpcSubscriber<UserInfo>(getActivity()) {
-
-
-          @Override
-          protected void onSuccess(UserInfo info) {
-            getComponent().loginSession().login(info);
-            startActivity(new Intent(getActivity(), MainTabActivity.class));
-          }
+    manageRpcCall(mAuthService.loginWithVerifyCode(mPhoneInput
+        .getText().toString(), mVerifyCodeInput.getText().toString()), new
+        UiRpcSubscriber<String>(getActivity()) {
 
           @Override
           protected void onEnd() {
             closeProgressDialog();
           }
-
           @Override
           public void onApiError(RpcApiError apiError) {
             super.onApiError(apiError);
+          }
+
+          @Override protected void onSuccess(String s) {
+            //getComponent().loginSession().login(info);
+            startActivity(new Intent(getActivity(), MainTabActivity.class));
           }
         });
   }

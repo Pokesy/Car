@@ -1,24 +1,20 @@
 package com.hengrtech.carheadline.ui.discover.adapter;
 
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import cc.solart.turbo.BaseTurboAdapter;
+import cc.solart.turbo.BaseViewHolder;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.model.CarModel;
 import com.hengrtech.carheadline.ui.discover.view.DetailParamLocationDialog;
 import com.hengrtech.carheadline.ui.discover.view.ScrollGridView;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
-
 import java.util.List;
-
-import cc.solart.turbo.BaseTurboAdapter;
-import cc.solart.turbo.BaseViewHolder;
 
 import static com.hengrtech.carheadline.R.id.sgv;
 

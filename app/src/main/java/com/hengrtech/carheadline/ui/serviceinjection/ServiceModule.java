@@ -34,7 +34,10 @@ public class ServiceModule {
   public AppService providesAppService() {
     return RetrofitFactory.createAppService();
   }
-
+  //@Provides
+  //public AdvertisementService providesAdvertisementService() {
+  //  return RetrofitFactory.createAdvertisementService();
+  //}
   @Provides
   public RpcCallManager providerRpcCallManager() {
     return new RpcCallManager.RpcCallManagerImpl();
