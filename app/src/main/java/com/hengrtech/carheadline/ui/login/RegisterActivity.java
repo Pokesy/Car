@@ -44,6 +44,7 @@ public class RegisterActivity extends BasicTitleBarActivity {
     EditText verifyCodeEt;
 
     private TimeCount time;
+    private String phoneNumber;
 
     @Override
     public int getLayoutId() {
@@ -75,12 +76,12 @@ public class RegisterActivity extends BasicTitleBarActivity {
 
     @OnClick({R.id.get_verify_code_btn, R.id.verify_btn})
     public void onClick(View view) {
-        String phoneNumber = phoneNumberEt.getText().toString();
+        phoneNumber = phoneNumberEt.getText().toString();
         switch (view.getId()) {
             case R.id.get_verify_code_btn:
                 if (Utils.verifyPhoneNumber(phoneNumber)) {
                     getVerifyCodeService(phoneNumber);
-//                    time.start();
+                    time.start();
                 } else {
                     Toast.makeText(this, "手机号码不正确或者为空", Toast.LENGTH_SHORT).show();
                 }
@@ -100,7 +101,7 @@ public class RegisterActivity extends BasicTitleBarActivity {
         manageRpcCall(mInfo.getVerifyCode(phoneNumber), new UiRpcSubscriber<String>(this) {
             @Override
             protected void onSuccess(String s) {
-
+                Toast.makeText(RegisterActivity.this, "发送成功", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -134,7 +135,9 @@ public class RegisterActivity extends BasicTitleBarActivity {
         manageRpcCall(mInfo.checkVerifyCode(phone, code), new UiRpcSubscriber<String>(this) {
             @Override
             protected void onSuccess(String s) {
-                startActivity(new Intent(RegisterActivity.this, SetPasswordActivity.class));
+                Intent intent =new Intent(RegisterActivity.this, SetPasswordActivity.class);
+                intent.putExtra("phone",phoneNumber);
+                startActivity(intent);
             }
 
             @Override

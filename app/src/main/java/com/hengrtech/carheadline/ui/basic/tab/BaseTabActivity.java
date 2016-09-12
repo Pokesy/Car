@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
+
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.ui.basic.BasicActivity;
 
@@ -413,7 +414,6 @@ public abstract class BaseTabActivity extends BasicActivity
             mCountView = (TextView) view.findViewById(R.id.tab_unread_msg);
             mNewFlagView = (ImageView) view.findViewById(R.id.tab_new_flag);
             mTitleView.setText(mTabTitleStr);
-            
             if (mDrawableId > 0)
             {
                 switch (mDrawableDirection)

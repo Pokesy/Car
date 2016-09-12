@@ -13,14 +13,12 @@ package com.hengrtech.carheadline.net;
 
 import com.hengrtech.carheadline.net.model.ResponseModel;
 import com.hengrtech.carheadline.net.model.UserInfo;
-import com.hengrtech.carheadline.net.params.GetUserInfoParams;
 import com.hengrtech.carheadline.net.params.LoginParams;
 import com.hengrtech.carheadline.net.params.LoginWithVerifyCodeParams;
 import com.hengrtech.carheadline.net.params.PayPswParams;
 import com.hengrtech.carheadline.net.params.PayRetPswParams;
 import com.hengrtech.carheadline.net.params.RegisterParams;
 import com.hengrtech.carheadline.net.params.ThirdLoginParams;
-import com.hengrtech.carheadline.net.params.VisitorLoginParams;
 
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -38,20 +36,16 @@ import rx.Observable;
  * @version [Taobei Client V20160411, 16/4/29]
  */
 public interface AuthService {
-    //@GET("sms/send") Observable<Response<ResponseModel<String>>> getVerifyCode(
-    //    @Body GetVerifyCodeParams params);
 
     @GET("sms/send/{mobileNo}")
     Observable<Response<ResponseModel<String>>> getVerifyCode(
             @Path("mobileNo") String mobileNo);
 
-    @GET("member/visitor")
-    Observable<Response<ResponseModel<UserInfo>>> loginvictor();
 
     @GET("sms/verify/{mobileNo}/{code}")
     Observable<Response<ResponseModel<String>>> checkVerifyCode(@Path("mobileNo") String mobileNo, @Path("code") String code);
 
-    @POST("reg.do")
+    @PUT("member/register")
     Observable<Response<ResponseModel<UserInfo>>> register(
             @Body RegisterParams params);
 
@@ -71,15 +65,13 @@ public interface AuthService {
     Observable<Response<ResponseModel<UserInfo>>> loginWithVerifyCode(
             @Body LoginWithVerifyCodeParams params);
 
-    @POST("getUserInfoById.do")
-    Observable<Response<ResponseModel<UserInfo>>> getUserInfo(
-            @Body GetUserInfoParams params);
+    @GET("member/{userId}/{token}")
+    Observable<Response<ResponseModel<UserInfo>>> getUserInfo(@Path("userId") int userId, @Path("token") String token);
 
     @POST("thirdlogin.do")
     Observable<Response<ResponseModel<UserInfo>>> thirdLogin(
             @Body ThirdLoginParams params);
 
-    @POST("visitorlogin.do")
-    Observable<Response<ResponseModel<UserInfo>>> visitorLogin(
-            @Body VisitorLoginParams params);
+    @GET("member/visitor/{tag}")
+    Observable<Response<ResponseModel<UserInfo>>> visitorLogin(@Path("tag") String tag);
 }

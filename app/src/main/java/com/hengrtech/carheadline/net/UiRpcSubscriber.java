@@ -37,7 +37,7 @@ public abstract class UiRpcSubscriber<T> extends Subscriber<Response<ResponseMod
 
     @Override
     public final void onError(Throwable e) {
-        onHttpError(new RpcHttpError(NetConstant.HttpCodeConstant.UNKNOWN_ERROR, ""));
+        onHttpError(new RpcHttpError(NetConstant.HttpCodeConstant.UNKNOWN_ERROR, e.getMessage()));
         Logger.e(TAG, e, e.getMessage());
         onCompleted();
     }

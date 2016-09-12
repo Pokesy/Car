@@ -12,14 +12,16 @@
 package com.hengrtech.carheadline.injection;
 
 import android.content.Context;
+
 import com.hengrtech.carheadline.manager.LoginSession;
 import com.hengrtech.carheadline.net.HttpErrorUiNotifier;
 import com.hengrtech.carheadline.net.SessionNotifier;
-import com.hengrtech.carheadline.ui.tab.MainTabActivity;
 import com.hengrtech.carheadline.utils.preference.CustomAppPreferences;
 import com.squareup.otto.Bus;
-import dagger.Component;
+
 import javax.inject.Singleton;
+
+import dagger.Component;
 
 /**
  * 全局<BR>
@@ -27,19 +29,23 @@ import javax.inject.Singleton;
  * @author zhaozeyang
  * @version [Taobei Client V20160411, 16/4/14]
  */
-@Singleton @Component(modules = GlobalModule.class) public interface GlobalComponent {
+@Singleton
+@Component(modules = GlobalModule.class)
+public interface GlobalComponent {
 
-  Context getApplicationContext();
+    Context getApplicationContext();
 
-  @GlobalBus Bus getGlobalBus();
+    @GlobalBus
+    Bus getGlobalBus();
 
-  HttpErrorUiNotifier httpErrorUiNotifier();
-  SessionNotifier sessionNotifier();
-  CustomAppPreferences appPreferences();
+    HttpErrorUiNotifier httpErrorUiNotifier();
 
-  LoginSession loginSession();
+    SessionNotifier sessionNotifier();
 
-  boolean isLogin();
+    CustomAppPreferences appPreferences();
 
-  public void inject(MainTabActivity activity);
+    LoginSession loginSession();
+
+    boolean isLogin();
+
 }

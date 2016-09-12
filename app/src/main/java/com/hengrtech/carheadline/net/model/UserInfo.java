@@ -12,6 +12,7 @@
 package com.hengrtech.carheadline.net.model;
 
 import android.text.TextUtils;
+
 import com.hengrtech.carheadline.net.constant.NetConstant;
 
 /**
@@ -21,420 +22,437 @@ import com.hengrtech.carheadline.net.constant.NetConstant;
  * @version [Taobei Client V20160411, 16/4/29]
  */
 public class UserInfo {
-  public static final String USER_TYPE_VISITOR = "2";
-  public static final String USER_TYPE_THIRD = "1";
-  public static final String USER_TYPE_PHONE = "0";
+    public static final String USER_TYPE_VISITOR = "2";
+    public static final String USER_TYPE_THIRD = "1";
+    public static final String USER_TYPE_PHONE = "0";
 
-  public static final String CERTIFY_STATUS_CERTIFY_FAILED = "0";
-  public static final String CERTIFY_STATUS_CERTIFY_PASS = "1";
-  public static final String CERTIFY_STATUS_CERTIFYING = "2";
+    public static final String CERTIFY_STATUS_CERTIFY_FAILED = "0";
+    public static final String CERTIFY_STATUS_CERTIFY_PASS = "1";
+    public static final String CERTIFY_STATUS_CERTIFYING = "2";
 
-  /**
-   * avart :
-   * birthPlace :
-   * birthday :
-   * certified : 0
-   * devId :
-   * education :
-   * gender :
-   * idCardImg :
-   * introduce :
-   * inviteCode : ao3pka
-   * loginNum : 0
-   * loginTime : null
-   * mobileNo : 13600000002
-   * money : 0
-   * msgCounts : 0
-   * myCity :
-   * occupation :
-   * password : 111111
-   * payPwd :
-   * registerDate : null
-   * result : 1
-   * securityLevel : m
-   * state : 1
-   * thirdAccount :
-   * todayBenefit : 0
-   * type : 0
-   * userId : 83
-   * userLabel :
-   * userName :
-   * virtualMoney : 0
-   */
+    /**
+     * avart :
+     * birthPlace :
+     * birthday :
+     * certified : 0
+     * devId :
+     * education :
+     * gender :
+     * idCardImg :
+     * introduce :
+     * inviteCode : ao3pka
+     * loginNum : 0
+     * loginTime : null
+     * mobileNo : 13600000002
+     * money : 0
+     * msgCounts : 0
+     * myCity :
+     * occupation :
+     * password : 111111
+     * payPwd :
+     * registerDate : null
+     * result : 1
+     * securityLevel : m
+     * state : 1
+     * thirdAccount :
+     * todayBenefit : 0
+     * type : 0
+     * userId : 83
+     * userLabel :
+     * userName :
+     * virtualMoney : 0
+     */
 
-  private String avart;
-  private String birthPlace;
-  private String birthday;
-  private String certified;
-  private String devId;
-  private String education;
-  private String gender;
-  private String idCardImg;
-  private String introduce;
-  private String inviteCode;
-  private int loginNum;
-  private Object loginTime;
-  private String mobileNo;
-  private int money;
-  private int msgCounts;
-  private String myCity;
-  private String occupation;
-  private String password;
-  private String payPwd;
-  private Object registerDate;
-  private String result;
-  private String securityLevel;
-  private String state;
-  private String thirdAccount;
-  private int todayBenefit;
-  private String type;
-  private int userId;
-  private String userLabel;
-  private String userName;
-  private int virtualMoney;
-  /**
-   * memberId : 1
-   * realName : 张笑
-   * password : e10adc3949ba59abbe56e057f20f883e
-   * portrait :
-   * nickName : Rock-2015
-   * gender : 1
-   * mobileNo : 18266455521
-   * myCar : 奇瑞E3
-   * careCarType : SUV,东风日产
-   * signature : 得票得票
-   * registerTime : 2016-07-19 09:10:43
-   * token : aced34e3492a492597dad022960363d4
-   * type : 0
-   */
+    private String avart;
+    private String birthPlace;
+    private String birthday;
+    private String certified;
+    private String devId;
+    private String education;
+    private String gender;
+    private String idCardImg;
+    private String introduce;
+    private String inviteCode;
+    private int loginNum;
+    private Object loginTime;
+    private String mobileNo;
+    private int money;
+    private int msgCounts;
+    private String myCity;
+    private String occupation;
+    private String password;
+    private String payPwd;
+    private Object registerDate;
+    private String result;
+    private String securityLevel;
+    private String state;
+    private String thirdAccount;
+    private int todayBenefit;
+    private String type;
+    private int userId;
+    private String userLabel;
+    private String userName;
+    private int virtualMoney;
 
-  private int memberId;
-  private String realName;
-  private String portrait;
-  private String nickName;
-  private String myCar;
-  private String careCarType;
-  private String signature;
-  private String registerTime;
-  private String token;
+    /**
+     * memberId : 1
+     * realName : 张笑
+     * password : e10adc3949ba59abbe56e057f20f883e
+     * portrait :
+     * nickName : Rock-2015
+     * gender : 1
+     * mobileNo : 18266455521
+     * myCar : 奇瑞E3
+     * careCarType : SUV,东风日产
+     * signature : 得票得票
+     * registerTime : 2016-07-19 09:10:43
+     * token : aced34e3492a492597dad022960363d4
+     * type : 0
+     */
 
-  public int getMemberId() {
-    return memberId;
-  }
+    private int memberId;
+    private String realName;
+    private String portrait;
+    private String nickName;
+    private String myCar;
+    private String careCarType;
+    private String signature;
+    private String registerTime;
+    private String token;
+    private String ageStage;
+    private String score;
 
-  public void setMemberId(int memberId) {
-    this.memberId = memberId;
-  }
-
-  public String getRealName() {
-    return realName;
-  }
-
-  public void setRealName(String realName) {
-    this.realName = realName;
-  }
-
-
-  public String getPortrait() {
-    return portrait;
-  }
-
-  public void setPortrait(String portrait) {
-    this.portrait = portrait;
-  }
-
-  public String getNickName() {
-    return nickName;
-  }
-
-  public void setNickName(String nickName) {
-    this.nickName = nickName;
-  }
-
-
-
-  public String getMyCar() {
-    return myCar;
-  }
-
-  public void setMyCar(String myCar) {
-    this.myCar = myCar;
-  }
-
-  public String getCareCarType() {
-    return careCarType;
-  }
-
-  public void setCareCarType(String careCarType) {
-    this.careCarType = careCarType;
-  }
-
-  public String getSignature() {
-    return signature;
-  }
-
-  public void setSignature(String signature) {
-    this.signature = signature;
-  }
-
-  public String getRegisterTime() {
-    return registerTime;
-  }
-
-  public void setRegisterTime(String registerTime) {
-    this.registerTime = registerTime;
-  }
-
-  public String getToken() {
-    return token;
-  }
-
-  public void setToken(String token) {
-    this.token = token;
-  }
-
-
-
-  public String getAvart() {
-    if (TextUtils.isEmpty(avart) || avart.startsWith("http://")) {
-      return null == avart ? "" : avart;
+    public String getScore() {
+        return score;
     }
-    return NetConstant.BASE_URL_LOCATION + avart;
-  }
 
-  public void setAvart(String avart) {
-    this.avart = avart;
-  }
+    public void setScore(String score) {
+        this.score = score;
+    }
 
-  public String getBirthPlace() {
-    return birthPlace;
-  }
+    public String getAgeStage() {
+        return ageStage;
+    }
 
-  public void setBirthPlace(String birthPlace) {
-    this.birthPlace = birthPlace;
-  }
+    public void setAgeStage(String ageStage) {
+        this.ageStage = ageStage;
+    }
 
-  public String getBirthday() {
-    return birthday;
-  }
+    public int getMemberId() {
+        return memberId;
+    }
 
-  public void setBirthday(String birthday) {
-    this.birthday = birthday;
-  }
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
+    }
 
-  public String getCertified() {
-    return certified;
-  }
+    public String getRealName() {
+        return realName;
+    }
 
-  public void setCertified(String certified) {
-    this.certified = certified;
-  }
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 
-  public String getDevId() {
-    return devId;
-  }
 
-  public void setDevId(String devId) {
-    this.devId = devId;
-  }
+    public String getPortrait() {
+        return portrait;
+    }
 
-  public String getEducation() {
-    return education;
-  }
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
+    }
 
-  public void setEducation(String education) {
-    this.education = education;
-  }
+    public String getNickName() {
+        return nickName;
+    }
 
-  public String getGender() {
-    return gender;
-  }
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
-  public void setGender(String gender) {
-    this.gender = gender;
-  }
 
-  public String getIdCardImg() {
-    return idCardImg;
-  }
+    public String getMyCar() {
+        return myCar;
+    }
 
-  public void setIdCardImg(String idCardImg) {
-    this.idCardImg = idCardImg;
-  }
+    public void setMyCar(String myCar) {
+        this.myCar = myCar;
+    }
 
-  public String getIntroduce() {
-    return introduce;
-  }
+    public String getCareCarType() {
+        return careCarType;
+    }
 
-  public void setIntroduce(String introduce) {
-    this.introduce = introduce;
-  }
+    public void setCareCarType(String careCarType) {
+        this.careCarType = careCarType;
+    }
 
-  public String getInviteCode() {
-    return inviteCode;
-  }
+    public String getSignature() {
+        return signature;
+    }
 
-  public void setInviteCode(String inviteCode) {
-    this.inviteCode = inviteCode;
-  }
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
 
-  public int getLoginNum() {
-    return loginNum;
-  }
+    public String getRegisterTime() {
+        return registerTime;
+    }
 
-  public void setLoginNum(int loginNum) {
-    this.loginNum = loginNum;
-  }
+    public void setRegisterTime(String registerTime) {
+        this.registerTime = registerTime;
+    }
 
-  public Object getLoginTime() {
-    return loginTime;
-  }
+    public String getToken() {
+        return token;
+    }
 
-  public void setLoginTime(Object loginTime) {
-    this.loginTime = loginTime;
-  }
+    public void setToken(String token) {
+        this.token = token;
+    }
 
-  public String getMobileNo() {
-    return mobileNo;
-  }
 
-  public void setMobileNo(String mobileNo) {
-    this.mobileNo = mobileNo;
-  }
+    public String getAvart() {
+        if (TextUtils.isEmpty(avart) || avart.startsWith("http://")) {
+            return null == avart ? "" : avart;
+        }
+        return NetConstant.BASE_URL_LOCATION + avart;
+    }
 
-  public int getMoney() {
-    return money;
-  }
+    public void setAvart(String avart) {
+        this.avart = avart;
+    }
 
-  public void setMoney(int money) {
-    this.money = money;
-  }
+    public String getBirthPlace() {
+        return birthPlace;
+    }
 
-  public int getMsgCounts() {
-    return msgCounts;
-  }
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
+    }
 
-  public void setMsgCounts(int msgCounts) {
-    this.msgCounts = msgCounts;
-  }
+    public String getBirthday() {
+        return birthday;
+    }
 
-  public String getMyCity() {
-    return myCity;
-  }
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 
-  public void setMyCity(String myCity) {
-    this.myCity = myCity;
-  }
+    public String getCertified() {
+        return certified;
+    }
 
-  public String getOccupation() {
-    return occupation;
-  }
+    public void setCertified(String certified) {
+        this.certified = certified;
+    }
 
-  public void setOccupation(String occupation) {
-    this.occupation = occupation;
-  }
+    public String getDevId() {
+        return devId;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public void setDevId(String devId) {
+        this.devId = devId;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public String getEducation() {
+        return education;
+    }
 
-  public String getPayPwd() {
-    return payPwd;
-  }
+    public void setEducation(String education) {
+        this.education = education;
+    }
 
-  public void setPayPwd(String payPwd) {
-    this.payPwd = payPwd;
-  }
+    public String getGender() {
+        return gender;
+    }
 
-  public Object getRegisterDate() {
-    return registerDate;
-  }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-  public void setRegisterDate(Object registerDate) {
-    this.registerDate = registerDate;
-  }
+    public String getIdCardImg() {
+        return idCardImg;
+    }
 
-  public String getResult() {
-    return result;
-  }
+    public void setIdCardImg(String idCardImg) {
+        this.idCardImg = idCardImg;
+    }
 
-  public void setResult(String result) {
-    this.result = result;
-  }
+    public String getIntroduce() {
+        return introduce;
+    }
 
-  public String getSecurityLevel() {
-    return securityLevel;
-  }
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
 
-  public void setSecurityLevel(String securityLevel) {
-    this.securityLevel = securityLevel;
-  }
+    public String getInviteCode() {
+        return inviteCode;
+    }
 
-  public String getState() {
-    return state;
-  }
+    public void setInviteCode(String inviteCode) {
+        this.inviteCode = inviteCode;
+    }
 
-  public void setState(String state) {
-    this.state = state;
-  }
+    public int getLoginNum() {
+        return loginNum;
+    }
 
-  public String getThirdAccount() {
-    return thirdAccount;
-  }
+    public void setLoginNum(int loginNum) {
+        this.loginNum = loginNum;
+    }
 
-  public void setThirdAccount(String thirdAccount) {
-    this.thirdAccount = thirdAccount;
-  }
+    public Object getLoginTime() {
+        return loginTime;
+    }
 
-  public int getTodayBenefit() {
-    return todayBenefit;
-  }
+    public void setLoginTime(Object loginTime) {
+        this.loginTime = loginTime;
+    }
 
-  public void setTodayBenefit(int todayBenefit) {
-    this.todayBenefit = todayBenefit;
-  }
+    public String getMobileNo() {
+        return mobileNo;
+    }
 
-  public String getType() {
-    return type;
-  }
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
 
-  public void setType(String type) {
-    this.type = type;
-  }
+    public int getMoney() {
+        return money;
+    }
 
-  public int getUserId() {
-    return userId;
-  }
+    public void setMoney(int money) {
+        this.money = money;
+    }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
-  }
+    public int getMsgCounts() {
+        return msgCounts;
+    }
 
-  public String getUserLabel() {
-    return userLabel;
-  }
+    public void setMsgCounts(int msgCounts) {
+        this.msgCounts = msgCounts;
+    }
 
-  public void setUserLabel(String userLabel) {
-    this.userLabel = userLabel;
-  }
+    public String getMyCity() {
+        return myCity;
+    }
 
-  public String getUserName() {
-    return TextUtils.isEmpty(userName) ? mobileNo : userName;
-  }
+    public void setMyCity(String myCity) {
+        this.myCity = myCity;
+    }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    public String getOccupation() {
+        return occupation;
+    }
 
-  public int getVirtualMoney() {
-    return virtualMoney;
-  }
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
 
-  public void setVirtualMoney(int virtualMoney) {
-    this.virtualMoney = virtualMoney;
-  }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPayPwd() {
+        return payPwd;
+    }
+
+    public void setPayPwd(String payPwd) {
+        this.payPwd = payPwd;
+    }
+
+    public Object getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Object registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getSecurityLevel() {
+        return securityLevel;
+    }
+
+    public void setSecurityLevel(String securityLevel) {
+        this.securityLevel = securityLevel;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getThirdAccount() {
+        return thirdAccount;
+    }
+
+    public void setThirdAccount(String thirdAccount) {
+        this.thirdAccount = thirdAccount;
+    }
+
+    public int getTodayBenefit() {
+        return todayBenefit;
+    }
+
+    public void setTodayBenefit(int todayBenefit) {
+        this.todayBenefit = todayBenefit;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUserLabel() {
+        return userLabel;
+    }
+
+    public void setUserLabel(String userLabel) {
+        this.userLabel = userLabel;
+    }
+
+    public String getUserName() {
+        return TextUtils.isEmpty(userName) ? mobileNo : userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getVirtualMoney() {
+        return virtualMoney;
+    }
+
+    public void setVirtualMoney(int virtualMoney) {
+        this.virtualMoney = virtualMoney;
+    }
 }

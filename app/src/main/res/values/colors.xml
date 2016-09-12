@@ -30,6 +30,7 @@
     <color name="font_color_black">#000000</color>
     <!-- 蓝文本色 -->
     <color name="font_color_blue">#25add4</color>
+    <color name="font_color_deep_blue">#5B85BB</color>
     <!-- 紫色文本 -->
     <color name="font_color_purple">#9874ff</color>
     <!-- 深灰色 -->

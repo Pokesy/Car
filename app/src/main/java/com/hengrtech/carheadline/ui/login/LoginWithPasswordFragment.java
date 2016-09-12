@@ -22,10 +22,14 @@ import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.net.AuthService;
+import com.hengrtech.carheadline.net.UiRpcSubscriber;
+import com.hengrtech.carheadline.net.model.UserInfo;
+import com.hengrtech.carheadline.net.params.LoginParams;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
 import com.hengrtech.carheadline.ui.tab.MainTabActivity;
+import com.hengrtech.carheadline.utils.Utils;
 
 import javax.inject.Inject;
 
@@ -61,24 +65,9 @@ public class LoginWithPasswordFragment extends BasicTitleBarFragment {
     @Override
     protected void onCreateViewCompleted(View view) {
         ButterKnife.bind(this, view);
-        initView();
         inject();
     }
 
-    private void initView() {
-//    Link registerLink = new Link(getString(R.string.btn_register)).setTextColor(getResources()
-//        .getColor(R.color.font_color_yellow)).setUnderlined(false).setOnClickListener(new Link
-//        .OnClickListener() {
-//      @Override
-//      public void onClick(String clickedText) {
-//        //startActivity(new Intent(getActivity(), RegisterActivity.class));
-//      }
-//    });
-//    LinkBuilder registerText = LinkBuilder.on(mBtnRegister).setText(
-//        getString(R.string.btn_register_prefix) + getString(R.string.btn_register)
-//    ).addLink(registerLink);
-//    registerText.build();
-    }
 
     private void inject() {
         DaggerServiceComponent.builder().globalModule(new GlobalModule((CustomApp) getActivity()
@@ -119,50 +108,27 @@ public class LoginWithPasswordFragment extends BasicTitleBarFragment {
     }
 
     private void performLogin() {
-//    if (!checkPhoneInput(mPhoneInput.getText())) {
-//      showShortToast(R.string.login_input_phone_error);
-//      return;
-//    }
-//    if (!checkPasswordInput(mPasswordInput.getText())) {
-//      showShortToast(R.string.login_input_password_error);
-//      return;
-//    }
-//    showProgressDialog("", false);
-//    manageRpcCall(mAuthService.loginWithPassword(new LoginParams(mPhoneInput.getText().toString()
-//        , mPasswordInput.getText().toString())), new UiRpcSubscriber<UserInfo>(getActivity()) {
-//
-//
-//      @Override
-//      protected void onSuccess(UserInfo info) {
-//        getComponent().loginSession().login(info);
-//        startActivity(new Intent(getActivity(), MainTabActivity.class));
-//      }
-//
-//      @Override
-//      protected void onEnd() {
-//        closeProgressDialog();
-//      }
-//
-//      @Override
-//      public void onApiError(RpcApiError apiError) {
-//        super.onApiError(apiError);
-//        if (!TextUtils.isEmpty(apiError.getMessage())) {
-//          showShortToast(apiError.getMessage());
-//        } else {
-//          showShortToast(R.string.login_error);
-//        }
-//      }
-//    });
-    }
+        if (!Utils.verifyPhoneNumber(phoneInput.getText().toString().trim())) {
+            showShortToast(R.string.login_input_phone_error);
+            return;
+        }
+        if (!checkPasswordInput(passwordInput.getText())) {
+            showShortToast(R.string.login_input_password_error);
+            return;
+        }
+        showProgressDialog("", false);
+        manageRpcCall(mAuthService.loginWithPassword(new LoginParams(phoneInput.getText().toString()
+                , passwordInput.getText().toString())), new UiRpcSubscriber<UserInfo>(getActivity()) {
+            @Override
+            protected void onSuccess(UserInfo userInfo) {
+                getComponent().loginSession().login(userInfo);
+            }
 
-    private boolean checkPhoneInput(Editable charSequence) {
-        if (isNull(charSequence)) {
-            return false;
-        }
-        if (charSequence.length() != LENGTH_PHONE_NUMBER) {
-            return false;
-        }
-        return true;
+            @Override
+            protected void onEnd() {
+                closeProgressDialog();
+            }
+        });
     }
 
     private boolean checkPasswordInput(Editable charSequence) {
