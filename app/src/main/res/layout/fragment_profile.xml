@@ -3,230 +3,250 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      >
+    android:background="@color/font_color_white">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="176.5dp"
-        android:background="@mipmap/bg"
-        >
-      <LinearLayout
-          android:id="@+id/un_login_container"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="50dp"
-          android:orientation="horizontal"
-          >
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="103dp"
-            android:layout_height="103dp"
-            android:layout_gravity="bottom|center_horizontal"
-            android:src="@mipmap/photo_no"
-            />
-
-      </LinearLayout>
-
-
-    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:alpha="0.8"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        >
-      <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center_horizontal"
-          android:orientation="vertical"
-          >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/jinfen"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@mipmap/bg">
+
+            <LinearLayout
+                android:id="@+id/un_login_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:src="@mipmap/photo_no" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:alpha="0.8"
+            android:gravity="center"
             android:orientation="horizontal"
-            >
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/fragment_profile_score"
-              style="@style/Widget.App.TextView.Medium"
-              />
-          <TextView
-              android:id="@+id/score"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
 
-              style="@style/Widget.App.TextView.Medium"
-              />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/jinfen" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Widget.App.TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/fragment_profile_score"
+                        android:textColor="@color/font_color_dark_gray" />
+
+                    <TextView
+                        android:id="@+id/score"
+                        style="@style/Widget.App.TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="32dp"
+                android:background="@color/tab_layout_color" />
+
+            <LinearLayout
+                android:id="@+id/btn_red_bag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:src="@mipmap/xiaoxi" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        style="@style/Widget.App.TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/fragment_profile_message"
+                        android:textColor="@color/font_color_dark_gray" />
+
+                    <TextView
+                        android:id="@+id/message"
+                        style="@style/Widget.App.TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="32dp"
+                android:background="@color/tab_layout_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/qiandao" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Widget.App.TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fragment_profile_zine"
+                        android:textColor="@color/font_color_dark_gray" />
+
+                    <TextView
+                        android:id="@+id/qiandao"
+                        style="@style/Widget.App.TextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.0dp"
+            android:background="@color/bg_color_e4" />
 
-      </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/collect"
+            style="@style/ProfileMenuContainer">
 
-      <View
-          android:layout_width="1dp"
-          android:layout_height="32dp"
-          android:background="@color/tab_layout_color"
-          />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/tiaozhuan" />
 
-      <LinearLayout
-          android:id="@+id/btn_red_bag"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center_horizontal"
-          android:orientation="vertical"
-          >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/xiaoxi"
-            />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-          <TextView
+            <TextView
 
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/fragment_profile_message"
-              style="@style/Widget.App.TextView.Medium"
-              />
-          <TextView
-              android:id="@+id/message"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
+                android:id="@+id/textView"
+                style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:drawableLeft="@mipmap/shoucang_jia"
 
-              style="@style/Widget.App.TextView.Medium"
-              />
-        </LinearLayout>
+                android:text="@string/fragment_profile_collect" />
+        </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.0dp"
+            android:background="@color/bg_color_e4" />
 
-      </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/invite"
+            style="@style/ProfileMenuContainer">
 
-      <View
-          android:layout_width="1dp"
-          android:layout_height="32dp"
-          android:background="@color/tab_layout_color"
-          />
+            <TextView
 
-      <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center_horizontal"
-          android:orientation="vertical"
-          >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/qiandao"
-            />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/fragment_profile_zine"
-              style="@style/Widget.App.TextView.Medium"
-              />
-          <TextView
-              android:id="@+id/qiandao"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
+                style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
+                android:drawableLeft="@mipmap/yaoqing"
+                android:text="@string/fragment_profile_invite" />
 
-              style="@style/Widget.App.TextView.Medium"
-              />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/tiaozhuan" />
+        </RelativeLayout>
 
-        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.0dp"
+            android:background="@color/bg_color_e4" />
 
+        <RelativeLayout
+            android:id="@+id/setting"
+            style="@style/ProfileMenuContainer">
 
-      </LinearLayout>
+            <TextView
 
+                style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
+                android:drawableLeft="@mipmap/shezhi"
+                android:text="@string/fragment_profile_setting" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/tiaozhuan" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.0dp"
+            android:background="@color/bg_color_e4" />
     </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/collect"
-        style="@style/ProfileMenuContainer"
-        >
-      <TextView
-
-          android:drawableLeft="@mipmap/shoucang_jia"
-          android:text="@string/fragment_profile_collect"
-          style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
-          />
-      <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentRight="true"
-          android:layout_centerVertical="true"
-          android:src="@mipmap/tiaozhuan"
-          />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/invite"
-        style="@style/ProfileMenuContainer"
-        >
-      <TextView
-
-          android:drawableLeft="@mipmap/yaoqing"
-          android:text="@string/fragment_profile_invite"
-          style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
-          />
-      <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentRight="true"
-          android:layout_centerVertical="true"
-          android:src="@mipmap/tiaozhuan"
-          />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/setting"
-        style="@style/ProfileMenuContainer"
-        >
-      <TextView
-
-          android:drawableLeft="@mipmap/shezhi"
-          android:text="@string/fragment_profile_setting"
-          style="@style/Widget.App.TextView.Large.Primary.ProfileMenu"
-          />
-      <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentRight="true"
-          android:layout_centerVertical="true"
-          android:src="@mipmap/tiaozhuan"
-          />
-    </RelativeLayout>
-  </LinearLayout>
 </ScrollView>

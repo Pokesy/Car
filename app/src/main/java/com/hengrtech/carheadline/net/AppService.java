@@ -40,7 +40,7 @@ import rx.Observable;
 public interface AppService {
 
   @Multipart
-  @POST("upload.do")
+  @POST("file/upload")
   Observable<Response<ResponseModel<String>>> upload(@Part MultipartBody.Part file);
   @GET("newslist/{newslist}/{pageNum}/{pageSize}")
   Observable<Response<ResponseModel<List<InfoModel>>>> getInfoList(@Path("newslist") String newslist,@Path("pageNum") String pageNum,@Path("pageSize") String pageSize);

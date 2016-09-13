@@ -70,6 +70,7 @@ public class DetailParamLocationDialog extends Dialog {
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(context, CarDetailsActivity.class);
                         context.startActivity(intent);
+                        DetailParamLocationDialog.this.cancel();
                     }
                 });
             }

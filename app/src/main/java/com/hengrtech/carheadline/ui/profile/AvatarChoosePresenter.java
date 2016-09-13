@@ -221,7 +221,7 @@ public class AvatarChoosePresenter {
           @Override
           protected void onSuccess(String path) {
             ((CustomApp) mContext.getApplicationContext()).getGlobalComponent().loginSession()
-                .userInfoChangeBuilder().setAvart(path).update();
+                .userInfoChangeBuilder().setPortrait(path).update("portrait",path);
           }
 
           @Override

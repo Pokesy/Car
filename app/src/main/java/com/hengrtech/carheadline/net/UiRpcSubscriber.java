@@ -8,6 +8,7 @@ import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.log.Logger;
 import com.hengrtech.carheadline.net.constant.NetConstant;
 import com.hengrtech.carheadline.net.model.ResponseModel;
+import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.utils.preference.CustomAppPreferences;
 
 import retrofit2.Response;
@@ -58,7 +59,12 @@ public abstract class UiRpcSubscriber<T> extends Subscriber<Response<ResponseMod
         if (responseModelResponse.code() == NetConstant.HttpCodeConstant.SUCCESS
                 && responseModelResponse.body().getCode() == 0) {
             // 存储token
-            if (responseModelResponse.body().getResult() instanceof String && responseModelResponse.body().getResult().toString() != null && responseModelResponse.body().getResult().toString().length() > 0) {
+            UserInfo mUserInfo = ((CustomApp) mContext.getApplicationContext()).getGlobalComponent().loginSession().getUserInfo();
+            if (mUserInfo != null && mUserInfo.getToken() != null && mUserInfo.getToken().length() > 0) {
+                ((CustomApp) mContext.getApplicationContext()).getGlobalComponent().appPreferences().put
+                        (CustomAppPreferences.KEY_COOKIE_SESSION_ID,
+                                mUserInfo.getToken());
+            } else if (responseModelResponse.body().getResult() instanceof String && responseModelResponse.body().getResult().toString() != null && responseModelResponse.body().getResult().toString().length() > 0) {
                 ((CustomApp) mContext.getApplicationContext()).getGlobalComponent().appPreferences().put
                         (CustomAppPreferences.KEY_COOKIE_SESSION_ID,
                                 (String) responseModelResponse.body().getResult());

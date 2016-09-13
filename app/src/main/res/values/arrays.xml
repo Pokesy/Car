@@ -59,4 +59,10 @@
         <item>Y</item>
         <item>Z</item>
     </array>
+    <array name="age_items">
+        <item>90后</item>
+        <item>80后</item>
+        <item>70后</item>
+        <item>60后</item>
+    </array>
 </resources>

@@ -63,7 +63,6 @@ public class SetPasswordActivity extends BasicTitleBarActivity {
             }
         });
         userId = ((CustomApp) getApplication()).getGlobalComponent().appPreferences().getUserId();
-        Toast.makeText(this, userId, Toast.LENGTH_SHORT).show();
     }
 
     private void inject() {
@@ -99,8 +98,8 @@ public class SetPasswordActivity extends BasicTitleBarActivity {
                 getComponent().loginSession().login(userInfo);
                 Toast.makeText(SetPasswordActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                 Intent intent =new Intent(SetPasswordActivity.this, MainTabActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
             }
 
             @Override

@@ -17,19 +17,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
+
+import org.apmem.tools.layouts.FlowLayout;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.apmem.tools.layouts.FlowLayout;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -131,7 +135,7 @@ public class AddTagsActivity extends BasicTitleBarActivity {
         labelBuilder.append(",");
       }
     }
-    mSubscriptions.add(getComponent().loginSession().userInfoChangeBuilder().setUserLabel(labelBuilder.toString()).update());
+    mSubscriptions.add(getComponent().loginSession().userInfoChangeBuilder().setUserLabel(labelBuilder.toString()).update("",""));
   }
 
   @Override

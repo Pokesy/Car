@@ -22,6 +22,7 @@ import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.net.AuthService;
+import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.net.params.LoginParams;
@@ -122,11 +123,24 @@ public class LoginWithPasswordFragment extends BasicTitleBarFragment {
             @Override
             protected void onSuccess(UserInfo userInfo) {
                 getComponent().loginSession().login(userInfo);
+                Intent intent = new Intent(getActivity(), MainTabActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
 
             @Override
             protected void onEnd() {
                 closeProgressDialog();
+            }
+
+            @Override
+            public void onApiError(RpcApiError apiError) {
+                super.onApiError(apiError);
+                if (!TextUtils.isEmpty(apiError.getMessage())) {
+                    showShortToast(apiError.getMessage());
+                } else {
+                    showShortToast(R.string.login_error);
+                }
             }
         });
     }

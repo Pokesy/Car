@@ -12,10 +12,12 @@
 package com.hengrtech.carheadline.net;
 
 import com.hengrtech.carheadline.net.model.ResponseModel;
-import com.hengrtech.carheadline.net.model.UserInfo;
+import com.hengrtech.carheadline.net.params.UpdateUserInfo;
+
 import retrofit2.Response;
 import retrofit2.http.Body;
-import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -26,7 +28,7 @@ import rx.Observable;
  */
 public interface UserService {
 
-  @POST("updateUserBasicInfo.do")
-  Observable<Response<ResponseModel<UserInfo>>> updateUser(@Body UserInfo info);
+  @PUT("member/{userId}/{token}")
+  Observable<Response<ResponseModel<UpdateUserInfo>>> updateUser(@Body UpdateUserInfo info, @Path("userId") int userId,@Path("token") String token);
 
 }

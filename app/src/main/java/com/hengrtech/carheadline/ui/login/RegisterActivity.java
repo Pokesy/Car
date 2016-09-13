@@ -146,4 +146,10 @@ public class RegisterActivity extends BasicTitleBarActivity {
             }
         });
     }
+
+    @Override
+    protected void onLogin() {
+        super.onLogin();
+        finish();
+    }
 }

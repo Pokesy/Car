@@ -12,14 +12,13 @@
 package com.hengrtech.carheadline.ui.tab;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.net.AuthService;
-import com.hengrtech.carheadline.net.UiRpcSubscriber;
-import com.hengrtech.carheadline.net.model.UserInfo;
-import com.hengrtech.carheadline.ui.area.AreaFragment;
+import com.hengrtech.carheadline.ui.area.CommunityFragment;
 import com.hengrtech.carheadline.ui.basic.tab.BaseTabActivity;
 import com.hengrtech.carheadline.ui.discover.DiscoverFragment;
 import com.hengrtech.carheadline.ui.home.HomeFragment;
@@ -51,7 +50,7 @@ public class MainTabActivity extends BaseTabActivity {
     @Override
     protected Class[] getContentClazzes() {
         return new Class[]{
-                HomeFragment.class, DiscoverFragment.class, AreaFragment.class, ProfileFragment.class
+                HomeFragment.class, DiscoverFragment.class, CommunityFragment.class, ProfileFragment.class
         };
     }
 
@@ -85,22 +84,9 @@ public class MainTabActivity extends BaseTabActivity {
 
     private void initUserInfo() {
         if (getComponent().isLogin()) {
-            mSubscriptions.add(getComponent().loginSession().loadUserInfo());
-        } else {
-            manageRpcCall(mAuthService.visitorLogin("1"),
-                    new UiRpcSubscriber<UserInfo>(this) {
-
-
-                        @Override
-                        protected void onSuccess(UserInfo info) {
-                            getComponent().loginSession().login(info);
-                        }
-
-                        @Override
-                        protected void onEnd() {
-
-                        }
-                    });
+            String token = getComponent().loginSession().getUserInfo().getToken();
+            if (!TextUtils.isEmpty(token))
+                mSubscriptions.add(getComponent().loginSession().loadUserInfo());
         }
     }
 

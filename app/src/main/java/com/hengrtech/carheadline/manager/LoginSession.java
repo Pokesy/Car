@@ -20,6 +20,7 @@ import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
 import com.hengrtech.carheadline.net.UserService;
 import com.hengrtech.carheadline.net.model.UserInfo;
+import com.hengrtech.carheadline.net.params.UpdateUserInfo;
 import com.hengrtech.carheadline.ui.login.LoginEvent;
 import com.hengrtech.carheadline.ui.login.LogoutEvent;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
@@ -59,8 +60,8 @@ public class LoginSession {
         switchUserInfo();
     }
 
-    public int getUserId() {
-        return mUserInfo.getUserId();
+    public int getMemberId() {
+        return mUserInfo.getMemberId();
     }
 
     private void switchUserInfo() {
@@ -84,7 +85,7 @@ public class LoginSession {
     }
 
     public Subscription loadUserInfo() {
-        Subscription getUserInfoSubscription = mAuthService.getUserInfo(mUserInfo.getUserId
+        Subscription getUserInfoSubscription = mAuthService.getUserInfo(mUserInfo.getMemberId
                 (), mUserInfo.getToken()).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new UiRpcSubscriber<UserInfo>
                         (mContext) {
@@ -104,14 +105,19 @@ public class LoginSession {
         return getUserInfoSubscription;
     }
 
-    private Subscription updateUserInfo() {
-        Subscription updateUserInfoSubscription = mUserService.updateUser(mUserInfo).subscribeOn
+    private Subscription updateUserInfo(String module, String key) {
+        UpdateUserInfo uuInfo = new UpdateUserInfo();
+        uuInfo.setUserId(mUserInfo.getMemberId());
+        uuInfo.setContent(key);
+        uuInfo.setModule(module);
+        uuInfo.setToken(mUserInfo.getToken());
+        Subscription updateUserInfoSubscription = mUserService.updateUser(uuInfo, mUserInfo.getMemberId(), mUserInfo.getToken()).subscribeOn
                 (Schedulers
-                        .newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new UiRpcSubscriber<UserInfo>(mContext) {
+                        .newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new UiRpcSubscriber<UpdateUserInfo>(mContext) {
 
             @Override
-            protected void onSuccess(UserInfo userInfo) {
-                saveUserInfo(userInfo);
+            protected void onSuccess(UpdateUserInfo ui) {
+                saveUserInfo(mUserInfo);
                 switchUserInfo();
                 mContext.getGlobalComponent().getGlobalBus().post(new UserInfoChangedEvent());
             }
@@ -165,12 +171,12 @@ public class LoginSession {
 
     public class UserInfoChangeBuilder {
 
-        public Subscription update() {
-            return updateUserInfo();
+        public Subscription update(String module, String key) {
+            return updateUserInfo(module, key);
         }
 
-        public UserInfoChangeBuilder setAvart(String avart) {
-            mUserInfo.setAvart(avart);
+        public UserInfoChangeBuilder setPortrait(String avart) {
+            mUserInfo.setPortrait(avart);
             return this;
         }
 
@@ -179,8 +185,8 @@ public class LoginSession {
             return this;
         }
 
-        public UserInfoChangeBuilder setBirthday(String birthday) {
-            mUserInfo.setBirthday(birthday);
+        public UserInfoChangeBuilder setAgeStage(String ageStage) {
+            mUserInfo.setAgeStage(ageStage);
             return this;
         }
 
@@ -210,7 +216,7 @@ public class LoginSession {
         }
 
         public UserInfoChangeBuilder setIntroduce(String introduce) {
-            mUserInfo.setIntroduce(introduce);
+            mUserInfo.setSignature(introduce);
             return this;
         }
 
@@ -294,13 +300,13 @@ public class LoginSession {
             return this;
         }
 
-        public UserInfoChangeBuilder setType(String type) {
+        public UserInfoChangeBuilder setType(int type) {
             mUserInfo.setType(type);
             return this;
         }
 
-        public UserInfoChangeBuilder setUserId(int userId) {
-            mUserInfo.setUserId(userId);
+        public UserInfoChangeBuilder setMemberId(int memberId) {
+            mUserInfo.setMemberId(memberId);
             return this;
         }
 
@@ -309,8 +315,14 @@ public class LoginSession {
             return this;
         }
 
-        public UserInfoChangeBuilder setUserName(String userName) {
-            mUserInfo.setUserName(userName);
+        public UserInfoChangeBuilder setRealName(String realName) {
+            mUserInfo.setRealName(realName);
+            return this;
+        }
+
+
+        public UserInfoChangeBuilder setNickName(String nickName) {
+            mUserInfo.setNickName(nickName);
             return this;
         }
 

@@ -29,8 +29,8 @@ import butterknife.ButterKnife;
  * @author zhaozeyang
  * @version [Taobei Client V20160411, 16/5/30]
  */
-public class NickNameActivity extends BasicTitleBarActivity {
-    public static final String RESULT_KEY_NICK_NAME = "result_nick_name";
+public class RealNameActivity extends BasicTitleBarActivity {
+    public static final String RESULT_KEY_REAL_NAME = "result_real_name";
 
     @Bind(R.id.nick_name_input)
     AppCompatEditText mNickNameInputView;
@@ -42,7 +42,7 @@ public class NickNameActivity extends BasicTitleBarActivity {
 
     @Override
     public boolean initializeTitleBar() {
-        setMiddleTitle(R.string.activity_nick_name_title);
+        setMiddleTitle(R.string.activity_real_name_name_title);
         setTitleBarTextColor(getResources().getColor(R.color.title_text_color));
         setLeftTitleButton(R.mipmap.back, new View.OnClickListener() {
             @Override
@@ -58,13 +58,13 @@ public class NickNameActivity extends BasicTitleBarActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
-        mNickNameInputView.setText(getComponent().loginSession().getUserInfo().getNickName());
+        mNickNameInputView.setText(getComponent().loginSession().getUserInfo().getRealName());
     }
 
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();
-        intent.putExtra(RESULT_KEY_NICK_NAME, mNickNameInputView.getText().toString());
+        intent.putExtra(RESULT_KEY_REAL_NAME, mNickNameInputView.getText().toString());
         setResult(RESULT_OK, intent);
         super.onBackPressed();
     }

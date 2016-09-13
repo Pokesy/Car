@@ -25,6 +25,7 @@
     <string name="activity_profile_detail_label_certify">成为认证会员</string>
     <string name="activity_profile_detail_label_phone">手机号码</string>
     <string name="activity_profile_detail_label_nick_name">昵称</string>
+    <string name="activity_profile_detail_label_real_name">真实姓名</string>
     <string name="activity_profile_detail_label_introduction">签名</string>
     <string name="activity_profile_detail_label_gender">性别</string>
     <string name="activity_profile_detail_label_age">爱车</string>
@@ -67,6 +68,7 @@
     <string name="fragment_profile_setting">设置</string>
     <!-- 昵称设置 -->
     <string name="activity_nick_name_title">昵称</string>
+    <string name="activity_real_name_name_title">真实姓名</string>
     <string name="activity_nick_name_title_bar_confirm">确认</string>
     <!-- 个人简介 -->
     <string name="activity_introduction_title">个人简介</string>

@@ -11,9 +11,7 @@
  */
 package com.hengrtech.carheadline.net.model;
 
-import android.text.TextUtils;
-
-import com.hengrtech.carheadline.net.constant.NetConstant;
+import java.util.List;
 
 /**
  * 用户信息<BR>
@@ -63,7 +61,6 @@ public class UserInfo {
      * virtualMoney : 0
      */
 
-    private String avart;
     private String birthPlace;
     private String birthday;
     private String certified;
@@ -88,10 +85,8 @@ public class UserInfo {
     private String state;
     private String thirdAccount;
     private int todayBenefit;
-    private String type;
-    private int userId;
+    private int type;
     private String userLabel;
-    private String userName;
     private int virtualMoney;
 
     /**
@@ -120,13 +115,20 @@ public class UserInfo {
     private String registerTime;
     private String token;
     private String ageStage;
-    private String score;
+    private int score;
+    /**
+     * picture : ss
+     * serialId : 3998
+     * serialName : sss
+     */
 
-    public String getScore() {
+    private List<CarListBean> carList;
+
+    public int getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
@@ -212,17 +214,6 @@ public class UserInfo {
         this.token = token;
     }
 
-
-    public String getAvart() {
-        if (TextUtils.isEmpty(avart) || avart.startsWith("http://")) {
-            return null == avart ? "" : avart;
-        }
-        return NetConstant.BASE_URL_LOCATION + avart;
-    }
-
-    public void setAvart(String avart) {
-        this.avart = avart;
-    }
 
     public String getBirthPlace() {
         return birthPlace;
@@ -416,21 +407,14 @@ public class UserInfo {
         this.todayBenefit = todayBenefit;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getUserLabel() {
         return userLabel;
@@ -440,13 +424,6 @@ public class UserInfo {
         this.userLabel = userLabel;
     }
 
-    public String getUserName() {
-        return TextUtils.isEmpty(userName) ? mobileNo : userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public int getVirtualMoney() {
         return virtualMoney;
@@ -454,5 +431,43 @@ public class UserInfo {
 
     public void setVirtualMoney(int virtualMoney) {
         this.virtualMoney = virtualMoney;
+    }
+
+    public List<CarListBean> getCarList() {
+        return carList;
+    }
+
+    public void setCarList(List<CarListBean> carList) {
+        this.carList = carList;
+    }
+
+    public static class CarListBean {
+        private String picture;
+        private int serialId;
+        private String serialName;
+
+        public String getPicture() {
+            return picture;
+        }
+
+        public void setPicture(String picture) {
+            this.picture = picture;
+        }
+
+        public int getSerialId() {
+            return serialId;
+        }
+
+        public void setSerialId(int serialId) {
+            this.serialId = serialId;
+        }
+
+        public String getSerialName() {
+            return serialName;
+        }
+
+        public void setSerialName(String serialName) {
+            this.serialName = serialName;
+        }
     }
 }

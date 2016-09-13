@@ -11,7 +11,6 @@
  */
 package com.hengrtech.carheadline.ui.boot;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -67,14 +66,12 @@ public class LeadFragment extends BasicFragment {
     @Inject
     AuthService mAuthService;
     private CompositeSubscription mSubscriptions = new CompositeSubscription();
-    private Context mContext;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lead, container, false);
-        mContext = getActivity();
         ButterKnife.bind(this, view);
         return view;
     }
@@ -123,28 +120,22 @@ public class LeadFragment extends BasicFragment {
     }
 
     public void initService(final String tag) {
-        if (getComponent().isLogin()) {
-            mSubscriptions.add(getComponent().loginSession().loadUserInfo());
-        } else {
-            manageRpcCall(mAuthService.visitorLogin(tag),
-                    new UiRpcSubscriber<UserInfo>(mContext) {
+        manageRpcCall(mAuthService.visitorLogin(tag),
+                new UiRpcSubscriber<UserInfo>(getActivity()) {
+                    @Override
+                    protected void onSuccess(UserInfo info) {
+                        getComponent().appPreferences().setNoGuideView();
+                        getComponent().loginSession().login(info);
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
 
+                    @Override
+                    protected void onEnd() {
 
-                        @Override
-                        protected void onSuccess(UserInfo info) {
-                            getComponent().appPreferences().setNoGuideView();
-                            getComponent().loginSession().login(info);
-                            Intent intent = new Intent(getActivity(),LoginActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
-                        }
-
-                        @Override
-                        protected void onEnd() {
-
-                        }
-                    });
-        }
+                    }
+                });
     }
 
     @Override

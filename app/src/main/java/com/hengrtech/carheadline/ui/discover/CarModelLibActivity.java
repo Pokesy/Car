@@ -133,10 +133,10 @@ public class CarModelLibActivity extends BasicTitleBarActivity {
                 new UiRpcSubscriber<CarModel>(this) {
                     @Override
                     protected void onSuccess(CarModel infoModels) {
-
                         sortCarModelsData(infoModels.getMasterlist());
                         adapter = new CarModelsAdapter(CarModelLibActivity.this, masters, infoModels.getHotlist(), mInfo);
                         recyclerView.setAdapter(adapter);
+                        sideView.setVisibility(View.VISIBLE);
                         adapter.setOnItemClickListener(new CarModelsAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {

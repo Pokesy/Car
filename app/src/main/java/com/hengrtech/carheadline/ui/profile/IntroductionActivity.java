@@ -16,10 +16,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -45,12 +47,13 @@ public class IntroductionActivity extends BasicTitleBarActivity {
 
   @Override
   public boolean initializeTitleBar() {
-    setLeftTitleButton(R.mipmap.icon_title_bar_back, new View.OnClickListener() {
+    setLeftTitleButton(R.mipmap.back, new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         onBackPressed();
       }
     });
+    setTitleBarTextColor(getResources().getColor(R.color.title_text_color));
     setMiddleTitle(R.string.activity_introduction_title);
     return true;
   }
