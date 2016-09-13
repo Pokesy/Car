@@ -215,16 +215,16 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
 //            .src_avatar_default_drawer).into(userAvatarDisplay);
         if (!TextUtils.isEmpty(getUserInfo().getPortrait()))
             userAvatarDisplay.setImageURI(Uri.parse(getUserInfo().getPortrait()));
-        mPhoneValueView.setText(getUserInfo().getMobileNo());
+        mPhoneValueView.setText(TextUtils.isEmpty(getUserInfo().getMobileNo())?"去设置":getUserInfo().getMobileNo());
         mNickNameValueView.setText(
-                TextUtils.isEmpty(getUserInfo().getNickName()) ? getUserInfo().getMobileNo()
+                TextUtils.isEmpty(getUserInfo().getNickName()) ? "去设置"
                         : getUserInfo().getNickName());
-        realNameValue.setText(TextUtils.isEmpty(getUserInfo().getRealName()) ? getUserInfo().getMobileNo()
+        realNameValue.setText(TextUtils.isEmpty(getUserInfo().getRealName()) ? "去设置"
                 : getUserInfo().getRealName());
         mIntroductionValueView.setText(TextUtils.isEmpty(getUserInfo().getSignature()) ? getString(
                 R.string.activity_introduction_hint) : getUserInfo().getSignature());
-        mGenderValueView.setText(getUserInfo().getGender().equals("0") ? "女" : "男");
-        mAgeValueView.setText(getUserInfo().getAgeStage());
+        mGenderValueView.setText(TextUtils.isEmpty(getUserInfo().getGender())?"去设置":(getUserInfo().getGender().equals("0") ? "女" : "男"));
+        mAgeValueView.setText(TextUtils.isEmpty(getUserInfo().getAgeStage())?"去设置":getUserInfo().getAgeStage());
 
         showUserLabel();
     }
