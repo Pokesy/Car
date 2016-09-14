@@ -11,15 +11,14 @@
  */
 package com.hengrtech.carheadline.ui.profile;
 
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -28,8 +27,6 @@ import com.hengrtech.carheadline.manager.UserInfoChangedEvent;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.squareup.otto.Subscribe;
-
-import org.apmem.tools.layouts.FlowLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,8 +45,6 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     private static final int REQUEST_CODE_NICK_INTRODUCTION = 4;
     private static final int REQUEST_CODE_REAL_NAME = 5;
 
-    @Bind(R.id.tags_container)
-    FlowLayout tagsContainer;
 
     @Bind(R.id.phone_value)
     TextView mPhoneValueView;
@@ -65,6 +60,10 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     SimpleDraweeView userAvatarDisplay;
     @Bind(R.id.real_name_value)
     TextView realNameValue;
+    @Bind(R.id.my_car_setting)
+    RelativeLayout myCarSetting;
+    @Bind(R.id.guanzhu_car_model_value)
+    TextView guanzhuCarModelValue;
 
     private AvatarChoosePresenter mAvatarChoosePresenter;
 
@@ -72,7 +71,6 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     private CompositeSubscription mSubscriptions = new CompositeSubscription();
 
     private AlertDialog mGenderChooseDialog;
-    private DatePickerDialog mBirthdayChooseDialog;
     private AlertDialog mAgeChooseDialog;
     private AlertDialog mResidenceChooseDialog;
     private AlertDialog mProfessionalChooseDialog;
@@ -97,7 +95,7 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
 
     @OnClick({
             R.id.avatar_setting, R.id.phone_setting, R.id.nick_name_setting, R.id.introduction_setting,
-            R.id.gender_setting, R.id.age_setting, R.id.real_name_setting
+            R.id.gender_setting, R.id.age_setting, R.id.real_name_setting, R.id.my_car_setting
     })
     public void onClick(View view) {
         switch (view.getId()) {
@@ -122,6 +120,9 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
                 break;
             case R.id.age_setting:
                 showAgeChooseDialog();
+                break;
+            case R.id.my_car_setting:
+                startActivity(new Intent(this, SelectMyCarActivity.class));
                 break;
         }
     }
@@ -215,7 +216,7 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
 //            .src_avatar_default_drawer).into(userAvatarDisplay);
         if (!TextUtils.isEmpty(getUserInfo().getPortrait()))
             userAvatarDisplay.setImageURI(Uri.parse(getUserInfo().getPortrait()));
-        mPhoneValueView.setText(TextUtils.isEmpty(getUserInfo().getMobileNo())?"去设置":getUserInfo().getMobileNo());
+        mPhoneValueView.setText(TextUtils.isEmpty(getUserInfo().getMobileNo()) ? "去设置" : getUserInfo().getMobileNo());
         mNickNameValueView.setText(
                 TextUtils.isEmpty(getUserInfo().getNickName()) ? "去设置"
                         : getUserInfo().getNickName());
@@ -223,41 +224,41 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
                 : getUserInfo().getRealName());
         mIntroductionValueView.setText(TextUtils.isEmpty(getUserInfo().getSignature()) ? getString(
                 R.string.activity_introduction_hint) : getUserInfo().getSignature());
-        mGenderValueView.setText(TextUtils.isEmpty(getUserInfo().getGender())?"去设置":(getUserInfo().getGender().equals("0") ? "女" : "男"));
-        mAgeValueView.setText(TextUtils.isEmpty(getUserInfo().getAgeStage())?"去设置":getUserInfo().getAgeStage());
+        mGenderValueView.setText(TextUtils.isEmpty(getUserInfo().getGender()) ? "去设置" : (getUserInfo().getGender().equals("0") ? "女" : "男"));
+        mAgeValueView.setText(TextUtils.isEmpty(getUserInfo().getAgeStage()) ? "去设置" : getUserInfo().getAgeStage());
+        guanzhuCarModelValue.setText(TextUtils.isEmpty(getUserInfo().getCareCarType()) ? " " : getUserInfo().getCareCarType());
 
-        showUserLabel();
     }
 
 
-    private void showUserLabel() {
-        tagsContainer.removeAllViews();
-        addTag(getString(R.string.activity_profile_detail_add_tag),
-                R.drawable.bg_btn_gray_round_corner);
-        tagsContainer.getChildAt(0).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfileDetailActivity.this, AddTagsActivity.class));
-            }
-        });
-        String userLabel = getComponent().loginSession().getUserInfo().getUserLabel();
-        if (TextUtils.isEmpty(userLabel)) {
-            return;
-        }
-        String[] labels = userLabel.split(",");
-        for (String label : labels) {
-            addTag(label, R.drawable.bg_btn_yellow_round_corner);
-        }
-    }
+//    private void showUserLabel() {
+//        tagsContainer.removeAllViews();
+//        addTag(getString(R.string.activity_profile_detail_add_tag),
+//                R.drawable.bg_btn_gray_round_corner);
+//        tagsContainer.getChildAt(0).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(ProfileDetailActivity.this, AddTagsActivity.class));
+//            }
+//        });
+//        String userLabel = getComponent().loginSession().getUserInfo().getUserLabel();
+//        if (TextUtils.isEmpty(userLabel)) {
+//            return;
+//        }
+//        String[] labels = userLabel.split(",");
+//        for (String label : labels) {
+//            addTag(label, R.drawable.bg_btn_yellow_round_corner);
+//        }
+//    }
 
-    private void addTag(String label, int backGroundResource) {
-        TextView labelView =
-                (TextView) LayoutInflater.from(this).inflate(R.layout.tag_item_big, tagsContainer, false);
-        labelView.setBackgroundResource(backGroundResource);
-        labelView.setText(label);
-        labelView.setTextColor(getResources().getColor(R.color.font_color_primary));
-        tagsContainer.addView(labelView);
-    }
+//    private void addTag(String label, int backGroundResource) {
+//        TextView labelView =
+//                (TextView) LayoutInflater.from(this).inflate(R.layout.tag_item_big, tagsContainer, false);
+//        labelView.setBackgroundResource(backGroundResource);
+//        labelView.setText(label);
+//        labelView.setTextColor(getResources().getColor(R.color.font_color_primary));
+//        tagsContainer.addView(labelView);
+//    }
 
 
     @Override

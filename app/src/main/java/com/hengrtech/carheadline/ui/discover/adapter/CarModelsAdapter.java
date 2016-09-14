@@ -1,20 +1,27 @@
 package com.hengrtech.carheadline.ui.discover.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import cc.solart.turbo.BaseTurboAdapter;
-import cc.solart.turbo.BaseViewHolder;
+
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.model.CarModel;
+import com.hengrtech.carheadline.net.model.CarSerialModel;
+import com.hengrtech.carheadline.ui.discover.CarDetailsActivity;
+import com.hengrtech.carheadline.ui.discover.CarModelLibActivity;
 import com.hengrtech.carheadline.ui.discover.view.DetailParamLocationDialog;
 import com.hengrtech.carheadline.ui.discover.view.ScrollGridView;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
+
 import java.util.List;
+
+import cc.solart.turbo.BaseTurboAdapter;
+import cc.solart.turbo.BaseViewHolder;
 
 import static com.hengrtech.carheadline.R.id.sgv;
 
@@ -23,17 +30,19 @@ public class CarModelsAdapter extends BaseTurboAdapter<CarModel.MasterlistBean.M
     private List<CarModel.HotlistBean> hotlistBeanList;
     private OnItemClickListener listener;
     private AppService mInfo;
+    private int flag;
 
     public CarModelsAdapter(Context context) {
         super(context);
         this.context = context;
     }
 
-    public CarModelsAdapter(Context context, List<CarModel.MasterlistBean.MastersBean> data, List<CarModel.HotlistBean> hotlistBeanList, AppService mInfo) {
+    public CarModelsAdapter(Context context, List<CarModel.MasterlistBean.MastersBean> data, List<CarModel.HotlistBean> hotlistBeanList, AppService mInfo, int flag) {
         super(context, data);
         this.context = context;
         this.hotlistBeanList = hotlistBeanList;
         this.mInfo = mInfo;
+        this.flag = flag;
     }
 
     @Override
@@ -76,8 +85,19 @@ public class CarModelsAdapter extends BaseTurboAdapter<CarModel.MasterlistBean.M
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     CarModel.HotlistBean hb = (CarModel.HotlistBean) adapterView.getItemAtPosition(i);
-                    DetailParamLocationDialog dialog = new DetailParamLocationDialog(context, hb.getMasterId(), mInfo);
+                    final DetailParamLocationDialog dialog = new DetailParamLocationDialog(context, hb.getMasterId(), mInfo);
                     dialog.show();
+                    dialog.setOnCarModelInfoSelectedListener(new DetailParamLocationDialog.OnCarModelInfoSelectedListener() {
+                        @Override
+                        public void onCarModelInfoSelected(CarSerialModel csm) {
+                            if (flag == 0) {
+                                context.startActivity(new Intent(context, CarDetailsActivity.class));
+                            } else {
+                                ((CarModelLibActivity) context).addMyLoveCarService(csm);
+                            }
+                            dialog.cancel();
+                        }
+                    });
                 }
             });
         }

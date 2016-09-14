@@ -149,6 +149,8 @@ public class RetrofitFactory {
             .addInterceptor(new Interceptor() {
               @Override
               public Response intercept(Chain chain) throws IOException {
+                Response response = chain.proceed(chain.request());
+                System.out.println("---------->"+response.header("Set-Cookie"));
                 Request request = chain.request();
                 String sessionId = preferences.getString(CustomAppPreferences.KEY_COOKIE_SESSION_ID,
                         "");

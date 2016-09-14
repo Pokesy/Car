@@ -64,10 +64,13 @@
     <string name="fragment_profile_message">消息</string>
     <string name="fragment_profile_zine">连续签到</string>
     <string name="fragment_profile_collect">收藏夹</string>
+    <string name="fragment_profile_comment">我的评论</string>
+    <string name="fragment_profile_my_activity">我报名的活动</string>
     <string name="fragment_profile_invite">邀请好友</string>
     <string name="fragment_profile_setting">设置</string>
     <!-- 昵称设置 -->
     <string name="activity_nick_name_title">昵称</string>
+    <string name="activity_my_love_car_title">爱车</string>
     <string name="activity_real_name_name_title">真实姓名</string>
     <string name="activity_nick_name_title_bar_confirm">确认</string>
     <!-- 个人简介 -->

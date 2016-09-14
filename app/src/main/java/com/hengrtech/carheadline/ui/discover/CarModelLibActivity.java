@@ -1,11 +1,13 @@
 package com.hengrtech.carheadline.ui.discover;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
@@ -14,6 +16,9 @@ import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
 import com.hengrtech.carheadline.net.model.CarModel;
+import com.hengrtech.carheadline.net.model.CarSerialModel;
+import com.hengrtech.carheadline.net.model.UserInfo;
+import com.hengrtech.carheadline.net.params.MyLoveCarParams;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.discover.adapter.CarModelsAdapter;
 import com.hengrtech.carheadline.ui.discover.adapter.PinnedHeaderDecoration;
@@ -29,6 +34,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.subscriptions.CompositeSubscription;
 
 public class CarModelLibActivity extends BasicTitleBarActivity {
     @Bind(R.id.toolbar)
@@ -46,6 +52,8 @@ public class CarModelLibActivity extends BasicTitleBarActivity {
     private List<CarModel.MasterlistBean.MastersBean> masters = new ArrayList<>();
     private int scrollY = 0;
     private boolean isAddDecoration;
+    public  int flag = 0;
+    private CompositeSubscription mSubscriptions = new CompositeSubscription();
 
     @Override
     public int getLayoutId() {
@@ -56,6 +64,7 @@ public class CarModelLibActivity extends BasicTitleBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
+        flag = this.getIntent().getIntExtra("flag", 0);
         inject();
         initView();
         initService();
@@ -134,14 +143,25 @@ public class CarModelLibActivity extends BasicTitleBarActivity {
                     @Override
                     protected void onSuccess(CarModel infoModels) {
                         sortCarModelsData(infoModels.getMasterlist());
-                        adapter = new CarModelsAdapter(CarModelLibActivity.this, masters, infoModels.getHotlist(), mInfo);
+                        adapter = new CarModelsAdapter(CarModelLibActivity.this, masters, infoModels.getHotlist(), mInfo,flag);
                         recyclerView.setAdapter(adapter);
                         sideView.setVisibility(View.VISIBLE);
                         adapter.setOnItemClickListener(new CarModelsAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                DetailParamLocationDialog dialog = new DetailParamLocationDialog(CarModelLibActivity.this, masters.get(position).getMasterId(), mInfo);
+                                final DetailParamLocationDialog dialog = new DetailParamLocationDialog(CarModelLibActivity.this, masters.get(position).getMasterId(), mInfo);
                                 dialog.show();
+                                dialog.setOnCarModelInfoSelectedListener(new DetailParamLocationDialog.OnCarModelInfoSelectedListener() {
+                                    @Override
+                                    public void onCarModelInfoSelected(CarSerialModel csm) {
+                                        if (flag == 0) {
+                                            startActivity(new Intent(CarModelLibActivity.this, CarDetailsActivity.class));
+                                        } else {
+                                            addMyLoveCarService(csm);
+                                        }
+                                        dialog.cancel();
+                                    }
+                                });
                             }
                         });
                     }
@@ -173,5 +193,28 @@ public class CarModelLibActivity extends BasicTitleBarActivity {
         CarModel.MasterlistBean.MastersBean mb = new CarModel.MasterlistBean.MastersBean();
         mb.setType(-1);
         masters.add(0, mb);
+    }
+
+    public void addMyLoveCarService(CarSerialModel csm) {
+        UserInfo ui = getComponent().loginSession().getUserInfo();
+        manageRpcCall(mInfo.addMyLoveCar(ui.getMemberId() + "", ui.getToken(), new MyLoveCarParams(csm.getSerialId())), new UiRpcSubscriber<String>(this) {
+
+            @Override
+            protected void onSuccess(String string) {
+                mSubscriptions.add(getComponent().loginSession().loadUserInfo());
+                Toast.makeText(CarModelLibActivity.this, "添加成功", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected void onEnd() {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSubscriptions.unsubscribe();
     }
 }

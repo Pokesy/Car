@@ -19,7 +19,6 @@ import com.hengrtech.carheadline.net.params.PayRetPswParams;
 import com.hengrtech.carheadline.net.params.RegisterParams;
 import com.hengrtech.carheadline.net.params.ThirdLoginParams;
 
-import com.hengrtech.carheadline.net.params.VisitorLoginParams;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -46,14 +45,15 @@ public interface AuthService {
     @GET("member/visitor")
     Observable<Response<ResponseModel<UserInfo>>> loginvictor();
 
-  @GET("sms/verify/{mobileNo}/{code}")
-  Observable<Response<ResponseModel<String>>> loginWithVerifyCode(@Path("mobileNo") String mobileNo,
-      @Path("code") String code);
-  @GET("sms/verify/{mobileNo}/{code}")
-  Observable<Response<ResponseModel<String>>> checkVerifyCode(@Path("mobileNo") String mobileNo,
-      @Path("code") String code);
-  //@GET("sms/verify") Observable<Response<ResponseModel<Void>>> checkVerifyCode(
-  //    @Body CheckVerifyCodeParams params);
+    @GET("sms/verify/{mobileNo}/{code}")
+    Observable<Response<ResponseModel<String>>> loginWithVerifyCode(@Path("mobileNo") String mobileNo,
+                                                                    @Path("code") String code);
+
+    @GET("sms/verify/{mobileNo}/{code}")
+    Observable<Response<ResponseModel<String>>> checkVerifyCode(@Path("mobileNo") String mobileNo,
+                                                                @Path("code") String code);
+    //@GET("sms/verify") Observable<Response<ResponseModel<Void>>> checkVerifyCode(
+    //    @Body CheckVerifyCodeParams params);
 
     @PUT("member/register")
     Observable<Response<ResponseModel<UserInfo>>> register(
@@ -72,7 +72,6 @@ public interface AuthService {
             @Body LoginParams params);
 
 
-
     @GET("member/{userId}/{token}")
     Observable<Response<ResponseModel<UserInfo>>> getUserInfo(@Path("userId") int userId, @Path("token") String token);
 
@@ -82,4 +81,6 @@ public interface AuthService {
 
     @GET("member/visitor/{tag}")
     Observable<Response<ResponseModel<UserInfo>>> visitorLogin(@Path("tag") String tag);
+
+
 }

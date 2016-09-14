@@ -445,6 +445,15 @@ public class UserInfo {
         private String picture;
         private int serialId;
         private String serialName;
+        private int status;
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
 
         public String getPicture() {
             return picture;

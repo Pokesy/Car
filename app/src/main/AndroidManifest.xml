@@ -80,7 +80,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.discover.NewCarOnlineActivity" />
         <activity android:name=".ui.login.RegisterActivity" />
-        <activity android:name=".ui.login.SetPasswordActivity"></activity>
+        <activity android:name=".ui.login.SetPasswordActivity" />
+        <activity android:name=".ui.profile.SelectMyCarActivity"></activity>
     </application>
 
 </manifest>
