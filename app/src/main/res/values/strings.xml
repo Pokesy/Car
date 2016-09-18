@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">CarHeadLine</string>
+  <string name="app_name">车头条</string>
   <string name="btn_lead_enter">点击进入</string>
   <string name="time_format_minute">%d分钟前</string>
   <string name="time_format_hour">%d小时前</string>

@@ -115,4 +115,8 @@ public interface AppService {
   @POST ("news/collect/{userId}/{newsId}/{token}")
   Observable<Response<ResponseModel<String>>> collectNews(@Path("userId") int userId,@Path("newsId") int newsId,@Path("token") String token,
           @Body NewsCollectParams params);
+
+  @GET("member/mycollections/{userId}/{token}")
+  Observable<Response<ResponseModel<List<InfoModel>>>> getCollectList(
+          @Path("userId") int userId, @Path("token") String token);
 }

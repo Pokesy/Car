@@ -35,11 +35,14 @@ import com.hengrtech.carheadline.ui.login.RegisterActivity;
 import com.hengrtech.carheadline.ui.login.SetPasswordActivity;
 import com.hengrtech.carheadline.ui.profile.AddTagsActivity;
 import com.hengrtech.carheadline.ui.profile.AvatarChoosePresenter;
+import com.hengrtech.carheadline.ui.profile.MyCollectActivity;
 import com.hengrtech.carheadline.ui.profile.ResetPhoneActivity;
 import com.hengrtech.carheadline.ui.profile.SelectMyCarActivity;
 import com.hengrtech.carheadline.ui.tab.MainTabActivity;
-import dagger.Component;
+
 import javax.inject.Singleton;
+
+import dagger.Component;
 
 /**
  * 服务器接口 Component<BR>
@@ -101,4 +104,6 @@ import javax.inject.Singleton;
   void inject(SendQuestionActivity activity);
 
   void inject(SelectMyCarActivity activity);
+
+  void inject(MyCollectActivity activity);
 }

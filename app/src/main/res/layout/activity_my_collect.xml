@@ -18,9 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.jtech.view.JRecyclerView
-            android:id="@+id/price_discover_rv"
+        <com.hengrtech.carheadline.ui.home.RGridView
+            android:id="@+id/my_collect_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:tag="1"
+            />
     </com.jtech.view.RefreshLayout>
 </LinearLayout>
