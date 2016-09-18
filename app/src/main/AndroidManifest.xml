@@ -100,6 +100,10 @@
         android:name=".ui.area.PhotoAct"
         android:screenOrientation="portrait"/>
     <activity android:name=".ui.profile.SelectMyCarActivity"/>
+
+    <activity
+        android:name=".ui.profile.MyCollectActivity"
+        android:screenOrientation="portrait"/>
   </application>
 
 </manifest>

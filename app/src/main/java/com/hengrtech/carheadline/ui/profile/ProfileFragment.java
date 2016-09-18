@@ -43,14 +43,14 @@ public class ProfileFragment extends BasicTitleBarFragment {
     LinearLayout btnRedBag;
     @Bind(R.id.qiandao)
     TextView qiandao;
-    @Bind(R.id.collect)
-    RelativeLayout collect;
     @Bind(R.id.invite)
     RelativeLayout invite;
     @Bind(R.id.setting)
     RelativeLayout setting;
     @Bind(R.id.all_layout)
     ScrollView allLayout;
+    @Bind(R.id.collect_layout)
+    RelativeLayout collectLayout;
     private UserInfo mUserInfo;
     private Context mContext;
 
@@ -73,7 +73,7 @@ public class ProfileFragment extends BasicTitleBarFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.avatar, R.id.collect, R.id.invite, R.id.setting})
+    @OnClick({R.id.avatar, R.id.invite, R.id.setting, R.id.collect_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.avatar:
@@ -82,8 +82,6 @@ public class ProfileFragment extends BasicTitleBarFragment {
                 } else {
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
-                break;
-            case R.id.collect:
                 break;
             case R.id.invite:
                 SharePopup popup = new SharePopup(getActivity());
@@ -97,6 +95,9 @@ public class ProfileFragment extends BasicTitleBarFragment {
                 break;
             case R.id.setting:
                 startActivity(new Intent(getActivity(), SettingActivity.class));
+                break;
+            case R.id.collect_layout:
+                startActivity(new Intent(getActivity(), MyCollectActivity.class));
                 break;
         }
     }
@@ -113,6 +114,7 @@ public class ProfileFragment extends BasicTitleBarFragment {
                     .crossFade()
                     .into(avatar);
         }
+        score.setText(mUserInfo.getScore()+"");
     }
 
     @Override

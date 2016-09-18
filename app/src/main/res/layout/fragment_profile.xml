@@ -239,7 +239,7 @@
             android:background="@color/bg_color_e4" />
 
         <RelativeLayout
-            android:id="@+id/collect"
+            android:id="@+id/collect_layout"
             style="@style/ProfileMenuContainer">
 
             <ImageView

@@ -22,6 +22,7 @@ import com.hengrtech.carheadline.net.model.QuestionModel;
 import com.hengrtech.carheadline.net.model.ResponseModel;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.net.params.MyLoveCarParams;
+import com.hengrtech.carheadline.net.params.NewsCollectParams;
 import com.hengrtech.carheadline.net.params.QuestionParams;
 import com.hengrtech.carheadline.net.params.SendCommentCarParams;
 import java.util.List;
@@ -110,4 +111,8 @@ public interface AppService {
   @DELETE("member/mycar/{userId}/{token}")
   Observable<Response<ResponseModel<String>>> deleteMyLoveCar(@Path("userId") String userId,
       @Path("token") String token, @Query("serialIds") String serialIds);
+
+  @POST ("news/collect/{userId}/{newsId}/{token}")
+  Observable<Response<ResponseModel<String>>> collectNews(@Path("userId") int userId,@Path("newsId") int newsId,@Path("token") String token,
+          @Body NewsCollectParams params);
 }

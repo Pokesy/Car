@@ -67,6 +67,15 @@ public class InfoModel {
   private String content;
   private List<String> coverArr;
   private String praiseCount;
+  private boolean collected;
+
+  public boolean isCollected() {
+    return collected;
+  }
+
+  public void setCollected(boolean collected) {
+    this.collected = collected;
+  }
 
   public int getNewsId() {
     return newsId;
