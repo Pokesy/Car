@@ -2,10 +2,15 @@ package com.hengrtech.carheadline.ui.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -13,6 +18,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
+import com.hengrtech.carheadline.ui.login.LoginActivity;
+import com.hengrtech.carheadline.ui.profile.view.SharePopup;
 import com.hengrtech.carheadline.utils.imageloader.CircleTransform;
 
 import butterknife.Bind;
@@ -42,6 +49,8 @@ public class ProfileFragment extends BasicTitleBarFragment {
     RelativeLayout invite;
     @Bind(R.id.setting)
     RelativeLayout setting;
+    @Bind(R.id.all_layout)
+    ScrollView allLayout;
     private UserInfo mUserInfo;
     private Context mContext;
 
@@ -68,11 +77,23 @@ public class ProfileFragment extends BasicTitleBarFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.avatar:
-                startActivity(new Intent(getActivity(), ProfileDetailActivity.class));
+                if (!TextUtils.isEmpty(mUserInfo.getMobileNo())) {
+                    startActivity(new Intent(getActivity(), ProfileDetailActivity.class));
+                } else {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
                 break;
             case R.id.collect:
                 break;
             case R.id.invite:
+                SharePopup popup = new SharePopup(getActivity());
+                popup.showPopup(allLayout);
+                popup.setOnSharePopupListener(new SharePopup.SharePopupOnClickListener() {
+                    @Override
+                    public void obtainMessage(int flag) {
+                        showShortToast(flag + "");
+                    }
+                });
                 break;
             case R.id.setting:
                 startActivity(new Intent(getActivity(), SettingActivity.class));
@@ -92,5 +113,13 @@ public class ProfileFragment extends BasicTitleBarFragment {
                     .crossFade()
                     .into(avatar);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 }

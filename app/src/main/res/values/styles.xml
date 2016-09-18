@@ -468,4 +468,9 @@
         <item name="@android:windowExitAnimation">@animator/push_right_out</item>
     </style>
 
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_alpha_out</item>
+        <item name="android:windowExitAnimation">@anim/popup_alpha_in</item>
+    </style>
+
 </resources>
