@@ -18,16 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
-import com.hengrtech.carheadline.net.constant.NetConstant;
 import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
-import com.hengrtech.carheadline.net.model.NewsDetailModel;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.home.adapter.SimpleLoadFooterAdapter;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
@@ -38,13 +37,9 @@ import com.hengrtech.carheadline.utils.RViewHolder;
 import com.hengrtech.carheadline.utils.ToastHelper;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
 import com.loonggg.textwrapviewlib.view.TextWrapView;
-
 import java.util.List;
-
 import javax.inject.Inject;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * 资讯详情页面
@@ -70,11 +65,18 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
   @Bind(R.id.reply_box) LinearLayout replyBox;
   @Bind(R.id.content) TextWrapView content;
   @Bind(R.id.jrecyclerview) RGridView mRecyclerView;
+  @Bind(R.id.title) TextView title;
+  @Bind(R.id.time) TextView time;
   private int newsId;
   private Context mContext;
   private CommentAcapter adapter;
   private SimpleLoadFooterAdapter adapter1;
 
+  private String mContent;
+  private String mTime;
+  private String mTitle;
+  private int comment_count;
+  private String view_count;
   CircleImageView replyerHead;
   TextView replyAvatar, replyTime, replyContent, replyBtn, delReBtn;
 
@@ -89,24 +91,31 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
     ButterKnife.bind(this);
     mContext = NewsDetailActivity.this;
     newsId = getIntent().getExtras().getInt("newId");
+    comment_count = getIntent().getExtras().getInt("comment_count");
+    view_count = getIntent().getExtras().getString("view_count");
+    mContent = getIntent().getExtras().getString("content");
+    mTime = getIntent().getExtras().getString("time");
+    mTitle = getIntent().getExtras().getString("title");
+    time.setText(mTime);
+    title.setText(mTitle);
+    content.setText("<p>" + mContent.replace("\n", "</P><p>") + "</p>",
+        getResources().getColor(R.color.font_color_black), 14);
+    supportCount.setText(String.valueOf(comment_count));
+    replyCount.setText(String.valueOf(view_count));
     inject();
-    initdata();
+    initcomment();
     intView();
     exitAnim();
   }
 
   @Override public boolean initializeTitleBar() {
-    setLeftTitleButton(R.mipmap.ic_launcher, new View.OnClickListener() {
+    setLeftTitleButton(R.mipmap.back, new View.OnClickListener() {
       @Override public void onClick(View v) {
         finish();
       }
     });
-    setRightImgButton(R.mipmap.bg_btn_login, new View.OnClickListener() {
-      @Override public void onClick(View v) {
-
-      }
-    });
-    setRightTextButton(R.mipmap.bg_input, new View.OnClickListener() {
+    setTitle(R.string.news_detail_title);
+    setRightImgButton(R.mipmap.jinfen, new View.OnClickListener() {
       @Override public void onClick(View v) {
 
       }
@@ -146,25 +155,6 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
     @JavascriptInterface public void showInfoFromJs(String name) {
       Toast.makeText(mContext, name, Toast.LENGTH_SHORT).show();
     }
-  }
-
-  public void initdata() {
-    manageRpcCall(mInfo.getNewDetail(newsId,"26"), new UiRpcSubscriber<NewsDetailModel>(this) {
-      @Override protected void onSuccess(NewsDetailModel infoModels) {
-        supportCount.setText(infoModels.getCommentsCount());
-        String str = infoModels.getContent();
-        replyCount.setText(infoModels.getPraiseCount());
-        content.setText("<p>"+infoModels.getContent().replace("\n","</P><p>")+"</p>",getResources().getColor(R.color.font_color_black),14);
-        initcomment();
-      }
-
-      @Override protected void onEnd() {
-      }
-
-      @Override public void onApiError(RpcApiError apiError) {
-        super.onApiError(apiError);
-      }
-    });
   }
 
   public void initcomment() {
@@ -330,11 +320,12 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
 
     @Override
     protected void onBindView(RViewHolder holder, int position, NewsDetailCommentsModel replyInfo) {
-      replyerHead = (CircleImageView) holder.v(R.id.replyer_head);
-      if (!"".equals(replyInfo.getMember().getPortrait())) {
-        ImageLoader.loadOptimizedHttpImage(NewsDetailActivity.this,
-            NetConstant.BASE_URL_LOCATION + replyInfo.getMember().getPortrait()).into(replyerHead);
-      }
+
+      ImageLoader.loadOptimizedHttpImage(NewsDetailActivity.this,
+          replyInfo.getMember().getPortrait())
+          .
+              bitmapTransform(new CropCircleTransformation(NewsDetailActivity.this))
+          .into(holder.imageView(R.id.replyer_head));
       holder.v(R.id.replyer_head).setOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View v) {
           // TODO: 2016/8/25  点击头像跳转信息

@@ -133,6 +133,11 @@ public class InformationFragment extends BasicTitleBarFragment {
           Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
           Bundle bundle = new Bundle();
           bundle.putInt("newId", bean.getNewsId());
+          bundle.putString("content", bean.getContent());
+          bundle.putString("title", bean.getTitle());
+          bundle.putInt("comment_count", bean.getCommentsCount());
+          bundle.putString("view_count", bean.getPraiseCount());
+          bundle.putString("time", DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
           intent.putExtras(bundle);
           startActivity(intent);
         }

@@ -25,7 +25,7 @@ public class NetConstant {
   //public static final String BASE_URL_LOCATION = "http://192.168.15.216:8080/carheadline/";
   public static final String BASE_URL_SERVICE_SUFFIX = "api/";
   public static final String BASE_URL = BASE_URL_LOCATION + BASE_URL_SERVICE_SUFFIX;
-
+  public static int WEIBOWORDS = 140;
   private NetConstant() {
 
   }

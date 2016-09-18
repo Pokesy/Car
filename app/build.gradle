@@ -40,7 +40,7 @@ repositories {
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
     compile project(':recyclerviewlibrary')
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
@@ -78,4 +78,5 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
+    compile files('libs/afinal_0.5.1_bin.jar')
 }

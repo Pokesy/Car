@@ -16,9 +16,11 @@ import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.AuthService;
 import com.hengrtech.carheadline.net.RpcCallManager;
 import com.hengrtech.carheadline.net.UserService;
+import com.hengrtech.carheadline.ui.area.AreaDetailActivity;
 import com.hengrtech.carheadline.ui.area.ComplaintFragment;
 import com.hengrtech.carheadline.ui.area.QuestionFragment;
 import com.hengrtech.carheadline.ui.area.QusetionAllFragment;
+import com.hengrtech.carheadline.ui.area.SendQuestionActivity;
 import com.hengrtech.carheadline.ui.boot.LeadFragment;
 import com.hengrtech.carheadline.ui.discover.CarModelLibActivity;
 import com.hengrtech.carheadline.ui.home.InformationFragment;
@@ -36,10 +38,8 @@ import com.hengrtech.carheadline.ui.profile.AvatarChoosePresenter;
 import com.hengrtech.carheadline.ui.profile.ResetPhoneActivity;
 import com.hengrtech.carheadline.ui.profile.SelectMyCarActivity;
 import com.hengrtech.carheadline.ui.tab.MainTabActivity;
-
-import javax.inject.Singleton;
-
 import dagger.Component;
+import javax.inject.Singleton;
 
 /**
  * 服务器接口 Component<BR>
@@ -47,56 +47,58 @@ import dagger.Component;
  * @author zhaozeyang
  * @version [Taobei Client V20160411, 16/4/19]
  */
-@Singleton
-@Component(modules = ServiceModule.class)
-public interface ServiceComponent {
-    RpcCallManager rpcCallManager();
+@Singleton @Component(modules = ServiceModule.class) public interface ServiceComponent {
+  RpcCallManager rpcCallManager();
 
-    AppService appService();
+  AppService appService();
 
-    UserService userService();
+  UserService userService();
 
-    AuthService authService();
+  AuthService authService();
 
-    void inject(InformationFragment fragment);
+  void inject(InformationFragment fragment);
 
-    void inject(PraiseFragment fragment);
+  void inject(PraiseFragment fragment);
 
-    void inject(WorkFragment fragment);
+  void inject(WorkFragment fragment);
 
-    void inject(MediaFragment fragment);
+  void inject(MediaFragment fragment);
 
-    void inject(TodayActivity activity);
+  void inject(TodayActivity activity);
 
-    void inject(AddTagsActivity activity);
+  void inject(AddTagsActivity activity);
 
-    void inject(ResetPhoneActivity activity);
+  void inject(ResetPhoneActivity activity);
 
-    void inject(AvatarChoosePresenter presenter);
+  void inject(AvatarChoosePresenter presenter);
 
-    void inject(LoginSession loginSession);
+  void inject(LoginSession loginSession);
 
-    void inject(LoginWithVerifyCodeFragment fragment);
+  void inject(LoginWithVerifyCodeFragment fragment);
 
-    void inject(LoginWithPasswordFragment fragment);
+  void inject(LoginWithPasswordFragment fragment);
 
-    void inject(NewsDetailActivity activity);
+  void inject(NewsDetailActivity activity);
 
-    void inject(ComplaintFragment fragment);
+  void inject(ComplaintFragment fragment);
 
-    void inject(QuestionFragment fragment);
+  void inject(QuestionFragment fragment);
 
-    void inject(CarModelLibActivity activity);
+  void inject(CarModelLibActivity activity);
 
-    void inject(RegisterActivity activity);
+  void inject(RegisterActivity activity);
 
-    void inject(QusetionAllFragment fragment);
+  void inject(QusetionAllFragment fragment);
 
-    void inject(SetPasswordActivity activity);
+  void inject(SetPasswordActivity activity);
 
-    void inject(MainTabActivity activity);
+  void inject(MainTabActivity activity);
 
-    void inject(LeadFragment fragment);
+  void inject(LeadFragment fragment);
 
-    void inject(SelectMyCarActivity activity);
+  void inject(AreaDetailActivity activity);
+
+  void inject(SendQuestionActivity activity);
+
+  void inject(SelectMyCarActivity activity);
 }

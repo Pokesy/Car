@@ -14,7 +14,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
-            <com.hengrtech.carheadline.utils.CircleImageView
+            <ImageView
                 android:id="@+id/replyer_head"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"

@@ -134,6 +134,10 @@ public class QusetionAllFragment extends BasicTitleBarFragment
    * item点击事件
    */
   @Override public void onItemClick(RecyclerHolder holder, View view, int position) {
+    Intent intent = new Intent(getActivity(), AreaDetailActivity.class);
+    intent.putExtra("", "");
+    intent.putExtra("", "");
+    intent.putExtra("", "");
     Toast.makeText(getActivity(), "第" + position + "行点击事件", Toast.LENGTH_SHORT).show();
   }
 
@@ -197,64 +201,75 @@ public class QusetionAllFragment extends BasicTitleBarFragment
       //holder.setText(R.id.view_count, String.valueOf(bean.getPraiseCount()));
       //holder.setText(R.id.comment_count, String.valueOf(bean.getCommentsCount()));
       //holder.setText(R.id.un_count, String.valueOf(bean.getCommentsCount()));
-
+      holder.getView(R.id.ll_zx).setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+          Intent intent = new Intent(getActivity(), AreaDetailActivity.class);
+          Bundle bundle = new Bundle();
+          bundle.putString("logo", bean.getAvatar());
+          bundle.putString("nickName", bean.getNickName());
+          bundle.putString("time", bean.getCreateTime());
+          bundle.putInt("questionId", bean.getQuestionId());
+          bundle.putString("question", bean.getQuestion());
+          intent.putExtras(bundle);
+          startActivity(intent);
+        }
+      });
       ImageLoader.loadOptimizedHttpImage(getActivity(), bean.getAvatar())
           .
               bitmapTransform(new CropCircleTransformation(getActivity()))
           .into(holder.getImageView(R.id.head));
       if (bean.getImgList() != null) {
         int imagesize = bean.getImgList().size();
-        if (imagesize == 1) {
-          ImageLoader.loadOptimizedHttpImage(getActivity(), bean.getImgList().get(0))
-              .into(holder.getImageView(R.id.iv_1));
-        } else {
-          if (imagesize == 3) {
-            holder.getView(R.id.images).setVisibility(View.VISIBLE);
-            holder.getImageView(R.id.iv_1).setVisibility(imagesize > 0 ? View.VISIBLE : View.GONE);
-            holder.getImageView(R.id.iv_2).setVisibility(imagesize > 1 ? View.VISIBLE : View.GONE);
-            holder.getImageView(R.id.iv_3).setVisibility(imagesize > 2 ? View.VISIBLE : View.GONE);
-            int height = getResources().getDimensionPixelSize(R.dimen.grid_img_height_three);
-            LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-            holder.getView(R.id.images).setLayoutParams(params);
 
-            for (int i = 0; i < imagesize; i++) {
-              String url = bean.getImgList().get(i);
-              ImageView imageView = null;
-              if (i == 0) {
-                imageView = holder.getImageView(R.id.iv_1);
-              } else if (i == 1) {
-                imageView = holder.getImageView(R.id.iv_2);
-              } else if (i == 2) {
-                imageView = holder.getImageView(R.id.iv_3);
-              }
+        if (imagesize > 0) {
+          holder.getView(R.id.images).setVisibility(View.VISIBLE);
+          holder.getImageView(R.id.iv_1)
+              .setVisibility(imagesize > 0 ? View.VISIBLE : View.INVISIBLE);
+          holder.getImageView(R.id.iv_2)
+              .setVisibility(imagesize > 1 ? View.VISIBLE : View.INVISIBLE);
+          holder.getImageView(R.id.iv_3)
+              .setVisibility(imagesize > 2 ? View.VISIBLE : View.INVISIBLE);
+          int height = getResources().getDimensionPixelSize(R.dimen.grid_img_height_three);
+          LinearLayout.LayoutParams params =
+              new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+          holder.getView(R.id.images).setLayoutParams(params);
 
-              if (imageView != null) {
-                try {
-                  ImageLoader.loadOptimizedHttpImage(getActivity(), url)
-                      .placeholder(R.mipmap.ic_launcher)
-                      .error(R.mipmap.ic_launcher)
-                      .into(imageView);
-                } catch (Exception e) {
-                  e.printStackTrace();
-                }
-                final int in = i;
-                imageView.setOnClickListener(new View.OnClickListener() {
-
-                  @Override public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.getImgList());
-                    bundle.putInt("image_index", in);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                  }
-                });
-              }
+          for (int i = 0; i < imagesize; i++) {
+            String url = bean.getImgList().get(i);
+            ImageView imageView = null;
+            if (i == 0) {
+              imageView = holder.getImageView(R.id.iv_1);
+            } else if (i == 1) {
+              imageView = holder.getImageView(R.id.iv_2);
+            } else if (i == 2) {
+              imageView = holder.getImageView(R.id.iv_3);
             }
-          } else {
-            holder.getView(R.id.images).setVisibility(View.GONE);
+
+            if (imageView != null) {
+              try {
+                ImageLoader.loadOptimizedHttpImage(getActivity(), url)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(imageView);
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
+              final int in = i;
+              imageView.setOnClickListener(new View.OnClickListener() {
+
+                @Override public void onClick(View v) {
+                  Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
+                  Bundle bundle = new Bundle();
+                  bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.getImgList());
+                  bundle.putInt("image_index", in);
+                  intent.putExtras(bundle);
+                  startActivity(intent);
+                }
+              });
+            }
           }
+        } else {
+          holder.getView(R.id.images).setVisibility(View.GONE);
         }
       } else {
         holder.getView(R.id.images).setVisibility(View.GONE);

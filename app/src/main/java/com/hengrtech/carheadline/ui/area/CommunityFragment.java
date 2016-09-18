@@ -1,5 +1,6 @@
 package com.hengrtech.carheadline.ui.area;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -43,40 +44,71 @@ public class CommunityFragment extends BasicTitleBarFragment {
     mTabLayout.setupWithViewPager(mViewPager);
     titles = getResources().getStringArray(R.array.community_tab_title);
     for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+      mTabLayout.getTabAt(i).setTag(i);
       mTabLayout.getTabAt(i).setCustomView(getTabView(i));
     }
-    mViewPager.setOffscreenPageLimit(2);
-  }
+    mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override public void onTabSelected(TabLayout.Tab tab) {
+        if (tab.getTag().toString().equals("0")) {
+          imIcon.setImageResource(R.mipmap.shouye_sousuo);
+          imIcon.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+              Intent intent = new Intent(getActivity(), SendQuestionActivity.class);
 
-  @Override public int getLayoutId() {
-    return R.layout.community_fragment;
-  }
+              startActivity(intent);
+            }
+          });
+        }else {
+          imIcon.setImageResource(R.mipmap.ic_launcher);
+          imIcon.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
 
+            }
+          });
+        }
 
+        }
 
-  @Override public void onDestroyView() {
-    super.onDestroyView();
-    ButterKnife.unbind(this);
-  }
+        @Override public void onTabUnselected (TabLayout.Tab tab){
 
-  //ViewPager适配器
-  class MyPagerAdapter extends FragmentPagerAdapter {
+        }
 
-    private List<Fragment> fragments;
+        @Override public void onTabReselected (TabLayout.Tab tab){
 
-    public MyPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
-      super(fm);
-      this.fragments = fragments;
+        }
+      }
+
+      );
+      mViewPager.setOffscreenPageLimit(2);
     }
 
-    @Override public Fragment getItem(int position) {
-      return fragments.get(position);
+    @Override public int getLayoutId () {
+      return R.layout.community_fragment;
     }
 
-    @Override public int getCount() {
-      return fragments.size();
+    @Override public void onDestroyView () {
+      super.onDestroyView();
+      ButterKnife.unbind(this);
     }
-  }
+
+    //ViewPager适配器
+    class MyPagerAdapter extends FragmentPagerAdapter {
+
+      private List<Fragment> fragments;
+
+      public MyPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+        super(fm);
+        this.fragments = fragments;
+      }
+
+      @Override public Fragment getItem(int position) {
+        return fragments.get(position);
+      }
+
+      @Override public int getCount() {
+        return fragments.size();
+      }
+    }
 
   public View getTabView(int position) {
     View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_tab, null);
@@ -87,12 +119,11 @@ public class CommunityFragment extends BasicTitleBarFragment {
 
     if (position == 0) {
       txt_title.setSelected(true);
-      imIcon.setImageResource(R.mipmap.shouye_sousuo);
+      //imIcon.setImageResource(R.mipmap.shouye_sousuo);
     } else {
       //            txt_title.setTextColor(Color.WHITE);
       txt_title.setSelected(false);
-      imIcon.setImageResource(R.mipmap.apply_name_icon);
-
+      //imIcon.setImageResource(R.mipmap.apply_name_icon);
     }
     return view;
   }
