@@ -103,7 +103,8 @@
         <activity
             android:name=".ui.profile.MyCollectActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.profile.CheckVersionUpdateActivity"></activity>
+        <activity android:name=".ui.profile.CheckVersionUpdateActivity" />
+        <activity android:name=".ui.home.SelfMediaActivity"></activity>
     </application>
 
 </manifest>

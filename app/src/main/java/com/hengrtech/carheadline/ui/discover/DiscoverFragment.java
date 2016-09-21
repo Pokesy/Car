@@ -2,6 +2,7 @@ package com.hengrtech.carheadline.ui.discover;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -12,15 +13,18 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.discover.adapter.CategoryFragmentPagerAdapter;
+import com.hengrtech.carheadline.ui.home.SelfMediaActivity;
 
 import java.util.ArrayList;
 
@@ -32,6 +36,8 @@ import butterknife.ButterKnife;
  * loonggg
  */
 public class DiscoverFragment extends BasicTitleBarFragment implements View.OnClickListener {
+    @Bind(R.id.nearby_news_tv)
+    TextView nearbyNewsTv;
     private Context mContext;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -93,6 +99,7 @@ public class DiscoverFragment extends BasicTitleBarFragment implements View.OnCl
                 (mainVpContainer));
         carModelBtn.setOnClickListener(this);
         newCarOnlineTv.setOnClickListener(this);
+        nearbyNewsTv.setOnClickListener(this);
     }
 
     @Override
@@ -129,6 +136,18 @@ public class DiscoverFragment extends BasicTitleBarFragment implements View.OnCl
                 intent.setClass(mContext, NewCarOnlineActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.nearby_news_tv:
+                intent.setClass(mContext, SelfMediaActivity.class);
+                startActivity(intent);
+                break;
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 }

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin_smallest"
+        android:paddingTop="@dimen/margin_smallest">
+
+
+        <TextView
+            android:id="@+id/item_comment_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="45评"
+            android:textColor="@color/font_color_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/item_news_source_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/item_comment_count_tv"
+            android:text="搜狐汽车"
+            android:textColor="@color/font_color_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/item_news_source_tv"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="搜狐汽车我喜欢车，我是老司机，哈哈"
+            android:textColor="@color/btn_bg_color"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin_smallest"
+        android:paddingTop="@dimen/margin_smallest">
+
+
+        <TextView
+            android:id="@+id/item_two_comment_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="45评"
+            android:textColor="@color/font_color_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/item_two_news_source_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/item_two_comment_count_tv"
+            android:text="搜狐汽车"
+            android:textColor="@color/font_color_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/item_two_news_source_tv"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="搜狐汽车我喜欢车，我是老司机，哈哈"
+            android:textColor="@color/btn_bg_color"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin_smallest"
+        android:paddingTop="@dimen/margin_smallest">
+
+
+        <TextView
+            android:id="@+id/item_three_comment_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="45评"
+            android:textColor="@color/font_color_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/item_three_news_source_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/item_three_comment_count_tv"
+            android:text="搜狐汽车"
+            android:textColor="@color/font_color_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/item_three_news_source_tv"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="搜狐汽车我喜欢车，我是老司机，哈哈"
+            android:textColor="@color/btn_bg_color"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin_smallest"
+        android:paddingTop="@dimen/margin_smallest">
+
+
+        <TextView
+            android:id="@+id/item_four_comment_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="45评"
+            android:textColor="@color/font_color_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/item_four_news_source_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/item_four_comment_count_tv"
+            android:text="搜狐汽车"
+            android:textColor="@color/font_color_hint"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/item_four_news_source_tv"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="搜狐汽车我喜欢车，我是老司机，哈哈"
+            android:textColor="@color/btn_bg_color"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E3E3E3"
+        />
+</LinearLayout>
