@@ -264,6 +264,7 @@ public class ProfileDetailActivity extends BasicTitleBarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ButterKnife.unbind(this);
         mAvatarChoosePresenter.onDestroy();
         mSubscriptions.unsubscribe();
     }

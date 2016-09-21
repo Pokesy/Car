@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_check_version_update"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/font_color_white"
+    android:orientation="vertical"
+    tools:context="com.hengrtech.carheadline.ui.profile.CheckVersionUpdateActivity">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:background="@mipmap/version_update_icon" />
+
+    <TextView
+        android:id="@+id/current_version_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="当前版本:V1.0.0"
+        android:textColor="@color/font_color_black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/new_version_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="最新版本:V1.0.1"
+        android:textColor="@color/font_color_deep_blue"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/update_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_input_edittext_bg"
+        android:text="更新"
+        android:textColor="@color/btn_bg_color" />
+
+
+</LinearLayout>
