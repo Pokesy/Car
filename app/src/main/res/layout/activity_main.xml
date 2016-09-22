@@ -30,127 +30,129 @@
           android:src="@mipmap/bg"
           />
       <LinearLayout
-          android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.8"
+
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        >
+      <LinearLayout
+          android:id="@+id/today"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:alpha="0.8"
-
-          android:gravity="center"
-          android:orientation="horizontal"
-          android:paddingBottom="8dp"
-          android:paddingTop="8dp"
+          android:layout_weight="1"
+          android:gravity="center_horizontal"
+          android:orientation="vertical"
           >
-        <LinearLayout
-            android:layout_width="0dp"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
-          <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@mipmap/jinrijingxuan"
-              />
-
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/today"
-              style="@style/Widget.App.TextView.Medium"
-              />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="32dp"
-            android:background="@color/tab_layout_color"
+            android:src="@mipmap/jinrijingxuan"
             />
 
-        <LinearLayout
-            android:id="@+id/btn_red_bag"
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
-          <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@mipmap/zhuanti"
-              />
-
-          <TextView
-              android:id="@+id/profit"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/subject"
-              style="@style/Widget.App.TextView.Medium"
-              />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="32dp"
-            android:background="@color/tab_layout_color"
+            android:layout_marginTop="8dp"
+            android:text="@string/today"
+            style="@style/Widget.App.TextView.Medium"
             />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
-          <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@mipmap/shuaiganshuiwen"
-              />
-
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/hydrology"
-              style="@style/Widget.App.TextView.Medium"
-              />
-
-        </LinearLayout>
-        <View
-            android:layout_width="1dp"
-            android:layout_height="32dp"
-            android:background="@color/tab_layout_color"
-            />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
-          <ImageView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:src="@mipmap/zimeiti"
-              />
-
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/media"
-              style="@style/Widget.App.TextView.Medium"
-              />
-
-        </LinearLayout>
       </LinearLayout>
+
+      <View
+          android:layout_width="1dp"
+          android:layout_height="32dp"
+          android:background="@color/tab_layout_color"
+          />
+
+      <LinearLayout
+          android:id="@+id/btn_red_bag"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center_horizontal"
+          android:orientation="vertical"
+          >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/zhuanti"
+            />
+
+        <TextView
+            android:id="@+id/profit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/subject"
+            style="@style/Widget.App.TextView.Medium"
+            />
+
+      </LinearLayout>
+
+      <View
+          android:layout_width="1dp"
+          android:layout_height="32dp"
+          android:background="@color/tab_layout_color"
+          />
+
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center_horizontal"
+          android:orientation="vertical"
+          >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/shuaiganshuiwen"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/hydrology"
+            style="@style/Widget.App.TextView.Medium"
+            />
+
+      </LinearLayout>
+      <View
+          android:layout_width="1dp"
+          android:layout_height="32dp"
+          android:background="@color/tab_layout_color"
+          />
+
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center_horizontal"
+          android:orientation="vertical"
+          >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/zimeiti"
+            />
+
+        <TextView
+            android:id="@+id/self_media"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/media"
+            style="@style/Widget.App.TextView.Medium"
+            />
+
+      </LinearLayout>
+    </LinearLayout>
 
       <com.hengrtech.carheadline.ui.home.RGridView
           android:id="@+id/zx_listView"

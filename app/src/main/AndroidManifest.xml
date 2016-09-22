@@ -2,109 +2,112 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hengrtech.carheadline">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permissions.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="android.permissions.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
-    <application
-        android:name=".CustomApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+  <application
+      android:name=".CustomApp"
+      android:allowBackup="true"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:supportsRtl="true"
+      android:theme="@style/AppTheme">
+    <activity android:name=".ui.boot.BootActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <activity
+        android:name=".ui.home.TodayActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.tab.MainTabActivity"
+        android:launchMode="singleTask"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.login.LoginActivity"
+        android:screenOrientation="portrait"
+        android:windowSoftInputMode="adjustPan"/>
+    <activity
+        android:name=".ui.profile.ProfileDetailActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.profile.AddTagsActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.profile.IntroductionActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.profile.NickNameActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.profile.RealNameActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.profile.ResetPhoneActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.boot.LeadActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.home.ZhuanTiActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".utils.ImagePagerActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.boot.BootActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.home.TodayActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.tab.MainTabActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".ui.profile.ProfileDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.profile.AddTagsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.profile.IntroductionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.profile.NickNameActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.profile.RealNameActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.profile.ResetPhoneActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.boot.LeadActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".utils.ImagePagerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.NewsDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.profile.SettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.discover.CarModelLibActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.discover.CarDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.discover.ActivityDetailsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.discover.AskFloorPriceActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.discover.NewCarOnlineActivity" />
-        <activity android:name=".ui.login.RegisterActivity" />
-        <activity android:name=".ui.login.SetPasswordActivity" />
-        <activity
-            android:name=".ui.area.AreaDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.area.SendQuestionActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.area.ScanPhotoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.area.ShowImageActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.area.CameralActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.area.PhotoAct"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.profile.SelectMyCarActivity" />
-        <activity
-            android:name=".ui.profile.MyCollectActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.profile.CheckVersionUpdateActivity" />
-        <activity android:name=".ui.home.SelfMediaActivity"></activity>
-    </application>
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.home.NewsDetailActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.profile.SettingActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.discover.CarModelLibActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.discover.CarDetailsActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.discover.ActivityDetailsActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.discover.AskFloorPriceActivity"
+        android:screenOrientation="portrait"/>
+    <activity android:name=".ui.discover.NewCarOnlineActivity"/>
+    <activity android:name=".ui.login.RegisterActivity"/>
+    <activity android:name=".ui.login.SetPasswordActivity"/>
+    <activity
+        android:name=".ui.area.AreaDetailActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.area.SendQuestionActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.area.ScanPhotoActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.area.ShowImageActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.area.CameralActivity"
+        android:screenOrientation="portrait"/>
+    <activity
+        android:name=".ui.area.PhotoAct"
+        android:screenOrientation="portrait"/>
+    <activity android:name=".ui.profile.SelectMyCarActivity"/>
+    <activity
+        android:name=".ui.profile.MyCollectActivity"
+        android:screenOrientation="portrait"/>
+    <activity android:name=".ui.profile.CheckVersionUpdateActivity"/>
+    <activity android:name=".ui.home.SelfMediaActivity"></activity>
+  </application>
 
 </manifest>

@@ -14,7 +14,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
-import com.hengrtech.carheadline.ui.home.PraiseFragment;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class CommunityFragment extends BasicTitleBarFragment {
     //mTabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
     fragments = new ArrayList<>();
     fragments.add(QuestionFragment.newInstance("label1"));
-    fragments.add(PraiseFragment.newInstance("label2"));
+    fragments.add(TucaoFragment.newInstance("label2"));
     mViewPager.setCurrentItem(0);//设置当前显示标签页为第一页
     mViewPager.setAdapter(new MyPagerAdapter(getChildFragmentManager(), fragments));
     mTabLayout.setupWithViewPager(mViewPager);

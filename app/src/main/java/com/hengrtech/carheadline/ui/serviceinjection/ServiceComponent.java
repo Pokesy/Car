@@ -21,14 +21,17 @@ import com.hengrtech.carheadline.ui.area.ComplaintFragment;
 import com.hengrtech.carheadline.ui.area.QuestionFragment;
 import com.hengrtech.carheadline.ui.area.QusetionAllFragment;
 import com.hengrtech.carheadline.ui.area.SendQuestionActivity;
+import com.hengrtech.carheadline.ui.area.TucaoFragment;
 import com.hengrtech.carheadline.ui.boot.LeadFragment;
 import com.hengrtech.carheadline.ui.discover.CarModelLibActivity;
 import com.hengrtech.carheadline.ui.home.InformationFragment;
 import com.hengrtech.carheadline.ui.home.MediaFragment;
 import com.hengrtech.carheadline.ui.home.NewsDetailActivity;
+import com.hengrtech.carheadline.ui.home.NewsFragment;
 import com.hengrtech.carheadline.ui.home.PraiseFragment;
 import com.hengrtech.carheadline.ui.home.TodayActivity;
 import com.hengrtech.carheadline.ui.home.WorkFragment;
+import com.hengrtech.carheadline.ui.home.ZhuanTiActivity;
 import com.hengrtech.carheadline.ui.login.LoginWithPasswordFragment;
 import com.hengrtech.carheadline.ui.login.LoginWithVerifyCodeFragment;
 import com.hengrtech.carheadline.ui.login.RegisterActivity;
@@ -39,10 +42,8 @@ import com.hengrtech.carheadline.ui.profile.MyCollectActivity;
 import com.hengrtech.carheadline.ui.profile.ResetPhoneActivity;
 import com.hengrtech.carheadline.ui.profile.SelectMyCarActivity;
 import com.hengrtech.carheadline.ui.tab.MainTabActivity;
-
-import javax.inject.Singleton;
-
 import dagger.Component;
+import javax.inject.Singleton;
 
 /**
  * 服务器接口 Component<BR>
@@ -83,6 +84,8 @@ import dagger.Component;
 
   void inject(NewsDetailActivity activity);
 
+  void inject(ZhuanTiActivity activity);
+
   void inject(ComplaintFragment fragment);
 
   void inject(QuestionFragment fragment);
@@ -104,6 +107,10 @@ import dagger.Component;
   void inject(SendQuestionActivity activity);
 
   void inject(SelectMyCarActivity activity);
+
+  void inject(TucaoFragment fragment);
+
+  void inject(NewsFragment fragment);
 
   void inject(MyCollectActivity activity);
 }

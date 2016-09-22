@@ -79,4 +79,5 @@ dependencies {
     compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     compile files('libs/afinal_0.5.1_bin.jar')
+    compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
 }

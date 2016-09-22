@@ -1,7 +1,7 @@
-package com.hengrtech.carheadline.ui.area;
+package com.hengrtech.carheadline.ui.home;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,13 +19,11 @@ import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
-import com.hengrtech.carheadline.net.model.QuestionModel;
+import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.home.adapter.SimpleLoadFooterAdapter;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
-import com.hengrtech.carheadline.utils.DateHelper;
-import com.hengrtech.carheadline.utils.ImagePagerActivity;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
 import com.jtech.adapter.RecyclerAdapter;
 import com.jtech.listener.OnItemClickListener;
@@ -36,22 +34,20 @@ import com.jtech.listener.OnLoadListener;
 import com.jtech.view.JRecyclerView;
 import com.jtech.view.RecyclerHolder;
 import com.jtech.view.RefreshLayout;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by jiao on 2016/8/1.
  */
-public class QusetionAllFragment extends BasicTitleBarFragment
+public class NewsFragment extends BasicTitleBarFragment
     implements OnItemClickListener, OnItemLongClickListener, RefreshLayout.OnRefreshListener,
     OnLoadListener, OnItemViewSwipeListener, OnItemViewMoveListener {
   public static final String TYPE = "type";
   @Bind(R.id.jrecyclerview) JRecyclerView mRecyclerView;
   @Bind(R.id.refreshlayout) RefreshLayout refreshlayout;
   @Inject AppService mInfo;
-  private QuestionAdapter adapter;
+  private ZixunAdapter adapter;
   private SimpleLoadFooterAdapter adapter1;
 
   @Override protected void onCreateViewCompleted(View view) {
@@ -65,7 +61,7 @@ public class QusetionAllFragment extends BasicTitleBarFragment
 
     //设置layoutmanager
     mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-    adapter = new QuestionAdapter(getActivity());
+    adapter = new ZixunAdapter(getActivity());
     adapter1 = new SimpleLoadFooterAdapter(getActivity());
     mRecyclerView.setAdapter(adapter, adapter1);
     //设置适配器
@@ -85,9 +81,9 @@ public class QusetionAllFragment extends BasicTitleBarFragment
   }
 
   public void initdata() {
-    manageRpcCall(mInfo.getAllQuestion("1"),
-        new UiRpcSubscriber<List<QuestionModel>>(getActivity()) {
-          @Override protected void onSuccess(List<QuestionModel> infoModels) {
+    manageRpcCall(mInfo.getInfoList("1", "1", "100"),
+        new UiRpcSubscriber<List<InfoModel>>(getActivity()) {
+          @Override protected void onSuccess(List<InfoModel> infoModels) {
             adapter.setDatas(infoModels);
             //标记为请求完成
             adapter.notifyDataSetChanged();
@@ -116,8 +112,8 @@ public class QusetionAllFragment extends BasicTitleBarFragment
         .inject(this);
   }
 
-  public static QusetionAllFragment newInstance(String param1) {
-    QusetionAllFragment fragment = new QusetionAllFragment();
+  public static NewsFragment newInstance(String param1) {
+    NewsFragment fragment = new NewsFragment();
     Bundle args = new Bundle();
     args.putString(TYPE, param1);
     fragment.setArguments(args);
@@ -133,10 +129,6 @@ public class QusetionAllFragment extends BasicTitleBarFragment
    * item点击事件
    */
   @Override public void onItemClick(RecyclerHolder holder, View view, int position) {
-    Intent intent = new Intent(getActivity(), AreaDetailActivity.class);
-    intent.putExtra("", "");
-    intent.putExtra("", "");
-    intent.putExtra("", "");
     Toast.makeText(getActivity(), "第" + position + "行点击事件", Toast.LENGTH_SHORT).show();
   }
 
@@ -178,97 +170,106 @@ public class QusetionAllFragment extends BasicTitleBarFragment
     initdata();
   }
 
-  public class QuestionAdapter extends RecyclerAdapter<QuestionModel> {
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    // TODO: inflate a fragment view
+    View rootView = super.onCreateView(inflater, container, savedInstanceState);
+    ButterKnife.bind(this, rootView);
+    return rootView;
+  }
+
+  public class ZixunAdapter extends RecyclerAdapter<InfoModel> {
+    Context context;
+    private List<InfoModel> data;
 
     /**
      * 主构造
      *
      * @param activity Activity对象
      */
-    public QuestionAdapter(Activity activity) {
+    public ZixunAdapter(Activity activity) {
       super(activity);
     }
 
-    @Override public View createView(LayoutInflater inflater, ViewGroup parent, int viewType) {
-      return inflater.inflate(R.layout.area_question_list_item, parent, false);
+    @Override public int getItemViewType(int position) {
+      if (position == 0) {
+        return 0;
+      }
+      int imgsize = getRealDatas().get(position).getCoverArr().size();
+      if (imgsize == 1) {
+        return 1;
+      } else {
+        return 2;
+      }
     }
 
-    @Override public void convert(RecyclerHolder holder, final QuestionModel bean, int position) {
-      holder.setText(R.id.content, bean.getQuestion());
-      holder.setText(R.id.time, DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
-      holder.setText(R.id.nick_name, bean.getNickName());
-      //holder.setText(R.id.view_count, String.valueOf(bean.getPraiseCount()));
-      //holder.setText(R.id.comment_count, String.valueOf(bean.getCommentsCount()));
-      //holder.setText(R.id.un_count, String.valueOf(bean.getCommentsCount()));
-      holder.getView(R.id.ll_zx).setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View v) {
-          Intent intent = new Intent(getActivity(), AreaDetailActivity.class);
-          Bundle bundle = new Bundle();
-          bundle.putString("logo", bean.getAvatar());
-          bundle.putString("nickName", bean.getNickName());
-          bundle.putString("time", bean.getCreateTime());
-          bundle.putInt("questionId", bean.getQuestionId());
-          bundle.putString("question", bean.getQuestion());
-          intent.putExtras(bundle);
-          startActivity(intent);
-        }
-      });
-      ImageLoader.loadOptimizedHttpImage(getActivity(), bean.getAvatar())
-          .
-              bitmapTransform(new CropCircleTransformation(getActivity()))
-          .into(holder.getImageView(R.id.head));
-      if (bean.getImgList() != null) {
-        int imagesize = bean.getImgList().size();
+    @Override public View createView(LayoutInflater inflater, ViewGroup parent, int viewType) {
+      if (viewType == 1) {
+        return inflater.inflate(R.layout.home_new_list_item, parent, false);
+      } else {
+        return inflater.inflate(R.layout.home_new_list_item_three, parent, false);
+      }
+    }
 
-        if (imagesize > 0) {
-          holder.getView(R.id.images).setVisibility(View.VISIBLE);
-          holder.getImageView(R.id.iv_1)
-              .setVisibility(imagesize > 0 ? View.VISIBLE : View.INVISIBLE);
-          holder.getImageView(R.id.iv_2)
-              .setVisibility(imagesize > 1 ? View.VISIBLE : View.INVISIBLE);
-          holder.getImageView(R.id.iv_3)
-              .setVisibility(imagesize > 2 ? View.VISIBLE : View.INVISIBLE);
-          int height = getResources().getDimensionPixelSize(R.dimen.grid_img_height_three);
-          LinearLayout.LayoutParams params =
-              new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-          holder.getView(R.id.images).setLayoutParams(params);
-
-          for (int i = 0; i < imagesize; i++) {
-            String url = bean.getImgList().get(i);
-            ImageView imageView = null;
-            if (i == 0) {
-              imageView = holder.getImageView(R.id.iv_1);
-            } else if (i == 1) {
-              imageView = holder.getImageView(R.id.iv_2);
-            } else if (i == 2) {
-              imageView = holder.getImageView(R.id.iv_3);
-            }
-
-            if (imageView != null) {
-              try {
-                ImageLoader.loadOptimizedHttpImage(getActivity(), url)
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
-                    .into(imageView);
-              } catch (Exception e) {
-                e.printStackTrace();
-              }
-              final int in = i;
-              imageView.setOnClickListener(new View.OnClickListener() {
-
-                @Override public void onClick(View v) {
-                  Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
-                  Bundle bundle = new Bundle();
-                  bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.getImgList());
-                  bundle.putInt("image_index", in);
-                  intent.putExtras(bundle);
-                  startActivity(intent);
-                }
-              });
-            }
-          }
+    @Override public void convert(RecyclerHolder holder, InfoModel bean, int position) {
+      holder.setText(R.id.news_title, bean.getTitle());
+      holder.setText(R.id.time, bean.getCreateTime());
+      holder.setText(R.id.tv_from, "来源：" + bean.getSource());
+      holder.setText(R.id.view_count, String.valueOf(bean.getPraiseCount()));
+      holder.setText(R.id.comment_count, String.valueOf(bean.getCommentsCount()));
+      if (bean.getCoverArr() != null) {
+        int imagesize = bean.getCoverArr().size();
+        if (imagesize == 1) {
+          ImageLoader.loadOptimizedHttpImage(getActivity(), bean.getCoverArr().get(0))
+              .into(holder.getImageView(R.id.iv_1));
         } else {
-          holder.getView(R.id.images).setVisibility(View.GONE);
+          if (imagesize == 3) {
+            holder.getView(R.id.images).setVisibility(View.VISIBLE);
+            holder.getImageView(R.id.iv_1).setVisibility(imagesize > 0 ? View.VISIBLE : View.GONE);
+            holder.getImageView(R.id.iv_2).setVisibility(imagesize > 1 ? View.VISIBLE : View.GONE);
+            holder.getImageView(R.id.iv_3).setVisibility(imagesize > 2 ? View.VISIBLE : View.GONE);
+            int height = getResources().getDimensionPixelSize(R.dimen.grid_img_height_three);
+            LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+            holder.getView(R.id.images).setLayoutParams(params);
+
+            for (int i = 0; i < imagesize; i++) {
+              String url = bean.getCoverArr().get(i);
+              ImageView imageView = null;
+              if (i == 0) {
+                imageView = holder.getImageView(R.id.iv_1);
+              } else if (i == 1) {
+                imageView = holder.getImageView(R.id.iv_2);
+              } else if (i == 2) {
+                imageView = holder.getImageView(R.id.iv_3);
+              }
+
+              if (imageView != null) {
+                try {
+                  ImageLoader.loadOptimizedHttpImage(getActivity(), url)
+                      .placeholder(R.mipmap.ic_launcher)
+                      .error(R.mipmap.ic_launcher)
+                      .into(imageView);
+                } catch (Exception e) {
+                  e.printStackTrace();
+                }
+                //final int in = i;
+                //imageView.setOnClickListener(new View.OnClickListener() {
+                //
+                //  @Override public void onClick(View v) {
+                //    Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
+                //    Bundle bundle = new Bundle();
+                //    bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.imgList);
+                //    bundle.putInt("image_index", in);
+                //    intent.putExtras(bundle);
+                //    startActivity(intent);
+                //  }
+                //});
+              }
+            }
+          } else {
+            holder.getView(R.id.images).setVisibility(View.GONE);
+          }
         }
       } else {
         holder.getView(R.id.images).setVisibility(View.GONE);

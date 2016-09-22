@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
@@ -16,7 +17,6 @@ import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
 import com.hengrtech.carheadline.net.model.InfoModel;
-import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
@@ -25,14 +25,9 @@ import com.hengrtech.carheadline.utils.ImagePagerActivity;
 import com.hengrtech.carheadline.utils.RBaseAdapter;
 import com.hengrtech.carheadline.utils.RViewHolder;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by jiao on 2016/7/19.
@@ -45,6 +40,8 @@ public class InformationFragment extends BasicTitleBarFragment {
   @Bind(R.id.zx_listView) RGridView zxListView;
   @Bind(R.id.lunbo) ImageView lunbo;
   @Bind(R.id.pull_refresh_scrollview) MyScrollView pullRefreshScrollview;
+  @Bind(R.id.today) LinearLayout today;
+  @Bind(R.id.self_media) TextView selfMedia;
 
   @Override protected void onCreateViewCompleted(View view) {
     ButterKnife.bind(this, view);
@@ -56,14 +53,23 @@ public class InformationFragment extends BasicTitleBarFragment {
   private void initview() {
     btnRedBag.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
+        startActivity(new Intent(getActivity(), ZhuanTiActivity.class));
+      }
+    });
+    today.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
         startActivity(new Intent(getActivity(), TodayActivity.class));
+      }
+    });
+    selfMedia.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(new Intent(getActivity(), SelfMediaActivity.class));
       }
     });
   }
 
   public void initdata() {
-    UserInfo mUserInfo = getComponent().loginSession().getUserInfo();
-    manageRpcCall(mInfo.getInfoList(mUserInfo.getMemberId()+"", "1", "10"),
+    manageRpcCall(mInfo.getInfoList("1", "1", "10"),
         new UiRpcSubscriber<List<InfoModel>>(getActivity()) {
           @Override protected void onSuccess(List<InfoModel> infoModels) {
             zxListView.setAdapter(new ZixunAdapter(getActivity(), infoModels));
@@ -102,6 +108,7 @@ public class InformationFragment extends BasicTitleBarFragment {
     super.onDestroyView();
     ButterKnife.unbind(this);
   }
+
 
   public class ZixunAdapter extends RBaseAdapter<InfoModel> {
     Context context;
@@ -144,7 +151,6 @@ public class InformationFragment extends BasicTitleBarFragment {
           bundle.putInt("comment_count", bean.getCommentsCount());
           bundle.putString("view_count", bean.getPraiseCount());
           bundle.putString("time", DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
-          bundle.putBoolean("isCollected",bean.isCollected());
           intent.putExtras(bundle);
           startActivity(intent);
         }

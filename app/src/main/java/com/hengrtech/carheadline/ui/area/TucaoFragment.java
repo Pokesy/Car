@@ -44,7 +44,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 /**
  * Created by jiao on 2016/8/1.
  */
-public class QusetionAllFragment extends BasicTitleBarFragment
+public class TucaoFragment extends BasicTitleBarFragment
     implements OnItemClickListener, OnItemLongClickListener, RefreshLayout.OnRefreshListener,
     OnLoadListener, OnItemViewSwipeListener, OnItemViewMoveListener {
   public static final String TYPE = "type";
@@ -65,6 +65,7 @@ public class QusetionAllFragment extends BasicTitleBarFragment
 
     //设置layoutmanager
     mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+
     adapter = new QuestionAdapter(getActivity());
     adapter1 = new SimpleLoadFooterAdapter(getActivity());
     mRecyclerView.setAdapter(adapter, adapter1);
@@ -116,8 +117,8 @@ public class QusetionAllFragment extends BasicTitleBarFragment
         .inject(this);
   }
 
-  public static QusetionAllFragment newInstance(String param1) {
-    QusetionAllFragment fragment = new QusetionAllFragment();
+  public static TucaoFragment newInstance(String param1) {
+    TucaoFragment fragment = new TucaoFragment();
     Bundle args = new Bundle();
     args.putString(TYPE, param1);
     fragment.setArguments(args);
@@ -190,16 +191,13 @@ public class QusetionAllFragment extends BasicTitleBarFragment
     }
 
     @Override public View createView(LayoutInflater inflater, ViewGroup parent, int viewType) {
-      return inflater.inflate(R.layout.area_question_list_item, parent, false);
+      return inflater.inflate(R.layout.area_tucao_list_item, parent, false);
     }
 
     @Override public void convert(RecyclerHolder holder, final QuestionModel bean, int position) {
       holder.setText(R.id.content, bean.getQuestion());
       holder.setText(R.id.time, DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
       holder.setText(R.id.nick_name, bean.getNickName());
-      //holder.setText(R.id.view_count, String.valueOf(bean.getPraiseCount()));
-      //holder.setText(R.id.comment_count, String.valueOf(bean.getCommentsCount()));
-      //holder.setText(R.id.un_count, String.valueOf(bean.getCommentsCount()));
       holder.getView(R.id.ll_zx).setOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View v) {
           Intent intent = new Intent(getActivity(), AreaDetailActivity.class);
