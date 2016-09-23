@@ -23,11 +23,7 @@ import com.hengrtech.carheadline.injection.GlobalModule;
 import com.hengrtech.carheadline.net.AppService;
 import com.hengrtech.carheadline.net.RpcApiError;
 import com.hengrtech.carheadline.net.UiRpcSubscriber;
-import com.hengrtech.carheadline.net.constant.NetConstant;
 import com.hengrtech.carheadline.net.model.AreaQuestionDetailCommentsModel;
-import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
-import com.hengrtech.carheadline.net.model.UserInfo;
-import com.hengrtech.carheadline.net.params.QuestionParams;
 import com.hengrtech.carheadline.net.params.SendCommentCarParams;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.home.RGridView;
@@ -333,31 +329,7 @@ public class AreaDetailActivity extends BasicTitleBarActivity implements View.On
       holder.tV(R.id.reply_time)
           .setText(DateHelper.getInstance().getRencentTime(replyInfo.getCreateTime()));
       holder.tV(R.id.reply_content).setText(replyInfo.getAnswer());
-      //回复评论按钮
-      //holder.v(R.id.reply).setOnClickListener(new View.OnClickListener() {
-      //  @Override public void onClick(View v) {
-      //    if (getComponent().isLogin()) {
-      //      replyBox.setVisibility(View.VISIBLE);
-      //      //获取焦点显示键盘
-      //      showInputWindow(replyEditText);
-      //      replyEditText.setText("回复@" + "：");
-      //      //把光标自动放末尾
-      //      replyEditText.setSelection(replyEditText.getText().length());
-      //    } else {
-      //      ToastHelper.showToast("请登录后操作", mContext);
-      //    }
-      //  }
-      //});
-      //holder.v(R.id.del_reply).setOnClickListener(new View.OnClickListener() {
-      //  @Override public void onClick(View v) {
-      //    if (getComponent().isLogin()) {
-      //      // TODO: 2016/8/25 删除评论接口
-      //    } else {
-      //      ToastHelper.showToast("请登录后操作", mContext);
-      //    }
-      //  }
-      //});
-      //控件赋值
+
 
     }
   }

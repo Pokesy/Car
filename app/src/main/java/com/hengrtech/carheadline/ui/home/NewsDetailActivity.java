@@ -4,15 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.JavascriptInterface;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,7 +32,6 @@ import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.home.adapter.SimpleLoadFooterAdapter;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
-import com.hengrtech.carheadline.utils.CircleImageView;
 import com.hengrtech.carheadline.utils.DateHelper;
 import com.hengrtech.carheadline.utils.RBaseAdapter;
 import com.hengrtech.carheadline.utils.RViewHolder;
@@ -45,8 +41,6 @@ import com.loonggg.textwrapviewlib.view.TextWrapView;
 import java.util.List;
 import javax.inject.Inject;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
-
-import static com.hengrtech.carheadline.R.id.collect_layout;
 
 /**
  * 资讯详情页面
@@ -88,8 +82,6 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
   private int comment_count;
   private String view_count;
   private boolean isCollected;
-  CircleImageView replyerHead;
-  TextView replyAvatar, replyTime, replyContent, replyBtn, delReBtn;
 
   @Inject AppService mInfo;
 
@@ -130,40 +122,6 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
     setMiddleTitle("详情");
     setTitleBarTextColor(getResources().getColor(R.color.title_text_color));
     return true;
-  }
-
-  /**
-   * ImageGetter用于text图文混排
-   */
-  public Html.ImageGetter getImageGetterInstance() {
-    Html.ImageGetter imgGetter = new Html.ImageGetter() {
-      @Override public Drawable getDrawable(String source) {
-        int fontH = (int) (getResources().getDimension(R.dimen.activity_horizontal_margin) * 1.5);
-        int id = Integer.parseInt(source);
-        Drawable d = getResources().getDrawable(id);
-        int height = fontH;
-        int width = (int) ((float) d.getIntrinsicWidth() / (float) d.getIntrinsicHeight()) * fontH;
-        if (width == 0) {
-          width = d.getIntrinsicWidth();
-        }
-        d.setBounds(0, 0, width, height);
-        return d;
-      }
-    };
-    return imgGetter;
-  }
-
-  private class JsInterface {
-    private Context mContext;
-
-    public JsInterface(Context context) {
-      this.mContext = context;
-    }
-
-    //在js中调用window.AndroidWebView.showInfoFromJs(name)，便会触发此方法。
-    @JavascriptInterface public void showInfoFromJs(String name) {
-      Toast.makeText(mContext, name, Toast.LENGTH_SHORT).show();
-    }
   }
 
   public void initmoredata() {
@@ -214,8 +172,7 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
     supportCount.setOnClickListener(this);
     edit_disable_text.setOnClickListener(this);
     collectLayout.setOnClickListener(this);
-    //获取资讯信息
-    //newsApi.getNewsInfo(newsListInfo.getId());
+
     //发表回复文本框的事件监听器
     replyEditText.addTextChangedListener(new TextWatcher() {
       @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
