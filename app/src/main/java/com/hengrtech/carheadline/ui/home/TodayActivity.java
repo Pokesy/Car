@@ -7,8 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
@@ -30,8 +29,13 @@ import com.jtech.listener.OnLoadListener;
 import com.jtech.view.JRecyclerView;
 import com.jtech.view.RecyclerHolder;
 import com.jtech.view.RefreshLayout;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by jiao on 2016/8/1.
@@ -117,7 +121,8 @@ public class TodayActivity extends BasicTitleBarActivity implements OnItemClickL
         finish();
       }
     });
-    setMiddleTitle(R.string.subject);
+    setTitleBarTextColor(getResources().getColor(R.color.title_text_color));
+    setMiddleTitle(R.string.today);
     return true;
   }
 

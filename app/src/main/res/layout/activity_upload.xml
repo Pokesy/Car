@@ -5,301 +5,201 @@
     android:background="@color/font_color_white"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    >
-
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="?actionBarSize"
-      android:background="@drawable/black_radius_square"
-      android:paddingLeft="@dimen/margin_small"
-      android:paddingRight="@dimen/margin_small"
-      android:paddingBottom="0dp"
-      android:paddingTop="0dp"
-      >
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/close"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        >
-      <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:src="@mipmap/back_normal"
-          />
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/font_color_white"
+        android:paddingBottom="0dp"
+        android:paddingLeft="@dimen/margin_primary"
+        android:paddingRight="@dimen/margin_primary"
+        android:paddingTop="0dp">
 
+        <RelativeLayout
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/upload_title"
+            style="@style/Widget.App.TextView.XXLarge.White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text=" " />
+
+
+        <TextView
+            android:id="@+id/sendWeibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/send_66_bg"
+            android:gravity="center"
+            android:paddingBottom="6dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="6dp"
+            android:text="发布"
+            android:textColor="@color/font_color_dark_gray"
+            android:textSize="14sp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/upload_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_vertical"
-        android:text="发微博"
-        style="@style/Widget.App.TextView.XXLarge.White"
-        />
-
-    <RelativeLayout
-        android:id="@+id/sendWeibo"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_margin="1dp"
-        android:background="@color/font_color_blue"
-        >
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerHorizontal="true"
-          android:layout_centerVertical="true"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
-          android:text="发布"
-          android:textColor="@color/colorPrimaryDark"
-          android:visibility="visible"
-          />
-    </RelativeLayout>
-  </RelativeLayout>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-
-
-      android:paddingLeft="10dp"
-      android:paddingRight="10dp"
-      android:paddingTop="10dp"
-      >
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1.0dp"
+        android:background="@color/color_d9" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/button_edit_normal"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp"
-        android:paddingTop="10dp"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-      <EditText
-          android:id="@+id/weiboEdit"
-          android:layout_width="match_parent"
-          android:layout_height="150dp"
-          android:background="@android:color/white"
-          android:gravity="start"
-          style="@style/Widget.App.TextView.Medium.Primary"
-          android:textColorHint="@color/font_color_hint"
-          android:hint="请发表话题内容"
-          />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_edit_normal"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="10dp">
 
-      <LinearLayout
-          android:id="@+id/bottomm"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:gravity="center_vertical"
-          android:paddingLeft="@dimen/margin_small"
-          android:paddingRight="@dimen/margin_small"
-          >
+            <EditText
+                android:id="@+id/weiboEdit"
+                style="@style/Widget.App.TextView.Medium.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white"
+                android:gravity="start"
+                android:hint="在这里描述你的问题"
+                android:textColorHint="@color/font_color_hint"
+                android:textSize="14sp" />
 
-        <ImageView
-            android:id="@+id/camera"
-            android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/bottomm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/margin_small"
+                android:paddingRight="@dimen/margin_small">
+
+                <ImageView
+                    android:id="@+id/camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/album_camera_icon" />
+
+
+                <TextView
+                    android:id="@+id/edit_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:gravity="right"
+                    android:text="0/200字" />
+            </LinearLayout>
+
+            <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+                android:id="@+id/snpl_moment_add_photos"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/xuanshang_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:src="@mipmap/icon_camera"
-            />
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/album"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:src="@mipmap/icon_album"
-            />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0dp"
+                android:background="@color/bg_color_divider" />
 
-        <ImageView
-            android:id="@+id/Upload_face"
-            android:layout_width="0dp"
-            android:layout_height="25dp"
-            android:layout_weight="1.2"
-            android:src="@mipmap/face35"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
 
-        <TextView
-            android:id="@+id/image_large"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4.5"
-            android:gravity="right"
-            android:text="图片:0KB"
-            />
 
-        <TextView
-            android:id="@+id/weibo_count"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:gravity="right"
-            android:text="0/200"
-            />
-      </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:drawableLeft="@mipmap/icon_money"
+                    android:drawablePadding="8dp"
+                    android:text="悬赏"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/minus_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/e4_bg"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="6dp"
+                    android:text="-"
+                    android:textColor="@color/tab_layout_indicator_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/reward_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@drawable/e4_bg"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="6dp"
+                    android:text="10"
+                    android:textColor="@color/tab_layout_indicator_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/add_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/e4_bg"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="6dp"
+                    android:text="+"
+                    android:textColor="@color/tab_layout_indicator_color"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0dp"
+                android:background="@color/bg_color_divider" />
+        </LinearLayout>
     </LinearLayout>
 
-
-  </LinearLayout>
-  <!--表情区-->
-  <LinearLayout
-      android:id="@+id/between_edt_face_top"
-      android:layout_width="fill_parent"
-      android:layout_height="2dp"
-      android:layout_marginTop="15dp"
-      android:background="@drawable/jbline"
-      android:orientation="horizontal"
-      android:visibility="gone"
-      >
-
-  </LinearLayout>
-  <LinearLayout
-      android:id="@+id/Upload_FaceArea"
-      android:layout_width="fill_parent"
-
-      android:layout_height="140dp"
-      android:orientation="horizontal"
-      android:visibility="gone"
-      >
-
-  </LinearLayout>
-  <LinearLayout
-      android:id="@+id/between_edt_face_bot"
-      android:layout_width="fill_parent"
-      android:layout_height="2dp"
-      android:background="@drawable/jbline"
-      android:orientation="horizontal"
-      android:visibility="gone"
-      >
-
-  </LinearLayout>
-  <!-- 图片上传区-->
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="15dp"
-      android:orientation="vertical"
-      android:paddingLeft="10dp"
-      android:paddingRight="10dp"
-      >
-
-    <HorizontalScrollView
-        android:id="@+id/weibo_img"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="@drawable/button_edit_normal"
-        android:clickable="true"
-        android:paddingBottom="10dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="10dp"
-        android:visibility="invisible"
-        >
-
-      <LinearLayout
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-          android:gravity="center_vertical"
-          android:orientation="horizontal"
-          android:paddingLeft="5dp"
-          android:paddingRight="5dp"
-          >
-
-        <ImageView
-            android:id="@+id/weibo_img1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_img2"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_img3"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_img4"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_img5"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_img6"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_img7"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_img8"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_img9"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"
-            />
-      </LinearLayout>
-    </HorizontalScrollView>
-
-
-  </LinearLayout>
-<TextView
-    android:id="@+id/code"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    />
 
 </LinearLayout>
 

@@ -1,60 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/font_color_white"
-    android:orientation="vertical"
-    >
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      >
+    android:orientation="vertical">
 
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/font_color_white"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="@color/font_color_white"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/tab_layout_indicator_color"
-        app:tabTextColor="@color/tab_layout_color"
-        />
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        >
-      <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-          android:src="@mipmap/shouye_sousuo"
-          android:id="@+id/im_icon"
-          />
-    </RelativeLayout>
+        android:orientation="horizontal">
 
-  </LinearLayout>
-  <View
-      android:layout_width="match_parent"
-      android:layout_height="5dp"
 
-      android:background="@color/bg_color"
-      />
-  <!--可滑动的布局内容-->
-  <android.support.v4.view.ViewPager
-      android:id="@+id/vp_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/font_color_white"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/font_color_white"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/tab_layout_indicator_color"
+            app:tabTextColor="@color/tab_layout_color" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/im_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/icon_community_editor" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_color" />
+    <!--可滑动的布局内容-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
 
 

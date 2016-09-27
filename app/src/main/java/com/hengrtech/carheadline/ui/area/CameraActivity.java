@@ -14,17 +14,18 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.hengrtech.carheadline.ui.basic.BasicActivity;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
 /**
- * 拍照界面
+ * 作者：loonggg on 2016/9/26 16:59
  */
 
-public class CameralActivity extends BasicActivity {
-
+public class CameraActivity extends BasicActivity {
     private Bitmap bitmap;
     String imgPath = "/sdcard/img.jpg";
     Uri uri = null;
@@ -56,6 +57,7 @@ public class CameralActivity extends BasicActivity {
             startActivityForResult(intent, 0);
         }
     }
+
     /**
      * ***************解决图片旋转问题***************************
      */
@@ -134,8 +136,8 @@ public class CameralActivity extends BasicActivity {
             if (bitmap != null) {
                 new MyCamaralThread().start();
             } else {
-                Toast.makeText(CameralActivity.this, "照片获取失败", Toast.LENGTH_SHORT).show();
-                CameralActivity.this.finish();
+                Toast.makeText(CameraActivity.this, "照片获取失败", Toast.LENGTH_SHORT).show();
+                CameraActivity.this.finish();
             }
             return;
         } else if (!isstate) {
@@ -171,14 +173,14 @@ public class CameralActivity extends BasicActivity {
                     if (bitmap != null) {
                         new MyCamaralThread().start();
                     } else {
-                        Toast.makeText(CameralActivity.this, "照片获取失败", Toast.LENGTH_SHORT).show();
-                        CameralActivity.this.finish();
+                        Toast.makeText(CameraActivity.this, "照片获取失败", Toast.LENGTH_SHORT).show();
+                        CameraActivity.this.finish();
                     }
                 }
             }
             return;
         }
-        CameralActivity.this.finish();
+        CameraActivity.this.finish();
     }
 
     class MyCamaralThread extends Thread {
@@ -201,7 +203,7 @@ public class CameralActivity extends BasicActivity {
             byte[] bytes = bStream.toByteArray();
             String data = Base64.encodeToString(bytes, Base64.DEFAULT);
             mIMGCallBack.callback(data);
-            CameralActivity.this.finish();
+            CameraActivity.this.finish();
         }
     }
 
@@ -212,5 +214,4 @@ public class CameralActivity extends BasicActivity {
     public interface IMGCallBack {
         public void callback(String data);
     }
-
 }
