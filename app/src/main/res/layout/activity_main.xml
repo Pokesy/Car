@@ -5,12 +5,17 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-
-    <com.hengrtech.carheadline.ui.home.RGridView
-        android:id="@+id/zx_listView"
+    <com.jtech.view.RefreshLayout
+        android:id="@+id/refreshlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:tag="1" />
+        android:layout_height="match_parent">
+
+        <com.jtech.view.JRecyclerView
+            android:id="@+id/zx_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:tag="1" />
+    </com.jtech.view.RefreshLayout>
 </LinearLayout>
 

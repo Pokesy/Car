@@ -6,154 +6,146 @@ import java.util.List;
  * Created by jiao on 2016/7/21.
  */
 public class InfoModel {
+    /**
+     * newsId : 1
+     * title : 锁定中国市场 探访特斯拉金港体验中心
+     * source : 搜狐汽车
+     * link : http://auto.sohu.com/20160414/n444192126.shtml
+     * authorId : 0
+     * type : 0
+     * publishTime : 2016-09-23 17:14:39
+     * content : 　　本月19日，特斯拉金港体验中心将正式营业，这是继侨福芳草地、恒通商务园、亦庄、华贸店之后，北京第5家特斯拉体验中心，也是特斯拉在中国的第17家体验中心。金港体验中心具有展示及体验功能，可向用户提供包括试驾、订车、充电等服务。
+     * <img style="border: 0px currentColor; border-image: none;" title="走进特斯拉金港体验中心" src="http://m4.auto.itc.cn/car/600/83/84/Img4528483_600.jpg" alt="走进特斯拉金港体验中心" />
+     * 　　对于此次金港体验中心重新复活，特斯拉工作人员表示，首先，这里的外部环境，以及周边的其它品牌4S店，和特斯拉的调性相符，另外一方面，金港曾是特斯拉进入中国的第一个落脚点，这次选择让金港“复活”更多的是一种“情怀”。
+     * <img style="border: 0px currentColor; border-image: none;" title="走进特斯拉金港体验中心" src="http://m3.auto.itc.cn/car/600/82/84/Img4528482_600.jpg" alt="走进特斯拉金港体验中心" />
+     * 　　目前，特斯拉采用“官网电商+实体体验中心”的直营模式，为用户实现购买过程中的完全透明、自主提供了更加便利的条件。在特斯拉体验中心，用户不仅能够充分领略特斯拉所带来的豪华智能的生活方式，更可以通过车身构造展示、互动触摸屏和亲身试驾体验等方式自主、透明的了解纯电动智能汽车。
+     * 　　据特斯拉中国销售负责人王昊介绍，今年特斯拉还将在全国建立10家新店以满足日益增长的需求，同时他强调直销模式是特斯拉的特点，特斯拉不会采取授权的模式让其他经销商参与销售等业务。对于国产化问题，负责人表示特斯拉将在3年内完成，至于选址问题，目前还没有确切消息。
+     * <img style="border: 0px currentColor; border-image: none;" title="走进特斯拉金港体验中心" src="http://m2.auto.itc.cn/car/600/81/84/Img4528481_600.jpg" alt="走进特斯拉金港体验中心" />
+     * <img style="border: 0px currentColor; border-image: none;" title="走进特斯拉金港体验中心" src="http://m1.auto.itc.cn/car/600/80/84/Img4528480_600.jpg" alt="走进特斯拉金港体验中心" />
+     * <img style="border: 0px currentColor; border-image: none;" title="走进特斯拉金港体验中心" src="http://m4.auto.itc.cn/car/600/79/84/Img4528479_600.jpg" alt="走进特斯拉金港体验中心" />
+     * 　　总结：目前，在北京购买纯电动车特斯拉，可享受斯免摇号、不限行等优惠政策。伴随着政府部门对新能源汽车大力支持，以及全新产品Model X以及Model 3的引入，相信特拉将会在中国市场大有作为。据外媒统计，去年中国市场电动乘用车销量达到207,382辆，首次超越美国，占全球总销量的37.7%。未来中国将取代美国成为全球最大的零排放汽车市场。毫无疑问，中国市场对特斯拉来说显得格外重要。
+     * coverArr : ["http://i3.itc.cn/20160413/36fe_3e9a0919_e4b2_0ba3_19f2_5ffe6221abae_4.jpg","http://i3.itc.cn/20160413/36fe_3e9a0919_e4b2_0ba3_19f2_5ffe6221abae_4.jpg","http://i3.itc.cn/20160413/36fe_3e9a0919_e4b2_0ba3_19f2_5ffe6221abae_4.jpg"]
+     * commentsCount : 18
+     * viewCount : 103
+     * havenPraise : false
+     * collected : false
+     */
 
-  public String getPraiseCount() {
-    return praiseCount;
-  }
+    private int newsId;
+    private String title;
+    private String source;
+    private String link;
+    private int authorId;
+    private int type;
+    private String publishTime;
+    private String content;
+    private int commentsCount;
+    private int viewCount;
+    private boolean havenPraise;
+    private boolean collected;
+    private List<String> coverArr;
 
-  public void setPraiseCount(String praiseCount) {
-    this.praiseCount = praiseCount;
-  }
+    public int getNewsId() {
+        return newsId;
+    }
 
-  /**
-   * newsId : 15
-   * source : 搜狐汽车
-   * coverArr : ["http://i3.itc.cn/20160413/36fe_3e9a0919_e4b2_0ba3_19f2_5ffe6221abae_4.jpg"]
-   * commentsCount : 0
-   * link : http://auto.sohu.com/20160415/n444241298.shtml
-   * title : 华晨自主品牌渐式微 合资业务成救命稻草
-   * author :
-   * createTime : 2198-05-05 10:10:19
-   * praiseCount:0
-   * status : 1
-   * content : 　　华晨汽车旗下A股上市公司金杯汽车日前发布的2015年报显示，公司利润总额2.58亿元，同比增长551.7%。这表明金杯汽车2015年终
-   * 于结束了连续亏损，实现扭亏为盈。但从年报中能够看出，金杯汽车的扭亏为盈来源于与宝马相配套的零部件业务，自主整车业务依然下滑明显，销量和利润呈现双 双下滑的态势。
-   * 　　不仅是金杯汽车，华晨旗下的几个自主品牌的整车业务业绩堪忧，宝马的合资业务成为支撑华晨汽车的唯一支柱，而这种严重偏科的情况也引发了人们对华晨汽车未来发展的担忧。
-   * 　　合资业务成唯一救命稻草
-   * 　　对华晨汽车而言，与宝马相关的业务已经成为支撑其发展获得利润的最重要来源。
-   * 　　金杯汽车的2015年年报显示，金杯汽车利润之所有能够扭亏为盈，并不是来自于整车业务的贡献，而是来自于与宝马配套的零配件公司。例如，金杯
-   * 汽车控股子公司金杯江森公司和上海延峰江森公司共同出资收购了沈阳施尔奇公司，为获得华晨宝马1系、3系车型新业务提供支撑。同时，金杯江森公司和上海延 锋江森公司2015年8月与Johnson
-   * Controls Solingen Beteiligungs GmbH签署了《股权转让协议》，分别受让后者持有的沈阳施尔奇汽车50%的股权，而施尔奇的主要客户就是宝马。
-   * 　　除了金杯汽车之外，华晨在香港上市的新晨动力、华晨中国两家上市公司的业绩也都紧靠宝马的业务。根据其业绩报告，2015年华晨中国利润同比下滑35.32%，主要原因是华晨宝马利润下滑超过30%。
-   * 　　而与此相对，华晨的自主品牌整车业务却难阻下滑趋势。2015年，金杯汽车整车销量不到5万辆，同比下降41.15%，金杯整车业务依然处于持续亏损状态。
-   * 　　自主整车业务日渐势微
-   * 　　根据中国汽车工业协会的最新统计数据，2016年1季度，汽车产销保持稳定增长，产销增幅比上年同期均呈小幅提升。其中，中国品牌乘用车共销售
-   * 255.3万辆，同比增长11.1%，占乘用车销售总量的45%，比上年同期提高1.8个百分点。中国品牌的商用车产销几乎都超过了85万辆，销售同比增 长了1.2%。
-   * 　　但在这样的大环境下也没能改变华晨汽车自主品牌整车业务衰退的局势，华晨旗下3个自主整车品牌全部沦陷。
-   * 　　根据金杯汽车日前发布的2016年3月份产销数据快报显示，金杯汽车3月份销售载货汽车3532辆，较去年同期下降41.30%。而1月至3月，金杯汽车累计销售载货汽车5803辆，较去年同期下降65.16%。
-   * 　　与此同时，一直被给予众望的中华品牌也表现欠佳。在全国乘用车联席会发布的2016年前两个月的轿车销量排行榜中，中华品牌连前100名都没有
-   * 进入。而其SUV产品V5，是今年前两个月SUV销售排行榜中唯一进入前100名的车型，但前两个销量只有2000辆出头，同比下降超过70%。显然，中
-   * 华品牌的这种衰退已成为一个持续趋势。2014年，中华汽车国内销量仅为14万辆左右，同比下降超过30%。
-   * 　　而华晨汽车下大力气专门打造的高端自主品牌华颂的表现则更是惨淡。2015年3月，华颂7正式上市，作为华晨汽车的战略车型，2015年华颂7
-   * 全年销售不足1万辆，甚至前九个月的累计销量不足800辆。进入2016年，更是有媒体曝出，1月份华颂7的销量仅为60多辆。
-   * 　　严重“偏科”存发展隐忧
-   * 　　合资业务与自主业务的这种明显强弱对比的“偏科”现象，为华晨汽车未来的发展增加了问题和风险。
-   * 　　有业内人士表示，依托强势合资伙伴，华晨汽车获得了巨大的发展机会，但其自主品牌体系的弱势表现，让这种发展模式存在隐忧。虽然华晨汽车通过资本市场等一系列操作和措施来对自主品牌进行投入，但成效不佳。
-   * 　　分析造成这种局面的原因，一些专家表示，华晨汽车业绩不景气已经持续很长一段时间，作为一个典型的多品牌战略集团，华晨汽车自主品牌的步伐显得
-   * 有些缓慢，产品、品牌和体系的竞争力这些年来没有明显提升，一直没有形成一个强有力的支柱型产品和品牌价值，这也使得华晨汽车自主品牌产品的竞争力日益薄 弱。
-   * 　　对此，华晨汽车也开始对产品战略进行调整，以挽救日渐下滑的趋势。日前，华晨中华公布规划，将主打V系列SUV和H系列轿车，其他产品逐渐退
-   * 出。在自主品牌轿车销量不断下滑、SUV销量份额加大的背景下，这一战略调整被业内人士视为 “断臂自救”的措施。但同时，这一改变是否能够阻止华晨自主整车业务的颓势，业内还没有十分明确的信心。
-   * 　　正如专家所说，华晨未来的发展必须要有一个主要目标，经营好主次业务，必须要有自己过硬的自主产品和品牌价值，在合资业务不断推进的过程中逐步找准自己的节奏。
-   */
+    public void setNewsId(int newsId) {
+        this.newsId = newsId;
+    }
 
-  private int newsId;
-  private String source;
-  private int commentsCount;
-  private String link;
-  private String title;
-  private String author;
-  private String createTime;
-  private int status;
-  private String content;
-  private List<String> coverArr;
-  private String praiseCount;
-  private boolean collected;
+    public String getTitle() {
+        return title;
+    }
 
-  public boolean isCollected() {
-    return collected;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public void setCollected(boolean collected) {
-    this.collected = collected;
-  }
+    public String getSource() {
+        return source;
+    }
 
-  public int getNewsId() {
-    return newsId;
-  }
+    public void setSource(String source) {
+        this.source = source;
+    }
 
-  public void setNewsId(int newsId) {
-    this.newsId = newsId;
-  }
+    public String getLink() {
+        return link;
+    }
 
-  public String getSource() {
-    return source;
-  }
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-  public void setSource(String source) {
-    this.source = source;
-  }
+    public int getAuthorId() {
+        return authorId;
+    }
 
-  public int getCommentsCount() {
-    return commentsCount;
-  }
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
 
-  public void setCommentsCount(int commentsCount) {
-    this.commentsCount = commentsCount;
-  }
+    public int getType() {
+        return type;
+    }
 
-  public String getLink() {
-    return link;
-  }
+    public void setType(int type) {
+        this.type = type;
+    }
 
-  public void setLink(String link) {
-    this.link = link;
-  }
+    public String getPublishTime() {
+        return publishTime;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public void setPublishTime(String publishTime) {
+        this.publishTime = publishTime;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public String getContent() {
+        return content;
+    }
 
-  public String getAuthor() {
-    return author;
-  }
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-  public void setAuthor(String author) {
-    this.author = author;
-  }
+    public int getCommentsCount() {
+        return commentsCount;
+    }
 
-  public String getCreateTime() {
-    return createTime;
-  }
+    public void setCommentsCount(int commentsCount) {
+        this.commentsCount = commentsCount;
+    }
 
-  public void setCreateTime(String createTime) {
-    this.createTime = createTime;
-  }
+    public int getViewCount() {
+        return viewCount;
+    }
 
-  public int getStatus() {
-    return status;
-  }
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
 
-  public void setStatus(int status) {
-    this.status = status;
-  }
+    public boolean isHavenPraise() {
+        return havenPraise;
+    }
 
-  public String getContent() {
-    return content;
-  }
+    public void setHavenPraise(boolean havenPraise) {
+        this.havenPraise = havenPraise;
+    }
 
-  public void setContent(String content) {
-    this.content = content;
-  }
+    public boolean isCollected() {
+        return collected;
+    }
 
-  public List<String> getCoverArr() {
-    return coverArr;
-  }
+    public void setCollected(boolean collected) {
+        this.collected = collected;
+    }
 
-  public void setCoverArr(List<String> coverArr) {
-    this.coverArr = coverArr;
-  }
+    public List<String> getCoverArr() {
+        return coverArr;
+    }
+
+    public void setCoverArr(List<String> coverArr) {
+        this.coverArr = coverArr;
+    }
 }

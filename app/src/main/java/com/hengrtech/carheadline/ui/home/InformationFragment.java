@@ -3,6 +3,9 @@ package com.hengrtech.carheadline.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,10 +22,13 @@ import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
 import com.hengrtech.carheadline.utils.DateHelper;
-import com.hengrtech.carheadline.utils.ImagePagerActivity;
+import com.hengrtech.carheadline.utils.DisplayUtil;
 import com.hengrtech.carheadline.utils.RBaseAdapter;
 import com.hengrtech.carheadline.utils.RViewHolder;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
+import com.jtech.listener.OnLoadListener;
+import com.jtech.view.JRecyclerView;
+import com.jtech.view.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,28 +41,58 @@ import butterknife.ButterKnife;
 /**
  * Created by jiao on 2016/7/19.
  */
-public class InformationFragment extends BasicTitleBarFragment {
+public class InformationFragment extends BasicTitleBarFragment implements RefreshLayout.OnRefreshListener,
+        OnLoadListener {
     public static final String TYPE = "type";
     @Inject
     AppService mInfo;
     @Bind(R.id.zx_listView)
-    RGridView zxListView;
+    JRecyclerView zxListView;
+    @Bind(R.id.refreshlayout)
+    RefreshLayout refreshlayout;
+    private int page = 1;
+    private List<InfoModel> allInfoModels = new ArrayList<>();
+    private ZixunAdapter adapter;
+    private boolean isStopAd = false;
+    private boolean isFirst = true;
+    private List<String> banner = new ArrayList<>();
 
     @Override
     protected void onCreateViewCompleted(View view) {
         ButterKnife.bind(this, view);
         inject();
+        banner.add("1");
+        banner.add("2");
+        initView();
         initdata();
+        refreshlayout.startRefreshing();
+    }
+
+    private void initView() {
+        zxListView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+        zxListView.setLoadMore(true);
+        zxListView.setOnLoadListener(this);
+        refreshlayout.setOnRefreshListener(this);
     }
 
 
     public void initdata() {
-        manageRpcCall(mInfo.getInfoList("1", "1", "10"),
+        manageRpcCall(mInfo.getInfoList("1", page + "", "10"),
                 new UiRpcSubscriber<List<InfoModel>>(getActivity()) {
                     @Override
                     protected void onSuccess(List<InfoModel> infoModels) {
-                        infoModels.add(0, new InfoModel());
-                        zxListView.setAdapter(new ZixunAdapter(getActivity(), infoModels));
+                        refreshlayout.refreshingComplete();
+                        zxListView.setLoadCompleteState();
+                        if (page == 1) {
+                            allInfoModels.clear();
+                            allInfoModels.addAll(infoModels);
+                            allInfoModels.add(0, new InfoModel());
+                            adapter = new ZixunAdapter(getActivity(), allInfoModels);
+                            zxListView.setAdapter(adapter);
+                        } else {
+                            allInfoModels.addAll(infoModels);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
 
                     @Override
@@ -66,6 +102,8 @@ public class InformationFragment extends BasicTitleBarFragment {
                     @Override
                     public void onApiError(RpcApiError apiError) {
                         super.onApiError(apiError);
+                        refreshlayout.refreshingComplete();
+                        zxListView.setLoadCompleteState();
                     }
                 });
     }
@@ -97,10 +135,27 @@ public class InformationFragment extends BasicTitleBarFragment {
         ButterKnife.unbind(this);
     }
 
+    @Override
+    public void loadMore() {
+        page++;
+        initdata();
+    }
+
+    @Override
+    public void onRefresh() {
+        if (!isFirst) {
+            isStopAd = true;
+        }
+        page = 1;
+        initdata();
+        isFirst = false;
+    }
+
 
     public class ZixunAdapter extends RBaseAdapter<InfoModel> {
-        Context context;
+        private Thread adThread;
         private List<InfoModel> data;
+        private int currentItem;
 
         public ZixunAdapter(Context context) {
             super(context);
@@ -110,6 +165,7 @@ public class InformationFragment extends BasicTitleBarFragment {
             super(context, datas);
             data = datas;
         }
+
 
         @Override
         protected int getItemLayoutId(int viewType) {
@@ -149,34 +205,22 @@ public class InformationFragment extends BasicTitleBarFragment {
                         bundle.putString("content", bean.getContent());
                         bundle.putString("title", bean.getTitle());
                         bundle.putInt("comment_count", bean.getCommentsCount());
-                        bundle.putString("view_count", bean.getPraiseCount());
-                        bundle.putString("time", DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
+                        bundle.putInt("view_count", bean.getViewCount());
+                        bundle.putString("time", DateHelper.getInstance().getRencentTime(bean.getPublishTime()));
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
                 });
                 holder.tV(R.id.news_title).setText(bean.getTitle());
-                holder.tV(R.id.time).setText(DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
+                holder.tV(R.id.time).setText(DateHelper.getInstance().getRencentTime(bean.getPublishTime()));
                 holder.tV(R.id.tv_from).setText(bean.getSource());
-                holder.tV(R.id.view_count).setText(String.valueOf(bean.getPraiseCount()));
+                holder.tV(R.id.view_count).setText(String.valueOf(bean.getViewCount()));
                 holder.tV(R.id.comment_count).setText(String.valueOf(bean.getCommentsCount()));
                 if (bean.getCoverArr() != null) {
                     int imagesize = bean.getCoverArr().size();
                     if (imagesize == 1) {
                         ImageLoader.loadOptimizedHttpImage(getActivity(), bean.getCoverArr().get(0))
                                 .into(holder.imgV(R.id.iv_1));
-                        holder.imgV(R.id.iv_1).setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.getCoverArr());
-                                bundle.putInt("image_index", 1);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
-                            }
-                        });
                     } else {
                         if (imagesize == 3) {
                             holder.v(R.id.images).setVisibility(View.VISIBLE);
@@ -208,19 +252,6 @@ public class InformationFragment extends BasicTitleBarFragment {
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
-                                    final int in = i;
-                                    imageView.setOnClickListener(new View.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(getActivity(), ImagePagerActivity.class);
-                                            Bundle bundle = new Bundle();
-                                            bundle.putStringArrayList("image_urls", (ArrayList<String>) bean.getCoverArr());
-                                            bundle.putInt("image_index", in);
-                                            intent.putExtras(bundle);
-                                            startActivity(intent);
-                                        }
-                                    });
                                 }
                             }
                         } else {
@@ -250,12 +281,116 @@ public class InformationFragment extends BasicTitleBarFragment {
                         startActivity(new Intent(getActivity(), SelfMediaActivity.class));
                     }
                 });
+                if (isStopAd) {
+                    holder.v(R.id.lunbo_layout).setVisibility(View.GONE);
+                } else {
+                    holder.v(R.id.lunbo_layout).setVisibility(View.VISIBLE);
+                }
+                final LinearLayout dotContainer = (LinearLayout) holder.view(R.id.dot_container);
+                dotContainer.removeAllViews();
+                //动态添加小圆点
+                for (int i = 0; i < banner.size(); i++) {
+                    View v = new View(getContext());
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                            DisplayUtil.dip2px(getContext(), 5),
+                            DisplayUtil.dip2px(getContext(), 5));
+                    lp.setMargins(DisplayUtil.dip2px(getContext(), 6), 0,
+                            DisplayUtil.dip2px(getContext(), 6), 0);
+                    v.setLayoutParams(lp);
+
+                    if (i == 0) {
+                        v.setBackgroundDrawable(getResources().getDrawable(R.mipmap.dot_focused));
+                    } else {
+                        v.setBackgroundDrawable(getResources().getDrawable(R.mipmap.dot_normal));
+
+                    }
+                    dotContainer.addView(v, i);
+                }
+
+                AdViewPagerAdapter adViewPagerAdapter = new AdViewPagerAdapter(getActivity(), banner);
+                final ViewPager adViewpager = (ViewPager) holder.view(R.id.ad_viewpager);
+                adViewpager.setAdapter(adViewPagerAdapter);
+                if (adThread == null) {
+                    adThread = new Thread() {
+                        public void run() {
+                            while (!isStopAd) {
+                                try {
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            currentItem = (currentItem + 1) % banner.size();
+                                            //设置当前页面
+                                            adViewpager.setCurrentItem(currentItem, true);
+                                            //修改指示点
+                                            int childCount = dotContainer.getChildCount();
+                                            for (int i = 0; i < childCount; i++) {
+                                                View each = dotContainer.getChildAt(i);
+                                                each.setBackgroundDrawable(getResources().getDrawable(R.mipmap.dot_normal));
+                                            }
+                                            if (dotContainer.getChildCount() > 0) {
+                                                View child = dotContainer.getChildAt(currentItem);
+                                                if (child != null) {
+                                                    child.setBackgroundDrawable(getResources().getDrawable(R.mipmap.dot_focused));
+                                                }
+                                            }
+                                        }
+                                    });
+                                    Thread.sleep(1500);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    };
+                    adThread.start();
+                }
             }
         }
+
 
         @Override
         public int getItemCount() {
             return mAllDatas.size();
+        }
+    }
+
+    private class AdViewPagerAdapter extends PagerAdapter {
+        private Context context;
+        private List<String> banners;
+
+        public AdViewPagerAdapter(Context context, List<String> banners) {
+            this.context = context;
+            this.banners = banners;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            ImageView iv = new ImageView(getContext());
+            iv.setAdjustViewBounds(true);
+            iv.setMaxHeight(Integer.MAX_VALUE);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            if (position == 0) {
+                iv.setImageResource(R.mipmap.ad_demo);
+            } else {
+                iv.setImageResource(R.mipmap.ad_demo);
+            }
+            container.addView(iv);
+            return iv;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+
+        @Override
+        public int getCount() {
+            return banners.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
         }
     }
 }

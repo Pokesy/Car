@@ -4,18 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/lunbo"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/lunbo_layout"
+        android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:src="@mipmap/bg" />
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/ad_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@mipmap/ad_demo" />
+
+        <LinearLayout
+            android:id="@+id/dot_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_smallest"
+            android:orientation="horizontal" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:alpha="0.8"
-
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
@@ -39,14 +56,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/today" />
+                android:text="@string/today"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="32dp"
-            android:background="@color/tab_layout_color" />
 
         <LinearLayout
             android:id="@+id/btn_red_bag"
@@ -67,14 +81,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/subject" />
+                android:text="@string/subject"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="32dp"
-            android:background="@color/tab_layout_color" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -93,14 +104,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/hydrology" />
+                android:text="@string/hydrology"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="32dp"
-            android:background="@color/tab_layout_color" />
 
         <LinearLayout
             android:id="@+id/self_media_layout"
@@ -120,8 +128,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/media" />
+                android:text="@string/media"
+                android:textSize="14sp" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.0dp"
+        android:background="@color/color_e4" />
 </LinearLayout>

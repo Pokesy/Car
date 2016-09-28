@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
 import com.hengrtech.carheadline.injection.GlobalModule;
@@ -34,8 +33,13 @@ import com.jtech.listener.OnLoadListener;
 import com.jtech.view.JRecyclerView;
 import com.jtech.view.RecyclerHolder;
 import com.jtech.view.RefreshLayout;
+
 import java.util.List;
+
 import javax.inject.Inject;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by jiao on 2016/8/1.
@@ -211,9 +215,9 @@ public class WorkFragment extends BasicTitleBarFragment
 
     @Override public void convert(RecyclerHolder holder, InfoModel bean, int position) {
       holder.setText(R.id.news_title, bean.getTitle());
-      holder.setText(R.id.time, bean.getCreateTime());
+      holder.setText(R.id.time, bean.getPublishTime());
       holder.setText(R.id.tv_from, "来源：" + bean.getSource());
-      holder.setText(R.id.view_count, String.valueOf(bean.getPraiseCount()));
+      holder.setText(R.id.view_count, String.valueOf(bean.getViewCount()));
       holder.setText(R.id.comment_count, String.valueOf(bean.getCommentsCount()));
       if (bean.getCoverArr() != null) {
         int imagesize = bean.getCoverArr().size();

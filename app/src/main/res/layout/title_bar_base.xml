@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/title_bar_height"
     android:background="@android:color/transparent"
-    android:paddingLeft="@dimen/margin_medium"
-    android:paddingRight="@dimen/margin_medium"
+    android:paddingLeft="@dimen/margin_small"
+    android:paddingRight="@dimen/margin_small"
     >
 
   <Button

@@ -142,17 +142,17 @@ public class MyCollectActivity extends BasicTitleBarActivity implements RefreshL
                     bundle.putString("content", bean.getContent());
                     bundle.putString("title", bean.getTitle());
                     bundle.putInt("comment_count", bean.getCommentsCount());
-                    bundle.putString("view_count", bean.getPraiseCount());
-                    bundle.putString("time", DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
+                    bundle.putInt("view_count", bean.getViewCount());
+                    bundle.putString("time", DateHelper.getInstance().getRencentTime(bean.getPublishTime()));
                     bundle.putBoolean("isCollected", bean.isCollected());
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });
             holder.tV(R.id.news_title).setText(bean.getTitle());
-            holder.tV(R.id.time).setText(DateHelper.getInstance().getRencentTime(bean.getCreateTime()));
+            holder.tV(R.id.time).setText(DateHelper.getInstance().getRencentTime(bean.getPublishTime()));
             holder.tV(R.id.tv_from).setText(bean.getSource());
-            holder.tV(R.id.view_count).setText(String.valueOf(bean.getPraiseCount()));
+            holder.tV(R.id.view_count).setText(String.valueOf(bean.getViewCount()));
             holder.tV(R.id.comment_count).setText(String.valueOf(bean.getCommentsCount()));
             if (bean.getCoverArr() != null) {
                 int imagesize = bean.getCoverArr().size();
