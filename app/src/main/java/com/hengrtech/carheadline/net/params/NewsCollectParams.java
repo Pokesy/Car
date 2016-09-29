@@ -5,12 +5,10 @@ package com.hengrtech.carheadline.net.params;
  */
 
 public class NewsCollectParams {
-    private int userId;
     private int newsId;
     private String token;
 
-    public NewsCollectParams(int userId, int newsId, String token) {
-        this.userId = userId;
+    public NewsCollectParams(int newsId, String token) {
         this.newsId = newsId;
         this.token = token;
     }

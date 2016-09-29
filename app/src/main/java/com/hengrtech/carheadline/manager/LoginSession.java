@@ -85,8 +85,7 @@ public class LoginSession {
     }
 
     public Subscription loadUserInfo() {
-        Subscription getUserInfoSubscription = mAuthService.getUserInfo(mUserInfo.getMemberId
-                (), mUserInfo.getToken()).subscribeOn(Schedulers.newThread())
+        Subscription getUserInfoSubscription = mAuthService.getUserInfo(mUserInfo.getToken()).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new UiRpcSubscriber<UserInfo>
                         (mContext) {
                     @Override

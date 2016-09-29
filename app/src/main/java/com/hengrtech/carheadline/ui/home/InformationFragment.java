@@ -43,6 +43,7 @@ import butterknife.ButterKnife;
  */
 public class InformationFragment extends BasicTitleBarFragment implements RefreshLayout.OnRefreshListener,
         OnLoadListener {
+    private Thread adThread;
     public static final String TYPE = "type";
     @Inject
     AppService mInfo;
@@ -153,7 +154,6 @@ public class InformationFragment extends BasicTitleBarFragment implements Refres
 
 
     public class ZixunAdapter extends RBaseAdapter<InfoModel> {
-        private Thread adThread;
         private List<InfoModel> data;
         private int currentItem;
 
@@ -315,26 +315,27 @@ public class InformationFragment extends BasicTitleBarFragment implements Refres
                         public void run() {
                             while (!isStopAd) {
                                 try {
-                                    getActivity().runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            currentItem = (currentItem + 1) % banner.size();
-                                            //设置当前页面
-                                            adViewpager.setCurrentItem(currentItem, true);
-                                            //修改指示点
-                                            int childCount = dotContainer.getChildCount();
-                                            for (int i = 0; i < childCount; i++) {
-                                                View each = dotContainer.getChildAt(i);
-                                                each.setBackgroundDrawable(getResources().getDrawable(R.mipmap.dot_normal));
-                                            }
-                                            if (dotContainer.getChildCount() > 0) {
-                                                View child = dotContainer.getChildAt(currentItem);
-                                                if (child != null) {
-                                                    child.setBackgroundDrawable(getResources().getDrawable(R.mipmap.dot_focused));
+                                    if (getActivity() != null)
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                currentItem = (currentItem + 1) % banner.size();
+                                                //设置当前页面
+                                                adViewpager.setCurrentItem(currentItem, true);
+                                                //修改指示点
+                                                int childCount = dotContainer.getChildCount();
+                                                for (int i = 0; i < childCount; i++) {
+                                                    View each = dotContainer.getChildAt(i);
+                                                    each.setBackgroundDrawable(getResources().getDrawable(R.mipmap.dot_normal));
+                                                }
+                                                if (dotContainer.getChildCount() > 0) {
+                                                    View child = dotContainer.getChildAt(currentItem);
+                                                    if (child != null) {
+                                                        child.setBackgroundDrawable(getResources().getDrawable(R.mipmap.dot_focused));
+                                                    }
                                                 }
                                             }
-                                        }
-                                    });
+                                        });
                                     Thread.sleep(1500);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
@@ -392,5 +393,13 @@ public class InformationFragment extends BasicTitleBarFragment implements Refres
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        isStopAd = true;
+        if (adThread != null)
+            adThread.interrupt();
     }
 }

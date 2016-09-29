@@ -17,15 +17,18 @@ import com.hengrtech.carheadline.net.model.CarModel;
 import com.hengrtech.carheadline.net.model.CarSerialModel;
 import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
-import com.hengrtech.carheadline.net.model.NewsDetailModel;
+import com.hengrtech.carheadline.net.model.NewsDetailMoreModel;
 import com.hengrtech.carheadline.net.model.QuestionModel;
 import com.hengrtech.carheadline.net.model.ResponseModel;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.net.params.MyLoveCarParams;
 import com.hengrtech.carheadline.net.params.NewsCollectParams;
+import com.hengrtech.carheadline.net.params.NewsCommentParams;
 import com.hengrtech.carheadline.net.params.QuestionParams;
 import com.hengrtech.carheadline.net.params.SendCommentCarParams;
+
 import java.util.List;
+
 import okhttp3.MultipartBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -33,6 +36,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -47,76 +51,93 @@ import rx.Observable;
  */
 public interface AppService {
 
-  @Multipart @POST("file/upload") Observable<Response<ResponseModel<String>>> upload(
-      @Part MultipartBody.Part file);
+    @Multipart
+    @POST("file/upload")
+    Observable<Response<ResponseModel<String>>> upload(
+            @Part MultipartBody.Part file);
 
-  @GET("newslist/{newslist}/{pageNum}/{pageSize}")
-  Observable<Response<ResponseModel<List<InfoModel>>>> getInfoList(
-      @Path("newslist") String newslist, @Path("pageNum") String pageNum,
-      @Path("pageSize") String pageSize);
+    @GET("newslist/{newslist}/{pageNum}/{pageSize}")
+    Observable<Response<ResponseModel<List<InfoModel>>>> getInfoList(
+            @Path("newslist") String newslist, @Path("pageNum") String pageNum,
+            @Path("pageSize") String pageSize);
 
-  @GET("news/{newsId}/{userId}") Observable<Response<ResponseModel<NewsDetailModel>>> getNewDetail(
-      @Path("newsId") int newsId, @Path("userId") String userId);
+    @GET("news/comments/{newsId}/{pageNum}/{pageSize}")
+    Observable<Response<ResponseModel<List<NewsDetailCommentsModel>>>> getNewComments(
+            @Path("newsId") int newsId, @Path("pageNum") String pageNum,
+            @Path("pageSize") String pageSize);
 
-  @GET("news/comments/{newsId}/{pageNum}/{pageSize}")
-  Observable<Response<ResponseModel<List<NewsDetailCommentsModel>>>> getNewComments(
-      @Path("newsId") int newsId, @Path("pageNum") String pageNum,
-      @Path("pageSize") String pageSize);
+    @GET("news/comments/{commentsId}")
+    Observable<Response<ResponseModel<List<NewsDetailCommentsModel>>>> getNewDetailComments(
+            @Path("commentsId") int newsId);
 
-  @GET("news/comments/{commentsId}")
-  Observable<Response<ResponseModel<List<NewsDetailCommentsModel>>>> getNewDetailComments(
-      @Path("commentsId") int newsId);
+    @GET("car/masterlist")
+    Observable<Response<ResponseModel<CarModel>>> getCarMasterList();
 
-  @DELETE("news/comments/{commentsId}/{userId}/{token}")
-  Observable<Response<ResponseModel<NewsDetailModel>>> getDelcomment(
-      @Path("commentsId") int commentsId, @Path("userId") int userId, @Path("token") int token);
+    @GET("car/seriallist/{masterId}")
+    Observable<Response<ResponseModel<List<CarSerialModel>>>> getCarSerialList(
+            @Path("masterId") int masterId);
 
-  @GET("car/masterlist") Observable<Response<ResponseModel<CarModel>>> getCarMasterList();
+    @GET("sms/send/{mobileNo}")
+    Observable<Response<BaseModel>> getRegisterVerifyCode(
+            @Path("mobileNo") String mobileNo);
 
-  @GET("car/seriallist/{masterId}")
-  Observable<Response<ResponseModel<List<CarSerialModel>>>> getCarSerialList(
-      @Path("masterId") int masterId);
+    @GET("question/page/{page}")
+    Observable<Response<ResponseModel<List<QuestionModel>>>> getAllQuestion(
+            @Path("page") String page);
 
-  @GET("sms/send/{mobileNo}") Observable<Response<BaseModel>> getRegisterVerifyCode(
-      @Path("mobileNo") String mobileNo);
+    @GET("question/unsolved/page/{page}")
+    Observable<Response<ResponseModel<List<QuestionModel>>>> getUnQuestionList(
+            @Path("page") String page);
 
-  @GET("question/page/{page}")
-  Observable<Response<ResponseModel<List<QuestionModel>>>> getAllQuestion(
-      @Path("page") String page);
+    @GET("question/page/{page}/{token}")
+    Observable<Response<ResponseModel<List<QuestionModel>>>> getMyQuestionfoList(
+            @Path("page") String page, @Path("token") String token);
 
-  @GET("question/unsolved/page/{page}")
-  Observable<Response<ResponseModel<List<QuestionModel>>>> getUnQuestionList(
-      @Path("page") String page);
+    @GET("sms/verify/{mobileNo}/{code}")
+    Observable<Response<ResponseModel<String>>> verifyCode(
+            @Path("mobileNo") String mobileNo, @Path("code") String code);
 
-  @GET("question/page/{page}/{token}")
-  Observable<Response<ResponseModel<List<QuestionModel>>>> getMyQuestionfoList(
-      @Path("page") String page, @Path("token") String token);
+    @GET("question/{questionId}/answers")
+    Observable<Response<ResponseModel<List<AreaQuestionDetailCommentsModel>>>> getAreaComments(
+            @Path("questionId") int questionId);
 
-  @GET("sms/verify/{mobileNo}/{code}") Observable<Response<ResponseModel<String>>> verifyCode(
-      @Path("mobileNo") String mobileNo, @Path("code") String code);
+    @POST("question/{token}")
+    Observable<Response<ResponseModel<UserInfo>>> sendQuestion(
+            @Path("token") String token, @Body QuestionParams params);
 
-  @GET("question/{questionId}/answers")
-  Observable<Response<ResponseModel<List<AreaQuestionDetailCommentsModel>>>> getAreaComments(
-      @Path("questionId") int questionId);
+    @POST("member/mycar/{userId}/{token}")
+    Observable<Response<ResponseModel<String>>> addMyLoveCar(
+            @Path("userId") String userId, @Path("token") String token, @Body MyLoveCarParams params);
 
-  @POST("question/{token}") Observable<Response<ResponseModel<UserInfo>>> sendQuestion(
-      @Path("token") String token, @Body QuestionParams params);
+    @POST("question/answer/{token}")
+    Observable<Response<ResponseModel<String>>> sendComments(
+            @Path("token") String token, @Body SendCommentCarParams params);
 
-  @POST("member/mycar/{userId}/{token}") Observable<Response<ResponseModel<String>>> addMyLoveCar(
-      @Path("userId") String userId, @Path("token") String token, @Body MyLoveCarParams params);
+    @DELETE("member/mycar/{userId}/{token}")
+    Observable<Response<ResponseModel<String>>> deleteMyLoveCar(@Path("userId") String userId,
+                                                                @Path("token") String token, @Query("serialIds") String serialIds);
 
-  @POST("question/answer/{token}") Observable<Response<ResponseModel<String>>> sendComments(
-    @Path("token") String token, @Body SendCommentCarParams params);
+    @PUT("news/collect/{newsId}/{token}")
+    Observable<Response<ResponseModel<String>>> collectNews(@Path("newsId") int newsId, @Path("token") String token,
+                                                            @Body NewsCollectParams params);
 
-  @DELETE("member/mycar/{userId}/{token}")
-  Observable<Response<ResponseModel<String>>> deleteMyLoveCar(@Path("userId") String userId,
-      @Path("token") String token, @Query("serialIds") String serialIds);
+    @GET("member/mycollections/{userId}/{token}")
+    Observable<Response<ResponseModel<List<InfoModel>>>> getCollectList(
+            @Path("userId") int userId, @Path("token") String token);
 
-  @POST ("news/collect/{userId}/{newsId}/{token}")
-  Observable<Response<ResponseModel<String>>> collectNews(@Path("userId") int userId,@Path("newsId") int newsId,@Path("token") String token,
-          @Body NewsCollectParams params);
+    @GET("news/{newsId}/{userId}")
+    Observable<Response<ResponseModel<NewsDetailMoreModel>>> getNewsMoreRecommendList(
+            @Path("newsId") int newsId, @Path("userId") String userId);
 
-  @GET("member/mycollections/{userId}/{token}")
-  Observable<Response<ResponseModel<List<InfoModel>>>> getCollectList(
-          @Path("userId") int userId, @Path("token") String token);
+    @POST("news/comments/{token}")
+    Observable<Response<ResponseModel<String>>> commentNews(@Path("token") String token,
+                                                            @Body NewsCommentParams params);
+
+    @PUT("news/praise/{newsId}/{token}")
+    Observable<Response<ResponseModel<String>>> newsZan(@Path("newsId") int newsId, @Path("token") String token);
+    @PUT("news/comments/praise/{commentsId}/{userId}")
+    Observable<Response<ResponseModel<String>>> commentZan(@Path("commentsId") int commentsId, @Path("userId") int userId);
+
+    @DELETE("news/comments/{commentsId}/{userId}/{token}")
+    Observable<Response<ResponseModel<String>>> delComment(@Path("commentsId") int commentsId, @Path("userId") int userId, @Path("token") String token);
 }

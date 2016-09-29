@@ -154,7 +154,6 @@ public class BasicActivity extends BaseFragmentActivity implements RpcCallManage
      */
     protected void showInputWindow(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-
         if (null != imm && null != view) {
             imm.showSoftInput(view, 0);
         }

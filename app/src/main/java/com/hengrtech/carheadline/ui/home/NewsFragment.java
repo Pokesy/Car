@@ -23,6 +23,7 @@ import com.hengrtech.carheadline.ui.basic.BasicTitleBarFragment;
 import com.hengrtech.carheadline.ui.home.adapter.SimpleLoadFooterAdapter;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
+import com.hengrtech.carheadline.utils.DateHelper;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
 import com.jtech.adapter.RecyclerAdapter;
 import com.jtech.listener.OnItemClickListener;
@@ -216,8 +217,8 @@ public class NewsFragment extends BasicTitleBarFragment
 
     @Override public void convert(RecyclerHolder holder, InfoModel bean, int position) {
       holder.setText(R.id.news_title, bean.getTitle());
-      holder.setText(R.id.time, bean.getPublishTime());
-      holder.setText(R.id.tv_from, "来源：" + bean.getSource());
+      holder.setText(R.id.time, DateHelper.getInstance().getRencentTime(bean.getPublishTime()));
+      holder.setText(R.id.tv_from, bean.getSource());
       holder.setText(R.id.view_count, String.valueOf(bean.getViewCount()));
       holder.setText(R.id.comment_count, String.valueOf(bean.getCommentsCount()));
       if (bean.getCoverArr() != null) {

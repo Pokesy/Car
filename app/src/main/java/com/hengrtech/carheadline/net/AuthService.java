@@ -72,8 +72,8 @@ public interface AuthService {
             @Body LoginParams params);
 
 
-    @GET("member/{userId}/{token}")
-    Observable<Response<ResponseModel<UserInfo>>> getUserInfo(@Path("userId") int userId, @Path("token") String token);
+    @GET("member/{token}")
+    Observable<Response<ResponseModel<UserInfo>>> getUserInfo(@Path("token") String token);
 
     @POST("thirdlogin.do")
     Observable<Response<ResponseModel<UserInfo>>> thirdLogin(

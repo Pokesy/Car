@@ -54,6 +54,13 @@ public class DateHelper {
 
     }
 
+    public String getNowDate(){
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(currentTime);
+        return dateString;
+    }
+
     public String getDataString_1(Date date) {
         if (date == null) {
             date = new Date();
