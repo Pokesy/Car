@@ -20,6 +20,7 @@ import java.util.List;
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int TYPE_ITEM = 0;  //普通Item View
     private int TYPE_FOOTER = 1;  //底部FootView
+    private int TYPE_HEADER = 2;
     //上拉加载更多
     public static final int PULLUP_LOAD_MORE = 0;
     //正在加载中
@@ -35,6 +36,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     private int size;
     private String loadMoreString = "上拉加载更多";
     private OnLoadMoreListener onLoadMoreListener;
+    private boolean isHeader = true;
 
     public BaseRecyclerAdapter(Context context, List<T> list) {
         mData = (list != null) ? list : new ArrayList<T>();
@@ -51,13 +53,16 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         loadMoreString = lms;
     }
 
+    public void setHeaderItem(boolean isHeader) {
+        this.isHeader = isHeader;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
             final RecyclerViewHolder holder = new RecyclerViewHolder(mContext, mInflater.inflate
                     (getItemLayoutId(viewType), parent, false));
             if (mClickListener != null) {
-
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -83,6 +88,30 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
             //这边可以做一些属性设置，甚至事件监听绑定
             FootViewHolder footViewHolder = new FootViewHolder(foot_view);
             return footViewHolder;
+        }else if(viewType == TYPE_HEADER){
+            final RecyclerViewHolder holder = new RecyclerViewHolder(mContext, mInflater.inflate
+                    (getItemLayoutId(viewType), parent, false));
+            if (mClickListener != null) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mClickListener.onItemClick(holder.itemView, holder.getLayoutPosition());
+                    }
+                });
+            }
+
+            if (mLongClickListener != null) {
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        mLongClickListener.onItemLongClick(holder.itemView, holder
+                                .getLayoutPosition());
+
+                        return true;
+                    }
+                });
+            }
+            return holder;
         }
         return null;
     }
@@ -137,7 +166,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         void loadMore();
     }
 
-    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener){
+    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
         this.onLoadMoreListener = onLoadMoreListener;
     }
 
@@ -168,9 +197,23 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
             if (position + 1 == getItemCount()) {
                 return TYPE_FOOTER;
             } else {
+                if (isHeader) {
+                    if (position == 0) {
+                        return TYPE_HEADER;
+                    } else {
+                        return TYPE_ITEM;
+                    }
+                }
                 return TYPE_ITEM;
             }
         } else {
+            if (isHeader) {
+                if (position == 0) {
+                    return TYPE_HEADER;
+                } else {
+                    return TYPE_ITEM;
+                }
+            }
             return TYPE_ITEM;
         }
     }

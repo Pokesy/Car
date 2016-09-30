@@ -15,12 +15,14 @@ import com.hengrtech.carheadline.net.model.AreaQuestionDetailCommentsModel;
 import com.hengrtech.carheadline.net.model.BaseModel;
 import com.hengrtech.carheadline.net.model.CarModel;
 import com.hengrtech.carheadline.net.model.CarSerialModel;
+import com.hengrtech.carheadline.net.model.CommentsCommentInfoModel;
 import com.hengrtech.carheadline.net.model.InfoModel;
 import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
 import com.hengrtech.carheadline.net.model.NewsDetailMoreModel;
 import com.hengrtech.carheadline.net.model.QuestionModel;
 import com.hengrtech.carheadline.net.model.ResponseModel;
 import com.hengrtech.carheadline.net.model.UserInfo;
+import com.hengrtech.carheadline.net.params.CommentsCommentParams;
 import com.hengrtech.carheadline.net.params.MyLoveCarParams;
 import com.hengrtech.carheadline.net.params.NewsCollectParams;
 import com.hengrtech.carheadline.net.params.NewsCommentParams;
@@ -135,9 +137,18 @@ public interface AppService {
 
     @PUT("news/praise/{newsId}/{token}")
     Observable<Response<ResponseModel<String>>> newsZan(@Path("newsId") int newsId, @Path("token") String token);
+
     @PUT("news/comments/praise/{commentsId}/{userId}")
     Observable<Response<ResponseModel<String>>> commentZan(@Path("commentsId") int commentsId, @Path("userId") int userId);
 
     @DELETE("news/comments/{commentsId}/{userId}/{token}")
     Observable<Response<ResponseModel<String>>> delComment(@Path("commentsId") int commentsId, @Path("userId") int userId, @Path("token") String token);
+
+    @GET("news/comments/comments/{commentsId}")
+    Observable<Response<ResponseModel<List<CommentsCommentInfoModel>>>> getCommentsCommentList(
+            @Path("commentsId") int commentsId);
+
+    @POST("news/comments/{token}")
+    Observable<Response<ResponseModel<String>>> commentComments(@Path("token") String token,
+                                                            @Body CommentsCommentParams params);
 }

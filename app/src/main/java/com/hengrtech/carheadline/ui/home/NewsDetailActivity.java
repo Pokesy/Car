@@ -269,21 +269,33 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
                     } else {
                         mHolder.getImageView(R.id.item_zan_iv).setBackgroundResource(R.mipmap.news_zan_icon);
                     }
+                    mHolder.getItemView().setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(NewsDetailActivity.this,NewsCommentDetailsActivity.class);
+                            intent.putExtra("portrait",replyInfo.getMember().getPortrait());
+                            intent.putExtra("commentsId",replyInfo.getCommentsId());
+                            intent.putExtra("nickName",replyInfo.getMember().getNickName());
+                            intent.putExtra("time",replyInfo.getCommentsTime());
+                            intent.putExtra("zan_count",replyInfo.getPraiseCount());
+                            intent.putExtra("content",replyInfo.getContent());
+                            intent.putExtra("isComment",false);
+                            startActivity(intent);
+                        }
+                    });
                     //回复评论按钮
                     mHolder.getTextView(R.id.reply).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            startActivity(new Intent(NewsDetailActivity.this,NewsCommentDetailsActivity.class));
-                        }
-                    });
-                    mHolder.getTextView(R.id.del_reply).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (getComponent().isLogin()) {
-                                // TODO: 2016/8/25 删除评论接口
-                            } else {
-                                ToastHelper.showToast("请登录后操作", mContext);
-                            }
+                            Intent intent = new Intent(NewsDetailActivity.this,NewsCommentDetailsActivity.class);
+                            intent.putExtra("portrait",replyInfo.getMember().getPortrait());
+                            intent.putExtra("commentsId",replyInfo.getCommentsId());
+                            intent.putExtra("nickName",replyInfo.getMember().getNickName());
+                            intent.putExtra("time",replyInfo.getCommentsTime());
+                            intent.putExtra("zan_count",replyInfo.getPraiseCount());
+                            intent.putExtra("content",replyInfo.getContent());
+                            intent.putExtra("isComment",true);
+                            startActivity(intent);
                         }
                     });
                     mHolder.getView(R.id.item_zan_layout).setOnClickListener(new View.OnClickListener() {
@@ -355,7 +367,6 @@ public class NewsDetailActivity extends BasicTitleBarActivity implements View.On
     }
 
     public void intView() {
-
         newsReply.setOnClickListener(this);
         sendButn.setOnClickListener(this);
         supportCount.setOnClickListener(this);

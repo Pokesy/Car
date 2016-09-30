@@ -3,36 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
     android:paddingTop="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
 
         <ImageView
             android:id="@+id/replyer_head"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
-        <TextView
-            android:id="@+id/reply_avatar"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:textColor="@color/font_color_dark_gray" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/reply_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/font_color_dark_gray" />
+
+            <TextView
+                android:id="@+id/reply_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/font_color_dark_gray"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="38dp"
+        android:layout_marginLeft="63dp"
+        android:paddingRight="15dp"
         android:orientation="vertical">
 
         <TextView
@@ -48,17 +63,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/reply_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ssssss"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/font_color_dark_gray"
-                android:textSize="14sp" />
-
 
             <LinearLayout
                 android:id="@+id/item_zan_layout"
@@ -92,7 +96,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="20dp"
         android:layout_marginTop="6dp"
-        android:background="#f2f2f2" />
+        android:background="#c9c9c9" />
 </LinearLayout>

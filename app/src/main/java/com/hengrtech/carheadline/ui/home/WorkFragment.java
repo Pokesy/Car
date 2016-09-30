@@ -2,15 +2,14 @@ package com.hengrtech.carheadline.ui.home;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.hengrtech.carheadline.CustomApp;
 import com.hengrtech.carheadline.R;
@@ -27,14 +26,12 @@ import com.hengrtech.carheadline.utils.DateHelper;
 import com.hengrtech.carheadline.utils.imageloader.ImageLoader;
 import com.jtech.adapter.RecyclerAdapter;
 import com.jtech.listener.OnItemClickListener;
-import com.jtech.listener.OnItemLongClickListener;
-import com.jtech.listener.OnItemViewMoveListener;
-import com.jtech.listener.OnItemViewSwipeListener;
 import com.jtech.listener.OnLoadListener;
 import com.jtech.view.JRecyclerView;
 import com.jtech.view.RecyclerHolder;
 import com.jtech.view.RefreshLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,8 +43,8 @@ import butterknife.ButterKnife;
  * Created by jiao on 2016/8/1.
  */
 public class WorkFragment extends BasicTitleBarFragment
-        implements OnItemClickListener, OnItemLongClickListener, RefreshLayout.OnRefreshListener,
-        OnLoadListener, OnItemViewSwipeListener, OnItemViewMoveListener {
+        implements OnItemClickListener, RefreshLayout.OnRefreshListener,
+        OnLoadListener {
     public static final String TYPE = "type";
     @Bind(R.id.jrecyclerview)
     JRecyclerView mRecyclerView;
@@ -57,6 +54,8 @@ public class WorkFragment extends BasicTitleBarFragment
     AppService mInfo;
     private ZixunAdapter adapter;
     private SimpleLoadFooterAdapter adapter1;
+    private List<InfoModel> allList = new ArrayList<>();
+    private int page = 1;
 
     @Override
     protected void onCreateViewCompleted(View view) {
@@ -67,7 +66,6 @@ public class WorkFragment extends BasicTitleBarFragment
     }
 
     public void init() {
-
         //设置layoutmanager
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
@@ -91,24 +89,35 @@ public class WorkFragment extends BasicTitleBarFragment
     }
 
     public void initdata() {
-        manageRpcCall(mInfo.getInfoList("1", "1", "100"),
+        manageRpcCall(mInfo.getInfoList("1", page + "", "10"),
                 new UiRpcSubscriber<List<InfoModel>>(getActivity()) {
                     @Override
                     protected void onSuccess(List<InfoModel> infoModels) {
-                        adapter.setDatas(infoModels);
-                        //标记为请求完成
-                        adapter.notifyDataSetChanged();
+                        refreshlayout.refreshingComplete();
+                        mRecyclerView.setLoadCompleteState();
+                        if (page == 1) {
+                            allList.clear();
+                            allList.addAll(infoModels);
+                            adapter.setDatas(allList);
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            allList.addAll(infoModels);
+                            adapter.setDatas(allList);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    protected void onEnd() {
                         refreshlayout.refreshingComplete();
                         mRecyclerView.setLoadCompleteState();
                     }
 
                     @Override
-                    protected void onEnd() {
-                    }
-
-                    @Override
                     public void onApiError(RpcApiError apiError) {
                         super.onApiError(apiError);
+                        refreshlayout.refreshingComplete();
+                        mRecyclerView.setLoadCompleteState();
                     }
                 });
     }
@@ -145,34 +154,17 @@ public class WorkFragment extends BasicTitleBarFragment
      */
     @Override
     public void onItemClick(RecyclerHolder holder, View view, int position) {
-        Toast.makeText(getActivity(), "第" + position + "行点击事件", Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * item长点击事件
-     */
-    @Override
-    public boolean onItemLongClick(RecyclerHolder holder, View view, int position) {
-        Toast.makeText(getActivity(), "第" + position + "行长点击事件", Toast.LENGTH_SHORT).show();
-        return false;//因为这里return false 所以长点击拖动才有效，演示功能用，所以会触发两次震动
-    }
-
-    /**
-     * item长点击拖动换位事件
-     */
-    @Override
-    public boolean onItemViewMove(RecyclerView recyclerView,
-                                  RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        //adapter.moveData(viewHolder.getAdapterPosition(), target.getAdapterPosition());
-        return false;
-    }
-
-    /**
-     * item滑动删除事件
-     */
-    @Override
-    public void onItemViewSwipe(RecyclerView.ViewHolder viewHolder, int direction) {
-        //adapter.removeData(viewHolder.getAdapterPosition());
+        InfoModel bean = allList.get(position);
+        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("newId", bean.getNewsId());
+        bundle.putString("content", bean.getContent());
+        bundle.putString("title", bean.getTitle());
+        bundle.putInt("comment_count", bean.getCommentsCount());
+        bundle.putInt("view_count", bean.getViewCount());
+        bundle.putString("time", DateHelper.getInstance().getRencentTime(bean.getPublishTime()));
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     /**
@@ -180,6 +172,7 @@ public class WorkFragment extends BasicTitleBarFragment
      */
     @Override
     public void loadMore() {
+        page++;
         initdata();
     }
 
@@ -188,6 +181,7 @@ public class WorkFragment extends BasicTitleBarFragment
      */
     @Override
     public void onRefresh() {
+        page = 1;
         initdata();
     }
 
