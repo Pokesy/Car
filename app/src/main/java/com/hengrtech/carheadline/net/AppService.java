@@ -21,6 +21,7 @@ import com.hengrtech.carheadline.net.model.NewsDetailCommentsModel;
 import com.hengrtech.carheadline.net.model.NewsDetailMoreModel;
 import com.hengrtech.carheadline.net.model.QuestionModel;
 import com.hengrtech.carheadline.net.model.ResponseModel;
+import com.hengrtech.carheadline.net.model.TucaoInfoModel;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.net.params.CommentsCommentParams;
 import com.hengrtech.carheadline.net.params.MyLoveCarParams;
@@ -28,6 +29,7 @@ import com.hengrtech.carheadline.net.params.NewsCollectParams;
 import com.hengrtech.carheadline.net.params.NewsCommentParams;
 import com.hengrtech.carheadline.net.params.QuestionParams;
 import com.hengrtech.carheadline.net.params.SendCommentCarParams;
+import com.hengrtech.carheadline.net.params.TucaoParams;
 
 import java.util.List;
 
@@ -107,6 +109,10 @@ public interface AppService {
     Observable<Response<ResponseModel<UserInfo>>> sendQuestion(
             @Path("token") String token, @Body QuestionParams params);
 
+    @POST("complaint/{token}")
+    Observable<Response<ResponseModel<UserInfo>>> sendTucao(
+            @Path("token") String token, @Body TucaoParams params);
+
     @POST("member/mycar/{userId}/{token}")
     Observable<Response<ResponseModel<String>>> addMyLoveCar(
             @Path("userId") String userId, @Path("token") String token, @Body MyLoveCarParams params);
@@ -150,5 +156,9 @@ public interface AppService {
 
     @POST("news/comments/{token}")
     Observable<Response<ResponseModel<String>>> commentComments(@Path("token") String token,
-                                                            @Body CommentsCommentParams params);
+                                                                @Body CommentsCommentParams params);
+
+    @GET("complaint/page/{page}")
+    Observable<Response<ResponseModel<List<TucaoInfoModel>>>> getTucaolist(
+            @Path("page") String page);
 }

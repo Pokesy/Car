@@ -36,7 +36,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     private int size;
     private String loadMoreString = "上拉加载更多";
     private OnLoadMoreListener onLoadMoreListener;
-    private boolean isHeader = true;
+    private boolean isHeader = false;
 
     public BaseRecyclerAdapter(Context context, List<T> list) {
         mData = (list != null) ? list : new ArrayList<T>();
@@ -149,7 +149,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     @Override
     public int getItemCount() {
         size = mData.size();
-        return size;
+        if(isLoadMore) {
+            return size + 1;
+        }else{
+            return size;
+        }
     }
 
     public void add(int pos, T item) {

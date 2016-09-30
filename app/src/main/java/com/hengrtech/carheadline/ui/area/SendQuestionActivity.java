@@ -27,6 +27,7 @@ import com.hengrtech.carheadline.net.UiRpcSubscriber;
 import com.hengrtech.carheadline.net.constant.NetConstant;
 import com.hengrtech.carheadline.net.model.UserInfo;
 import com.hengrtech.carheadline.net.params.QuestionParams;
+import com.hengrtech.carheadline.net.params.TucaoParams;
 import com.hengrtech.carheadline.ui.basic.BasicTitleBarActivity;
 import com.hengrtech.carheadline.ui.serviceinjection.DaggerServiceComponent;
 import com.hengrtech.carheadline.ui.serviceinjection.ServiceModule;
@@ -269,29 +270,55 @@ public class SendQuestionActivity extends BasicTitleBarActivity implements EasyP
 
 
     public void sendQuestion() {
-        manageRpcCall(mInfo.sendQuestion(getComponent().loginSession().getUserInfo().getToken(),
-                new QuestionParams(
-                        getComponent().loginSession().getUserInfo().getMemberId(),
-                        mWeiboEdit.getText().toString(), getAttachIds(attachIds), reward_count + "")),
-                new UiRpcSubscriber<UserInfo>(this) {
+        if (flag == 1) {
+            manageRpcCall(mInfo.sendQuestion(getComponent().loginSession().getUserInfo().getToken(),
+                    new QuestionParams(
+                            getComponent().loginSession().getUserInfo().getMemberId(),
+                            mWeiboEdit.getText().toString(), getAttachIds(attachIds), reward_count + "")),
+                    new UiRpcSubscriber<UserInfo>(this) {
 
-                    @Override
-                    protected void onSuccess(UserInfo info) {
-                        progressDialog.dismiss();
-                        showShortToast("发布成功");
-                        finish();
-                    }
+                        @Override
+                        protected void onSuccess(UserInfo info) {
+                            progressDialog.dismiss();
+                            showShortToast("发布成功");
+                            finish();
+                        }
 
-                    @Override
-                    protected void onEnd() {
-                        closeProgressDialog();
-                    }
+                        @Override
+                        protected void onEnd() {
+                            closeProgressDialog();
+                        }
 
-                    @Override
-                    public void onApiError(RpcApiError apiError) {
-                        super.onApiError(apiError);
-                    }
-                });
+                        @Override
+                        public void onApiError(RpcApiError apiError) {
+                            super.onApiError(apiError);
+                        }
+                    });
+        } else {
+            manageRpcCall(mInfo.sendTucao(getComponent().loginSession().getUserInfo().getToken(),
+                    new TucaoParams(
+                            getComponent().loginSession().getUserInfo().getMemberId(),
+                            mWeiboEdit.getText().toString(), getAttachIds(attachIds))),
+                    new UiRpcSubscriber<UserInfo>(this) {
+
+                        @Override
+                        protected void onSuccess(UserInfo info) {
+                            progressDialog.dismiss();
+                            showShortToast("发布成功");
+                            finish();
+                        }
+
+                        @Override
+                        protected void onEnd() {
+                            closeProgressDialog();
+                        }
+
+                        @Override
+                        public void onApiError(RpcApiError apiError) {
+                            super.onApiError(apiError);
+                        }
+                    });
+        }
     }
 
     private void inject() {
@@ -322,9 +349,9 @@ public class SendQuestionActivity extends BasicTitleBarActivity implements EasyP
         } else if (requestCode == REQUEST_CODE_PHOTO_PREVIEW) {
             mPhotosSnpl.setData(BGAPhotoPickerPreviewActivity.getSelectedImages(data));
         }
-        if(mPhotosSnpl.getData().size()>0){
+        if (mPhotosSnpl.getData().size() > 0) {
             mPhotosSnpl.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mPhotosSnpl.setVisibility(View.GONE);
         }
     }
@@ -340,7 +367,7 @@ public class SendQuestionActivity extends BasicTitleBarActivity implements EasyP
             AjaxParams params = new AjaxParams();
             try {
                 Log.e("原路径", scrollImg.get(i));
-                String path = BitmapUtiles.getOnlyUploadImgPath(scrollImg.get(i));
+                String path = BitmapUtiles.getUploadImgPath(scrollImg.get(i));
                 Log.e("压缩后路径", path);
                 // Toast.makeText(UploadActivity.this, "压缩后路径" + path, Toast.LENGTH_LONG).show();
                 File file = new File(path);

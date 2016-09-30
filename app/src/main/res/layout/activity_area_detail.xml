@@ -3,255 +3,235 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/font_color_white"
-    android:orientation="vertical"
-    >
-
-
-  <!--Body-->
-  <com.hengrtech.carheadline.ui.home.MyScrollView
-      android:id="@+id/news_scroll"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_above="@+id/reply_bottom_layout"
-      android:padding="10dp"
-      >
-
-    <LinearLayout
+    android:orientation="vertical">
+    <!--Body-->
+    <com.hengrtech.carheadline.ui.home.MyScrollView
+        android:id="@+id/news_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp"
-        >
+        android:layout_height="match_parent"
+        android:layout_above="@+id/reply_bottom_layout"
+        android:padding="10dp">
 
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          >
-        <ImageView
-            android:id="@+id/head"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher"
-            />
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/head"
-            android:layout_toRightOf="@+id/head"
-            android:gravity="center"
             android:orientation="vertical"
-            >
+            android:padding="5dp">
 
-          <TextView
-              android:id="@+id/nick_name"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="￥28"
-              />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/head"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/ic_launcher" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/head"
+                    android:layout_toRightOf="@+id/head"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nick_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="￥28" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:text="详情" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/zan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="ssssssssss" />
+
+                <TextView
+                    android:id="@+id/buzan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="ssssssss" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#f2f2f2"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="评论"
+                    android:textColor="@color/font_color_black"
+                    android:textSize="17sp" />
+
+                <include layout="@layout/halving_line" />
+            </LinearLayout>
+
+            <com.hengrtech.carheadline.ui.home.RGridView
+                android:id="@+id/jrecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:tag="1" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="详情"
-            />
-      </RelativeLayout>
-      <TextView
-          android:id="@+id/content"
-          android:layout_marginTop="10dp"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-          />
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="15dp"
-          android:orientation="horizontal"
-          >
-        <TextView
-            android:layout_width="0dp"
-            android:id="@+id/zan"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:text="ssssssssss"
-            />
-        <TextView
-            android:id="@+id/buzan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:text="ssssssss"
-            />
-      </LinearLayout>
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="#f2f2f2"
-          android:orientation="vertical"
-          android:paddingBottom="5dp"
-          android:paddingTop="5dp"
-          android:layout_marginTop="10dp"
-          >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text="评论"
-            android:textColor="@color/font_color_black"
-            android:textSize="17sp"
-            />
-
-        <include layout="@layout/halving_line"/>
-      </LinearLayout>
-
-      <com.hengrtech.carheadline.ui.home.RGridView
-          android:id="@+id/jrecyclerview"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginTop="10dp"
-          android:tag="1"
-          />
-    </LinearLayout>
-  </com.hengrtech.carheadline.ui.home.MyScrollView>
-
-  <LinearLayout
-      android:id="@+id/reply_bottom_layout"
-      android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentRight="true"
-      android:background="#f2f2f2"
-      android:gravity="center"
-      android:visibility="visible"
-      android:weightSum="10"
-      >
-    <TextView
-        android:id="@+id/edit_disable_text"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_weight="5.5"
-        android:background="@drawable/shape_reply"
-        android:drawableLeft="@mipmap/shouye_pinglun"
-        android:drawablePadding="10dp"
-        android:hint="写评论"
-        android:paddingBottom="5dp"
-        android:paddingLeft="8dp"
-        android:paddingTop="5dp"
-        />
-    <LinearLayout
-        android:id="@+id/support_button"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_weight="2"
-        android:gravity="center_horizontal|center_vertical"
-        >
-
-      <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="20dp"
-          android:src="@mipmap/shouye_pinglun"
-          />
-
-      <TextView
-          android:id="@+id/supportCount"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="5dp"
-          android:minWidth="30dp"
-          android:textColor="#787C7F"
-          />
-    </LinearLayout>
+    </com.hengrtech.carheadline.ui.home.MyScrollView>
 
     <LinearLayout
-        android:id="@+id/news_fast_reply"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_weight="2"
-        android:gravity="center_horizontal|center_vertical"
-        >
-
-      <ImageView
-          android:id="@+id/news_reply"
-          android:layout_width="wrap_content"
-          android:layout_height="20dp"
-          android:src="@mipmap/shouye_pinglun"
-          />
-
-      <TextView
-          android:id="@+id/reply_count"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="5dp"
-          android:minWidth="30dp"
-          android:textColor="#787C7F"
-          />
-    </LinearLayout>
-  </LinearLayout>
-  <!--Footer-->
-  <LinearLayout
-      android:id="@+id/reply_box"
-      android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_alignParentBottom="true"
-      android:background="@drawable/forum_edit_backgroud"
-      android:focusable="true"
-      android:focusableInTouchMode="true"
-      android:gravity="center_vertical"
-      android:orientation="horizontal"
-      android:visibility="gone"
-      android:weightSum="10"
-      >
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="1.1"
-        android:background="@drawable/round_border"
+        android:id="@+id/reply_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="#f2f2f2"
         android:gravity="center"
+        android:visibility="visible"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/edit_disable_text"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="5.5"
+            android:background="@drawable/shape_reply"
+            android:drawableLeft="@mipmap/shouye_pinglun"
+            android:drawablePadding="10dp"
+            android:hint="写评论"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="5dp" />
+
+        <LinearLayout
+            android:id="@+id/support_button"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="2"
+            android:gravity="center_horizontal|center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:src="@mipmap/shouye_pinglun" />
+
+            <TextView
+                android:id="@+id/supportCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:minWidth="30dp"
+                android:textColor="#787C7F" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/news_fast_reply"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="2"
+            android:gravity="center_horizontal|center_vertical">
+
+            <ImageView
+                android:id="@+id/news_reply"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:src="@mipmap/shouye_pinglun" />
+
+            <TextView
+                android:id="@+id/reply_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:minWidth="30dp"
+                android:textColor="#787C7F" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--Footer-->
+    <LinearLayout
+        android:id="@+id/reply_box"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/forum_edit_backgroud"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:visibility="gone"
-        >
+        android:weightSum="10">
 
-      <ImageView
-          android:layout_width="22dp"
-          android:layout_height="22dp"
-          android:src="@mipmap/plus"
-          />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1.1"
+            android:background="@drawable/round_border"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@mipmap/plus" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/reply_editText"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="8"
+            android:background="@drawable/edittext_background"
+            android:hint="回复楼主"
+            android:textColor="@color/font_color_dark_gray" />
+
+        <TextView
+            android:id="@+id/sendButn"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1.6"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:text="发表"
+            android:textColor="#A9ADB0" />
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/reply_editText"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="8"
-        android:background="@drawable/edittext_background"
-        android:hint="回复楼主"
-        android:textColor="@color/font_color_dark_gray"
-        />
-
-    <TextView
-        android:id="@+id/sendButn"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_marginLeft="15dp"
-        android:layout_weight="1.6"
-        android:background="@drawable/border"
-        android:gravity="center"
-        android:text="发表"
-        android:textColor="#A9ADB0"
-        />
-  </LinearLayout>
 </RelativeLayout>
