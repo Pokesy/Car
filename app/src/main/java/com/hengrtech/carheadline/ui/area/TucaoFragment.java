@@ -183,7 +183,7 @@ public class TucaoFragment extends BasicTitleBarFragment
             holder.getView(R.id.ll_zx).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), AreaDetailActivity.class);
+                    Intent intent = new Intent(getActivity(), TucaoDetailsActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("logo", bean.getAvatar());
                     bundle.putString("nickName", bean.getNickName());

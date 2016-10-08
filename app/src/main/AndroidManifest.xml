@@ -117,7 +117,8 @@
         <activity
             android:name=".ui.area.CameraActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.home.NewsCommentDetailsActivity"></activity>
+        <activity android:name=".ui.home.NewsCommentDetailsActivity" />
+        <activity android:name=".ui.area.TucaoDetailsActivity"></activity>
     </application>
 
 </manifest>

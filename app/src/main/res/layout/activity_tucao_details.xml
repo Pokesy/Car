@@ -4,12 +4,14 @@
     android:layout_height="match_parent"
     android:background="@color/font_color_white"
     android:orientation="vertical">
+
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1.0dp"
         android:layout_alignParentTop="true"
         android:background="@color/color_d9" />
+
     <LinearLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
@@ -96,7 +98,7 @@
                     android:drawableLeft="@mipmap/write_comment_icon"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:hint="我要回答"
+                    android:hint="写评论"
                     android:paddingBottom="5dp"
                     android:paddingLeft="8dp"
                     android:paddingTop="5dp" />
@@ -149,8 +151,8 @@
         android:id="@+id/news_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/divider"
         android:layout_above="@id/bottom_layout"
+        android:layout_below="@id/divider"
         android:scrollbars="none">
 
         <LinearLayout
@@ -162,9 +164,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:paddingRight="15dp"
+                android:layout_height="wrap_content"
                 android:paddingLeft="15dp"
-                android:layout_height="wrap_content">
+                android:paddingRight="15dp">
 
                 <ImageView
                     android:id="@+id/head"
@@ -202,9 +204,9 @@
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"
                 android:layout_marginTop="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
                 android:text="ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" />
 
             <LinearLayout
@@ -212,8 +214,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/zan_layout"
@@ -275,15 +276,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingRight="15dp"
                 android:paddingLeft="15dp"
+                android:paddingRight="15dp"
                 android:paddingTop="15dp">
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="网友答案"
+                    android:text="评论"
                     android:textColor="@color/font_color_black"
                     android:textSize="17sp" />
 
